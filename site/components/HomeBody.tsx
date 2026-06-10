@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/Reveal";
+import RapportApercu from "@/components/RapportApercu";
 import Counter from "@/components/Counter";
 import TiltCard from "@/components/TiltCard";
 import CtaButton from "@/components/CtaButton";
@@ -91,6 +92,9 @@ export default function HomeBody() {
           </div>
         </div>
       </section>
+
+      {/* À QUOI RESSEMBLE TON RAPPORT */}
+      <RapportApercu />
 
       {/* POURQUOI UN SEUL BUSINESS */}
       <section>

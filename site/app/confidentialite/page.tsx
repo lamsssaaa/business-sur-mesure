@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import { CONTACT_EMAIL } from "@/lib/config";
 
-export const metadata: Metadata = { title: "Confidentialité — Ton Business Sur Mesure" };
+export const metadata: Metadata = {
+  title: "Confidentialité — Ton Business Sur Mesure",
+  description: "Ce qu'on collecte, pourquoi, combien de temps — et tes droits (LPD/RGPD). Tes réponses servent uniquement à produire ton rapport.",
+};
 
 export default function Confidentialite() {
   return (

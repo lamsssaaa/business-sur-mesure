@@ -7,6 +7,9 @@ export const LINKS = {
   profilParEmail: "https://tally.so/r/Ek6jxA",
 };
 
+// Mesure du tunnel (GoatCounter) — vide = totalement désactivé. Voir components/Analytics.tsx.
+export const GOATCOUNTER_CODE = "";
+
 // Adresse de contact affichée sur le site et dans les emails.
 // v1 : adresse perso ; à remplacer par une adresse dédiée dès que le domaine est acheté.
 export const CONTACT_EMAIL = "ahmed.salam@hotmail.ch";

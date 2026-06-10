@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import { CONTACT_EMAIL } from "@/lib/config";
 
-export const metadata: Metadata = { title: "Conditions — Ton Business Sur Mesure" };
+export const metadata: Metadata = {
+  title: "Conditions — Ton Business Sur Mesure",
+  description: "Prix unique 49.90 CHF, livraison en 48 h, garantie satisfait ou remboursé 14 jours. Les conditions complètes du service, en clair.",
+};
 
 export default function Conditions() {
   return (

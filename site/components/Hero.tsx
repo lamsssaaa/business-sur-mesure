@@ -2,13 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { motion, useReducedMotion } from "motion/react";
 import CtaButton from "@/components/CtaButton";
 import { COPY } from "@/lib/copy";
 
-const HeroScene = dynamic(() => import("@/components/HeroScene"), { ssr: false });
-
-/** Fallback léger : blobs CSS + UNE forme émeraude (mobile, reduced-motion, sans WebGL). */
+/** Fallback léger : blobs CSS (mobile, reduced-motion, sans WebGL, ou 3D en cours de chargement). */
 function HeroFallback() {
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -20,17 +17,23 @@ function HeroFallback() {
   );
 }
 
+const HeroScene = dynamic(() => import("@/components/HeroScene"), {
+  ssr: false,
+  loading: () => null, // le fallback reste affiché derrière pendant le chargement
+});
+
 const titleWords = COPY.hero.titre.split(" ");
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const progress = useRef(0);
   const pointer = useRef({ x: 0, y: 0 });
-  const reduced = useReducedMotion();
   const [use3D, setUse3D] = useState(false);
+  const [enVue, setEnVue] = useState(true);
 
   useEffect(() => {
     const wide = window.matchMedia("(min-width: 768px)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let webgl = false;
     try {
       const canvas = document.createElement("canvas");
@@ -39,7 +42,18 @@ export default function Hero() {
       webgl = false;
     }
     setUse3D(Boolean(wide && webgl && !reduced));
-  }, [reduced]);
+  }, []);
+
+  // La scène 3D ne tourne que quand le héro est (presque) à l'écran — zéro GPU au-delà
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || !use3D) return;
+    const io = new IntersectionObserver(([entry]) => setEnVue(entry.isIntersecting), {
+      rootMargin: "300px 0px",
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [use3D]);
 
   useEffect(() => {
     if (!use3D) return;
@@ -65,57 +79,44 @@ export default function Hero() {
   }, [use3D]);
 
   return (
-    <section ref={sectionRef} className={use3D ? "relative h-[170vh]" : "relative"}>
-      <div
-        className={
-          use3D
-            ? "sticky top-0 flex h-screen items-center overflow-hidden"
-            : "relative flex min-h-[92vh] items-center overflow-hidden"
-        }
-      >
+    // Hauteurs 100 % CSS (identiques avant/après hydratation) : zéro décalage de mise en page
+    <section ref={sectionRef} className="relative md:h-[170vh]">
+      <div className="relative flex min-h-[92vh] items-center overflow-hidden md:sticky md:top-0 md:h-screen">
         <div className="hero-aura absolute inset-0" aria-hidden="true" />
-        {use3D ? (
-          <div className="absolute inset-0">
+        <HeroFallback />
+        {use3D && enVue && (
+          <div className="absolute inset-0" aria-hidden="true">
             <HeroScene progress={progress} pointer={pointer} />
           </div>
-        ) : (
-          <HeroFallback />
         )}
 
         <div className="relative mx-auto w-full max-w-6xl px-6 pt-24 sm:pt-20">
           <div className="max-w-2xl">
+            {/* Entrée animée en pur CSS : le texte est visible même sans JavaScript */}
             <h1 className="text-5xl font-semibold leading-[1.04] sm:text-7xl">
               {titleWords.map((word, i) => (
-                <motion.span
-                  key={`${word}-${i}`}
-                  className={`inline-block whitespace-pre ${
-                    word.includes("TON") || word.includes("business") ? "text-accent italic" : ""
-                  }`}
-                  initial={reduced ? false : { y: "110%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.08 + i * 0.055, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {word}{" "}
-                </motion.span>
+                <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom">
+                  <span
+                    className={`rise inline-block whitespace-pre ${
+                      word.includes("TON") || word.includes("business") ? "text-accent italic" : ""
+                    }`}
+                    style={{ animationDelay: `${0.08 + i * 0.055}s` }}
+                  >
+                    {word}{" "}
+                  </span>
+                </span>
               ))}
             </h1>
-            <motion.p
-              className="mt-7 max-w-xl text-lg text-muted sm:text-xl"
-              initial={reduced ? false : { y: 24, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            <p
+              className="rise-soft mt-7 max-w-xl text-lg text-muted sm:text-xl"
+              style={{ animationDelay: "0.55s" }}
             >
               {COPY.hero.sousTitre}
-            </motion.p>
-            <motion.div
-              className="mt-10"
-              initial={reduced ? false : { y: 24, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
-            >
+            </p>
+            <div className="rise-soft mt-10" style={{ animationDelay: "0.72s" }}>
               <CtaButton href="/mini-test/">{COPY.hero.cta}</CtaButton>
               <p className="mt-4 text-sm text-muted">{COPY.hero.reassurance}</p>
-            </motion.div>
+            </div>
           </div>
         </div>
 

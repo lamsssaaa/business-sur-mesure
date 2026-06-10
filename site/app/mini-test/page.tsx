@@ -5,6 +5,8 @@ import { INTRO } from "@/lib/quiz";
 
 export const metadata: Metadata = {
   title: "Mini-test gratuit (2 min) — Quel entrepreneur es-tu ?",
+  description:
+    "10 questions, 2 minutes, résultat immédiat : découvre ton profil entrepreneur et les catégories de business qui correspondent à ta situation. Gratuit, sans compte.",
 };
 
 export default function MiniTest() {

@@ -3,7 +3,11 @@ import Footer from "@/components/Footer";
 import { CTA_CLASSES } from "@/components/CtaButton";
 import { LINKS, CONTACT_EMAIL } from "@/lib/config";
 
-export const metadata: Metadata = { title: "Merci ! Dernière étape : tes 50 questions" };
+export const metadata: Metadata = {
+  title: "Merci ! Dernière étape : tes 50 questions",
+  description: "Paiement reçu — réponds aux 50 questions pour recevoir ton rapport personnalisé sous 48 h.",
+  robots: { index: false, follow: false },
+};
 
 export default function Merci() {
   const questionnairePret = !LINKS.questionnaire.includes("A_REMPLACER");

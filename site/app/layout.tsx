@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  axes: ["opsz", "SOFT", "WONK"],
+  axes: ["opsz"],
 });
 
 const hanken = Hanken_Grotesk({
@@ -47,9 +48,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${fraunces.variable} ${hanken.variable}`}>
       <body className="antialiased">
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+        <a
+          href="#contenu"
+          className="sr-only z-50 rounded-lg bg-accent px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Aller au contenu
+        </a>
         <div className="grain" aria-hidden="true" />
         <SiteHeader />
-        {children}
+        <div id="contenu">{children}</div>
+        <Analytics />
       </body>
     </html>
   );

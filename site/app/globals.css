@@ -35,7 +35,6 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 40, "WONK" 0;
   letter-spacing: -0.015em;
 }
 
@@ -60,6 +59,50 @@ h3,
     radial-gradient(38rem 38rem at 70% 18%, rgb(14 107 79 / 0.1), transparent 60%),
     radial-gradient(28rem 28rem at 12% 70%, rgb(184 138 46 / 0.08), transparent 65%),
     radial-gradient(50rem 30rem at 50% 110%, rgb(231 242 238 / 0.9), transparent 70%);
+}
+
+/* Entrée du héro en pur CSS : visible sans JS, animée dès le premier rendu,
+   désactivée (donc visible immédiatement) en reduced-motion */
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    opacity: 0;
+    animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .rise-soft {
+    opacity: 0;
+    animation: rise-soft-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise-soft-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus visible harmonisé sur tout le site */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Blobs du fallback héro (mobile / reduced-motion / sans WebGL) */

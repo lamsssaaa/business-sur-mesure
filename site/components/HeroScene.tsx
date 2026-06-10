@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -23,6 +23,19 @@ function ChaosCloud({ progress, pointer }: SceneProps) {
   const group = useRef<THREE.Group>(null);
   const one = useRef<THREE.Mesh>(null);
   const oneInner = useRef<THREE.Mesh>(null);
+
+  // Géométries PARTAGÉES entre les 26 formes (3 instances au lieu de 26), libérées au démontage
+  const geos = useMemo(
+    () =>
+      [
+        new THREE.IcosahedronGeometry(1, 0),
+        new THREE.OctahedronGeometry(1, 0),
+        new THREE.DodecahedronGeometry(1, 0),
+        new THREE.IcosahedronGeometry(1, 1),
+      ] as const,
+    []
+  );
+  useEffect(() => () => geos.forEach((g) => g.dispose()), [geos]);
 
   const shapes = useMemo(() => {
     const rng = (seed: number) => {
@@ -105,14 +118,7 @@ function ChaosCloud({ progress, pointer }: SceneProps) {
     <group position={[1.9, 0.1, -0.4]}>
       <group ref={group}>
         {shapes.map((s, i) => (
-          <mesh key={i} position={s.start}>
-            {s.kind === 0 ? (
-              <icosahedronGeometry args={[1, 0]} />
-            ) : s.kind === 1 ? (
-              <octahedronGeometry args={[1, 0]} />
-            ) : (
-              <dodecahedronGeometry args={[1, 0]} />
-            )}
+          <mesh key={i} position={s.start} geometry={geos[s.kind]}>
             <meshStandardMaterial
               color={s.color}
               roughness={0.35}
@@ -124,8 +130,7 @@ function ChaosCloud({ progress, pointer }: SceneProps) {
           </mesh>
         ))}
       </group>
-      <mesh ref={one}>
-        <icosahedronGeometry args={[1, 0]} />
+      <mesh ref={one} geometry={geos[0]}>
         <meshStandardMaterial
           color="#0e6b4f"
           roughness={0.25}
@@ -135,8 +140,7 @@ function ChaosCloud({ progress, pointer }: SceneProps) {
           flatShading
         />
       </mesh>
-      <mesh ref={oneInner}>
-        <icosahedronGeometry args={[1, 1]} />
+      <mesh ref={oneInner} geometry={geos[3]}>
         <meshStandardMaterial
           color="#b88a2e"
           roughness={0.4}
@@ -154,7 +158,7 @@ export default function HeroScene(props: SceneProps) {
   return (
     <Canvas
       camera={{ position: [0, 0, 7], fov: 42 }}
-      dpr={[1, 1.75]}
+      dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
       style={{ pointerEvents: "none" }}
     >

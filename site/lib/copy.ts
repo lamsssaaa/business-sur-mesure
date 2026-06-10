@@ -38,6 +38,12 @@ export const COPY = {
     ],
     mention: "12-18 pages. Livré en 48 h. Un seul business : le tien.",
   },
+  apercu: {
+    titre: "À quoi ressemble ton rapport",
+    intro:
+      "Voici un rapport-exemple — profil fictif anonymisé, mais analyse, plan et budget bien réels. Le tien suivra exactement cette structure, rédigé pour toi.",
+    cta: "Feuilleter le rapport-exemple complet (PDF)",
+  },
   unSeul: {
     titre: "Pourquoi un seul business, et pas une liste",
     texte:
@@ -91,6 +97,10 @@ export const COPY = {
     {
       q: "Ça marche dans mon pays ?",
       r: "Oui : le service s'adresse à toute la francophonie — Suisse, France, Belgique, Québec et au-delà. Ton pays de résidence fait partie des 50 questions, et ton plan d'action tient compte de ton marché et de ton contexte local. Pour les démarches administratives précises (statut, immatriculation, taxes), le rapport t'indique par où commencer, mais vérifie toujours les détails auprès des autorités compétentes de ton pays.",
+    },
+    {
+      q: "Pourquoi payer, alors qu'une IA gratuite peut me donner des idées ?",
+      r: "Parce qu'une liste d'idées ne t'a jamais fait avancer — et c'est tout ce qu'un chatbot gratuit te donne : des suggestions génériques, différentes à chaque conversation, sans engagement et sans suite. Ici, tu achètes une décision : ton conseiller croise réellement tes 50 réponses, s'engage par écrit sur UN business, t'explique pourquoi les autres pistes ont été écartées, et te livre le plan des 30 premiers jours. Et il assume sa recommandation avec la garantie satisfait ou remboursé de 14 jours — essaie d'obtenir ça d'un chatbot.",
     },
   ] as { q: string; r: string }[],
   footer: {
