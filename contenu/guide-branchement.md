@@ -56,6 +56,8 @@
 - [ ] Les 3 rapports OFFERTS sont livrés (proches/early users) et au moins 1 témoignage
       avec autorisation est dans `TEMOIGNAGES` (site/lib/config.ts)
 - [ ] Le rapport-exemple anonymisé existe (base du SCRIPT 2 de contenu/scripts-video.md)
+- [ ] Une section « extrait du rapport-exemple » est ajoutée à la page de vente
+      (prévu dans le design §9.4 — à faire dès que le rapport-exemple existe)
 
 ## 6. Ensuite, le lancement
 

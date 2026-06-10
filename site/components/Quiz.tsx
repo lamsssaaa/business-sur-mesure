@@ -20,6 +20,7 @@ export default function Quiz() {
     const lettre = calculerProfil(reponses);
     const p = PROFILS[lettre];
     const paiementPret = !LINKS.paiement.includes("A_REMPLACER");
+    const emailPret = !LINKS.profilParEmail.includes("A_REMPLACER");
     return (
       <div className="rounded-2xl border border-line bg-white p-8">
         <p className="text-sm uppercase tracking-wide text-muted">Ton profil</p>
@@ -52,14 +53,16 @@ export default function Quiz() {
               Reçois TON business sur mesure — rapport complet 49.90 CHF
             </a>
           )}
-          <a
-            href={`${LINKS.profilParEmail}?profil=${encodeURIComponent(p.nom)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block py-2 text-center text-sm text-muted underline"
-          >
-            📩 Reçois ton profil détaillé par email
-          </a>
+          {emailPret && (
+            <a
+              href={`${LINKS.profilParEmail}?profil=${encodeURIComponent(p.nom)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block py-2 text-center text-sm text-muted underline"
+            >
+              📩 Reçois ton profil détaillé par email
+            </a>
+          )}
           <button
             onClick={() => setReponses([])}
             className="mt-6 block w-full py-2 text-center text-sm text-muted underline"
