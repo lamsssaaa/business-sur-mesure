@@ -12,14 +12,14 @@ export default function Footer() {
           <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>
             {CONTACT_EMAIL}
           </a>
-          {" · "}
-          <Link className="underline" href="/confidentialite/">
-            {COPY.footer.liens[0]}
-          </Link>
-          {" · "}
-          <Link className="underline" href="/conditions/">
-            {COPY.footer.liens[1]}
-          </Link>
+          {COPY.footer.liens.map((lien) => (
+            <span key={lien.href}>
+              {" · "}
+              <Link className="underline" href={lien.href}>
+                {lien.label}
+              </Link>
+            </span>
+          ))}
         </p>
         <p>{COPY.footer.copyright}</p>
       </div>

@@ -96,8 +96,10 @@ export const COPY = {
   footer: {
     disclaimer:
       "Ton Business Sur Mesure est un service d'orientation entrepreneuriale. Il ne constitue pas un conseil financier, juridique ou fiscal, et aucun revenu n'est garanti : les résultats dépendent de ton travail et de ton contexte.",
-    contact: "contact@tonbusinesssurmesure.ch",
-    liens: ["Confidentialité", "Conditions"],
+    liens: [
+      { href: "/confidentialite/", label: "Confidentialité" },
+      { href: "/conditions/", label: "Conditions" },
+    ],
     copyright: "© Ton Business Sur Mesure — Genève, Suisse",
   },
 };

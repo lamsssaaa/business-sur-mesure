@@ -63,8 +63,8 @@ export default function Home() {
         <Section id="temoignages">
           <h2 className="text-3xl font-bold">Ils ont reçu leur rapport</h2>
           <div className="mt-8 space-y-6">
-            {TEMOIGNAGES.map((t) => (
-              <blockquote key={t.prenom} className="rounded-lg border border-line bg-white p-6">
+            {TEMOIGNAGES.map((t, i) => (
+              <blockquote key={`${t.prenom}-${i}`} className="rounded-lg border border-line bg-white p-6">
                 <p className="text-lg">« {t.texte} »</p>
                 <footer className="mt-3 text-sm text-muted">— {t.prenom}</footer>
               </blockquote>

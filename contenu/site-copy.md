@@ -139,3 +139,5 @@ Confidentialité · Conditions
 
 **Ligne de clôture :**
 © Ton Business Sur Mesure — Genève, Suisse
+
+> Note d'intégration (2026-06-10) : l'adresse de contact affichée vient de site/lib/config.ts (CONTACT_EMAIL) — pas de ce fichier.
