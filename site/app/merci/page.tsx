@@ -9,7 +9,7 @@ export default function Merci() {
   const questionnairePret = !LINKS.questionnaire.includes("A_REMPLACER");
   return (
     <main>
-      <div className="mx-auto max-w-2xl px-6 py-16 text-center">
+      <div className="mx-auto max-w-2xl px-6 pb-16 pt-32 text-center">
         <h1 className="text-3xl font-bold">Merci, ton paiement est bien reçu ✅</h1>
         <p className="mt-4 text-lg text-muted">
           Dernière étape : réponds aux 50 questions (20-30 minutes, au calme). Ton rapport personnalisé

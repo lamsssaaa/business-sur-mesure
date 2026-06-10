@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
+import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  axes: ["opsz", "SOFT", "WONK"],
+});
+
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken",
+});
 
 export const metadata: Metadata = {
   title: "Ton Business Sur Mesure — LE business à lancer, selon TON profil",
@@ -9,8 +22,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
-      <body className="antialiased">{children}</body>
+    <html lang="fr" className={`${fraunces.variable} ${hanken.variable}`}>
+      <body className="antialiased">
+        <div className="grain" aria-hidden="true" />
+        <SiteHeader />
+        {children}
+      </body>
     </html>
   );
 }

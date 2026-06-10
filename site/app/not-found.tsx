@@ -5,7 +5,7 @@ import { CTA_CLASSES } from "@/components/CtaButton";
 export default function NotFound() {
   return (
     <main>
-      <div className="mx-auto max-w-2xl px-6 py-16 text-center">
+      <div className="mx-auto max-w-2xl px-6 pb-16 pt-32 text-center">
         <h1 className="text-3xl font-bold">Page introuvable</h1>
         <p className="mt-4 text-lg text-muted">
           Cette page n&apos;existe pas (ou plus). Le mini-test gratuit, lui, est toujours là.

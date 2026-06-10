@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function MiniTest() {
   return (
     <main>
-      <div className="mx-auto max-w-2xl px-6 py-12 sm:py-16">
+      <div className="mx-auto max-w-2xl px-6 pb-12 pt-28 sm:pb-16 sm:pt-32">
         <h1 className="text-3xl font-bold">{INTRO.titre}</h1>
         <p className="mt-2 text-muted">{INTRO.texte}</p>
         <div className="mt-10">

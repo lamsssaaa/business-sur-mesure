@@ -6,7 +6,15 @@
   --color-muted: #5c6168;
   --color-accent: #0e6b4f;
   --color-accent-soft: #e7f2ee;
+  --color-accent-deep: #0a4a37;
   --color-line: #e5e2db;
+  --color-gold: #b88a2e;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --shadow-float: 0 1px 2px rgb(22 24 29 / 0.04), 0 8px 24px rgb(22 24 29 / 0.07),
+    0 24px 64px rgb(22 24 29 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(22 24 29 / 0.05), 0 16px 40px rgb(22 24 29 / 0.1),
+    0 48px 96px rgb(14 107 79 / 0.12);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -18,4 +26,76 @@
 body {
   background: var(--color-paper);
   color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 40, "WONK" 0;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Grain — texture de papier sur tout le site */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Halo d'ambiance derrière le héro */
+.hero-aura {
+  background:
+    radial-gradient(38rem 38rem at 70% 18%, rgb(14 107 79 / 0.1), transparent 60%),
+    radial-gradient(28rem 28rem at 12% 70%, rgb(184 138 46 / 0.08), transparent 65%),
+    radial-gradient(50rem 30rem at 50% 110%, rgb(231 242 238 / 0.9), transparent 70%);
+}
+
+/* Blobs du fallback héro (mobile / reduced-motion / sans WebGL) */
+@media (prefers-reduced-motion: no-preference) {
+  .blob {
+    animation: derive 14s ease-in-out infinite alternate;
+  }
+  .blob:nth-child(2n) {
+    animation-duration: 18s;
+    animation-delay: -6s;
+  }
+  .blob:nth-child(3n) {
+    animation-duration: 22s;
+    animation-delay: -11s;
+  }
+}
+
+@keyframes derive {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  to {
+    transform: translate3d(2.5rem, -1.75rem, 0) rotate(10deg) scale(1.06);
+  }
+}
+
+/* FAQ : rotation du marqueur + */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details .faq-plus {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+details[open] .faq-plus {
+  transform: rotate(45deg);
 }

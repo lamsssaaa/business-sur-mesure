@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Confidentialité — Ton Business Su
 export default function Confidentialite() {
   return (
     <main>
-      <div className="mx-auto max-w-2xl px-6 py-16">
+      <div className="mx-auto max-w-2xl px-6 pb-16 pt-32">
         <h1 className="text-3xl font-bold">Confidentialité</h1>
         <div className="mt-6 space-y-4 text-muted">
           <p>
