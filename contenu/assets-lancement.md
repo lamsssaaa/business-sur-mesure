@@ -22,7 +22,7 @@
 >
 > **Comment ça se passe :**
 > 1. Après commande, vous recevez le questionnaire (20-30 min à remplir, au calme)
-> 2. J'analyse vos réponses (analyse assistée par IA, relue et validée par un humain — moi)
+> 2. J'analyse personnellement vos réponses et je construis votre recommandation
 > 3. Vous recevez votre rapport sous 48 h
 >
 > **Offre de base (19 €) :** votre profil entrepreneur détaillé + les 3 catégories de
@@ -40,9 +40,9 @@
 - Option +15 € : livraison en 24 h au lieu de 48 h
 
 **FAQ du service :**
-- *C'est fait par une IA ?* L'analyse est assistée par IA, puis intégralement relue,
-  vérifiée et validée par un humain. C'est ce qui permet ce niveau de personnalisation à
-  ce prix.
+- *Qui fait l'analyse ?* Votre conseiller — j'analyse vos réponses une par une, avec
+  des outils d'analyse professionnels, et je valide chaque rapport personnellement avant
+  livraison.
 - *Et si le business proposé ne me convient pas ?* Je retravaille la recommandation une
   fois gratuitement avec vos retours.
 - *Ça marche pour quel pays ?* Toute la francophonie — le plan tient compte de votre pays.
@@ -56,7 +56,7 @@ dans le service ou les messages ComeUp.
 
 **Variante A — proche / ami :**
 > Salut [prénom] ! [Phrase perso — nouvelles, référence commune.]
-> Je me lance dans un truc : j'aide les gens qui veulent monter un business mais qui ne
+> Je propose un service de conseil : j'aide les gens qui veulent monter un business mais qui ne
 > savent pas LEQUEL. 50 questions sur leur parcours → je leur dis le business fait pour
 > eux, avec le plan des 30 premiers jours. Pour les 10 premiers, c'est 29.90 au lieu de
 > 49.90, en échange d'un retour honnête.
@@ -66,7 +66,7 @@ dans le service ou les messages ComeUp.
 
 **Variante B — ex-collègue / connaissance pro :**
 > Bonjour [prénom], [phrase perso].
-> Je lance un service d'orientation entrepreneuriale : un questionnaire de 50 questions
+> Je propose un service d'orientation entrepreneuriale : un questionnaire de 50 questions
 > sur l'expérience, les compétences et les contraintes de la personne, et je lui rends un
 > rapport avec LE business adapté à son profil + un plan de 30 jours. Tarif fondateur
 > 29.90 CHF pour les 10 premiers (contre un retour détaillé).
@@ -99,10 +99,10 @@ dans le service ou les messages ComeUp.
 > → UN business adapté à TON profil (pas un top 10 copié-collé)
 > → le plan des 30 premiers jours, semaine par semaine
 >
-> L'analyse est assistée par IA, puis relue et validée par un humain. Transparence totale.
+> Chaque rapport est analysé, construit et validé personnellement par un conseiller —
+> pas un PDF automatique.
 >
-> Je lance cette semaine. Les 10 premiers rapports sont à tarif fondateur, en échange d'un
-> retour sans filtre.
+> J'ouvre 10 places ce mois-ci à tarif réduit, en échange d'un retour sans filtre.
 >
 > Le mini-test gratuit (2 minutes, résultat immédiat) est en commentaire 👇
 >
@@ -116,11 +116,12 @@ dans le service ou les messages ComeUp.
 
 ## 4. Présentation Forum Pragmatic Entrepreneurs / Discord
 
-> Bonjour à tous ! Farouk, de Genève. Je lance « Ton Business Sur Mesure » : un
+> Bonjour à tous ! Farouk, de Genève. Je propose « Ton Business Sur Mesure » : un
 > questionnaire de 50 questions (expérience, compétences, budget, temps, contraintes) →
 > un rapport personnalisé qui recommande UN business adapté au profil, avec plan 30 jours,
-> budget de démarrage et premiers clients. Analyse assistée par IA + relecture humaine,
-> 49.90 CHF (tarif fondateur 29.90 pour les 10 premiers, contre un retour détaillé).
+> budget de démarrage et premiers clients. Chaque rapport est analysé et validé
+> personnellement — pas un PDF automatique. 49.90 CHF (tarif fondateur 29.90 pour les
+> 10 premiers, contre un retour détaillé).
 > Je cherche surtout des retours francs de gens qui sont passés par le « je veux me lancer
 > mais je ne sais pas dans quoi ». Le mini-test gratuit (2 min) :
 > https://lamsssaaa.github.io/business-sur-mesure/mini-test/

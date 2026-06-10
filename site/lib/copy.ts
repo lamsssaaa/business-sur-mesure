@@ -24,7 +24,7 @@ export const COPY = {
     {
       titre: "Ton rapport en 48 h",
       texte:
-        "Sous 48 heures, tu reçois ton rapport PDF de 12 à 18 pages : LE business adapté à ta situation, argumenté, avec un plan d'action concret sur 30 jours. Analysé avec l'IA, relu et validé par un humain.",
+        "Sous 48 heures, tu reçois ton rapport PDF de 12 à 18 pages : LE business adapté à ta situation, argumenté, avec un plan d'action concret sur 30 jours. Préparé et validé personnellement par ton conseiller.",
     },
   ],
   recois: {
@@ -44,9 +44,9 @@ export const COPY = {
       "Tu as déjà lu des listes de « 20 idées de business ». Et après ? Rien. Trop de choix, c'est zéro décision : tu compares, tu doutes, tu reportes. Nous, on fait l'inverse. On analyse tes 50 réponses et on te recommande UN business — un seul — choisi pour ta situation, ton budget et ton temps. Avec l'argumentaire complet et le plan pour démarrer en 30 jours. Parce que ce qui te manque, ce n'est pas une idée de plus. C'est une décision claire.",
   },
   qui: {
-    titre: "Qui est derrière ce service",
+    titre: "Ton conseiller",
     texte:
-      "Derrière ce service, il y a une personne : un indépendant basé à Genève, qui construit et lance des projets en ligne depuis plusieurs années. Pas une agence, pas une équipe de vendeurs. Et je joue cartes sur table : ton analyse est menée avec l'IA Claude, puis je la relis, la vérifie et la valide moi-même, ligne par ligne. L'IA apporte la profondeur d'analyse sur tes 50 réponses ; l'humain garantit que la recommandation tient la route. C'est cette combinaison que tu achètes.",
+      "Derrière ce service, il y a une personne : un conseiller indépendant basé à Genève, qui construit et lance des projets en ligne depuis plusieurs années. Pas une agence, pas une équipe de vendeurs, pas de PDF automatique. Chaque dossier est traité personnellement : je croise tes 50 réponses — expérience, compétences, budget, temps — avec des outils d'analyse professionnels, je construis ta recommandation et je la valide ligne par ligne avant de te l'envoyer. C'est ce travail de conseil que tu achètes.",
   },
   prix: {
     titre: "Un prix. Une offre. C'est tout.",
@@ -65,8 +65,8 @@ export const COPY = {
   faqTitre: "Questions fréquentes",
   faq: [
     {
-      q: "C'est fait par une IA ?",
-      r: "Oui, en partie — et on l'assume complètement. Tes 50 réponses sont analysées en profondeur avec l'IA Claude, qui croise ton expérience, tes compétences, ton budget et ton temps d'une façon qu'aucun questionnaire classique ne permet. Ensuite, un humain relit, vérifie et valide chaque rapport avant l'envoi. L'IA apporte la puissance d'analyse, l'humain apporte le bon sens et le contexte. Rien ne part sans validation humaine.",
+      q: "Qui analyse mes réponses ?",
+      r: "Ton conseiller — une vraie personne, pas un robot qui envoie un PDF automatique. J'analyse tes 50 réponses une par une, en m'appuyant sur des outils d'analyse professionnels (dont l'intelligence artificielle, utilisée comme instrument de travail), puis je construis, vérifie et valide chaque rapport moi-même avant l'envoi. Rien ne part sans ma validation.",
     },
     {
       q: "Et si le business proposé ne me plaît pas ?",

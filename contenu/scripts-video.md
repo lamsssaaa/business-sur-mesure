@@ -34,7 +34,7 @@
 | [9-15 s] « Ensuite : pourquoi toi. Ligne par ligne, ce qui dans TON parcours rend ce business logique pour toi — et pas pour quelqu'un d'autre. » | Scroll lent sur la section « Pourquoi toi », passages surlignés au fur et à mesure. |
 | [15-21 s] « Puis le plan 30 jours. Semaine par semaine : quoi faire, dans quel ordre, avec quoi commencer dès le jour un. » | Scroll sur le plan 30 jours, les titres « Semaine 1 », « Semaine 2 »… apparaissent en surbrillance. |
 | [21-27 s] « Le budget de départ, poste par poste. Et comment trouver tes trois premiers clients, concrètement. » | Capture de la section budget (tableau), puis de la section « 3 premiers clients ». |
-| [27-35 s] « Et comment c'est fait ? Tes 50 réponses sont analysées avec l'IA, puis relues et validées par un humain. On te le dit clairement, parce qu'on n'a rien à cacher. » | Texte à l'écran sur fond uni : « Analysé avec l'IA. Relu et validé par un humain. » |
+| [27-35 s] « Et comment c'est fait ? Tes 50 réponses sont analysées une par une par ton conseiller, qui construit ton plan et valide chaque recommandation avant de te l'envoyer. » | Texte à l'écran sur fond uni : « Analysé et validé par ton conseiller. » |
 | [35-41 s] « Douze à dix-huit pages. Livré en 48 heures. Satisfait ou remboursé pendant 14 jours. » | Texte récap en 3 lignes qui s'affichent l'une après l'autre : « 12-18 pages / 48 h / remboursé 14 jours ». |
 | [41-45 s] « Fais le mini-test gratuit, lien en bio. » | Texte plein écran : « Mini-test gratuit → lien en bio ». |
 

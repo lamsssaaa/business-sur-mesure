@@ -31,7 +31,7 @@ Fais le mini-test : 10 questions, 2 minutes, sans créer de compte. Tu reçois t
 Si le résultat te parle, commande ton rapport (49.90 CHF). Tu réponds alors aux 50 questions complètes : expérience, compétences, budget, temps disponible, contraintes. Compte 20 à 30 minutes — plus tes réponses sont précises, plus ton plan le sera.
 
 **Étape 3 — Ton rapport en 48 h**
-Sous 48 heures, tu reçois ton rapport PDF de 12 à 18 pages : LE business adapté à ta situation, argumenté, avec un plan d'action concret sur 30 jours. Analysé avec l'IA, relu et validé par un humain.
+Sous 48 heures, tu reçois ton rapport PDF de 12 à 18 pages : LE business adapté à ta situation, argumenté, avec un plan d'action concret sur 30 jours. Préparé et validé personnellement par ton conseiller.
 
 ---
 
@@ -69,7 +69,7 @@ Tu as déjà lu des listes de « 20 idées de business ». Et après ? Rien. Tro
 Qui est derrière ce service
 
 **Texte :**
-Derrière ce service, il y a une personne : un indépendant basé à Genève, qui construit et lance des projets en ligne depuis plusieurs années. Pas une agence, pas une équipe de vendeurs. Et je joue cartes sur table : ton analyse est menée avec l'IA Claude, puis je la relis, la vérifie et la valide moi-même, ligne par ligne. L'IA apporte la profondeur d'analyse sur tes 50 réponses ; l'humain garantit que la recommandation tient la route. C'est cette combinaison que tu achètes.
+Derrière ce service, il y a une personne : un conseiller indépendant basé à Genève, qui construit et lance des projets en ligne depuis plusieurs années. Pas une agence, pas une équipe de vendeurs, pas de PDF automatique. Chaque dossier est traité personnellement : je croise tes 50 réponses — expérience, compétences, budget, temps — avec des outils d'analyse professionnels, je construis ta recommandation et je la valide ligne par ligne avant de te l'envoyer. C'est ce travail de conseil que tu achètes.
 
 ---
 
@@ -103,8 +103,8 @@ Le mini-test est gratuit et sans engagement. Tu décides après.
 **Titre de section :**
 Questions fréquentes
 
-**Q1. C'est fait par une IA ?**
-Oui, en partie — et on l'assume complètement. Tes 50 réponses sont analysées en profondeur avec l'IA Claude, qui croise ton expérience, tes compétences, ton budget et ton temps d'une façon qu'aucun questionnaire classique ne permet. Ensuite, un humain relit, vérifie et valide chaque rapport avant l'envoi. L'IA apporte la puissance d'analyse, l'humain apporte le bon sens et le contexte. Rien ne part sans validation humaine.
+**Q1. Qui analyse mes réponses ?**
+Ton conseiller — une vraie personne, pas un robot qui envoie un PDF automatique. J'analyse tes 50 réponses une par une, en m'appuyant sur des outils d'analyse professionnels (dont l'intelligence artificielle, utilisée comme instrument de travail), puis je construis, vérifie et valide chaque rapport moi-même avant l'envoi. Rien ne part sans ma validation.
 
 **Q2. Et si le business proposé ne me plaît pas ?**
 Tu es couvert par la garantie satisfait ou remboursé de 14 jours. Si le rapport ne te convient pas, tu écris un simple email et tu es intégralement remboursé, sans débat. On préfère un remboursement à un client déçu. Tu ne prends donc aucun risque en essayant.
@@ -141,3 +141,5 @@ Confidentialité · Conditions
 © Ton Business Sur Mesure — Genève, Suisse
 
 > Note d'intégration (2026-06-10) : l'adresse de contact affichée vient de site/lib/config.ts (CONTACT_EMAIL) — pas de ce fichier.
+
+> Édition 2026-06-10 (feedback Farouk + deep research) : positionnement « conseiller » — l'IA n'est plus mise en avant dans le discours de vente (pénalité de confiance documentée) ; mention honnête conservée en FAQ et page Confidentialité.
