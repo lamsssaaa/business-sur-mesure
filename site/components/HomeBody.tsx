@@ -1,61 +1,79 @@
 "use client";
 
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import RevealTitle from "@/components/RevealTitle";
 import RapportApercu from "@/components/RapportApercu";
 import Counter from "@/components/Counter";
-import TiltCard from "@/components/TiltCard";
-import CtaButton from "@/components/CtaButton";
+import DrawnCheck from "@/components/DrawnCheck";
 import Faq from "@/components/Faq";
+import { Gem } from "@/components/Gem";
 import { COPY } from "@/lib/copy";
 import { TEMOIGNAGES } from "@/lib/config";
 
 const STATS = [
   { valeur: 50, suffixe: "", label: "questions sur ton profil" },
   { valeur: 48, suffixe: " h", label: "pour recevoir ton rapport" },
-  { valeur: 30, suffixe: " jours", label: "de plan d'action concret" },
+  { valeur: 30, suffixe: " j", label: "de plan d'action concret" },
 ];
 
 export default function HomeBody() {
   return (
     <>
-      {/* CHIFFRES CLÉS */}
-      <section className="border-y border-line bg-white/60">
+      {/* CHIFFRES — composés en géant, à même le papier */}
+      <section className="border-y border-line">
         <div className="mx-auto grid max-w-6xl grid-cols-1 divide-y divide-line px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.12} y={20} className="py-10 text-center sm:py-14">
-              <p className="font-display text-6xl font-semibold text-accent sm:text-7xl">
+            <Reveal key={s.label} delay={i * 0.1} y={24} className="py-12 sm:px-8 sm:py-16">
+              <p className="tabular font-display text-[clamp(5.5rem,11vw,10rem)] font-light leading-[0.85] text-ink">
                 <Counter value={s.valeur} />
-                {s.suffixe}
+                <span className="text-[0.45em] text-accent">{s.suffixe}</span>
               </p>
-              <p className="mt-2 text-sm uppercase tracking-[0.18em] text-muted">{s.label}</p>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                {s.label}
+              </p>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* COMMENT ÇA MARCHE */}
-      <section id="comment" className="relative">
-        <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
-          <Reveal>
-            <h2 className="text-4xl font-semibold sm:text-5xl">{COPY.etapesTitre}</h2>
-          </Reveal>
-          <div className="mt-16 space-y-10">
+      {/* COMMENT ÇA MARCHE — éditorial, numéros géants, grille alternée */}
+      <section id="comment">
+        <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
+          <p className="kicker">La méthode</p>
+          <RevealTitle texte={COPY.etapesTitre} pivot="marche" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+          <div className="mt-20">
             {COPY.etapes.map((e, i) => (
-              <Reveal key={e.titre} delay={i * 0.08}>
+              <Reveal key={e.titre} delay={0.05}>
                 <div
-                  className={`flex flex-col gap-6 rounded-3xl border border-line bg-white p-8 shadow-float sm:flex-row sm:items-start sm:gap-10 sm:p-10 ${
-                    i === 1 ? "sm:ml-16" : i === 2 ? "sm:ml-32" : ""
+                  className={`relative border-t border-line py-14 sm:py-20 ${
+                    i === 0 ? "" : ""
                   }`}
                 >
                   <span
                     aria-hidden="true"
-                    className="font-display text-6xl font-semibold leading-none text-accent/20 sm:text-7xl"
+                    className="pointer-events-none absolute -top-6 select-none font-display text-[clamp(7rem,18vw,15rem)] font-semibold leading-none text-accent/[0.07] sm:-top-10"
+                    style={{ left: i === 1 ? "auto" : "-0.05em", right: i === 1 ? "-0.02em" : "auto" }}
                   >
                     0{i + 1}
                   </span>
-                  <div>
-                    <h3 className="text-2xl font-semibold">{e.titre}</h3>
-                    <p className="mt-3 max-w-2xl text-lg text-muted">{e.texte}</p>
+                  <div
+                    className={`relative grid gap-4 sm:grid-cols-12 ${""}`}
+                  >
+                    <h3
+                      className={`text-3xl font-semibold sm:text-4xl ${
+                        i === 0 ? "sm:col-span-5 sm:col-start-1" : i === 1 ? "sm:col-span-5 sm:col-start-2" : "sm:col-span-5 sm:col-start-3"
+                      }`}
+                    >
+                      {e.titre}
+                    </h3>
+                    <p
+                      className={`max-w-xl text-lg leading-relaxed text-muted ${
+                        i === 0 ? "sm:col-span-6 sm:col-start-7" : i === 1 ? "sm:col-span-6 sm:col-start-7" : "sm:col-span-6 sm:col-start-7"
+                      }`}
+                    >
+                      {e.texte}
+                    </p>
                   </div>
                 </div>
               </Reveal>
@@ -64,27 +82,25 @@ export default function HomeBody() {
         </div>
       </section>
 
-      {/* CE QUE TU REÇOIS */}
+      {/* CE QUE TU REÇOIS — liste éditoriale sur bande sauge */}
       <section id="rapport" className="bg-accent-soft/60">
-        <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
-            <Reveal>
-              <h2 className="text-4xl font-semibold sm:text-5xl">{COPY.recois.titre}</h2>
-              <p className="mt-8 font-display text-2xl italic leading-snug text-accent sm:text-3xl">
-                {COPY.recois.mention}
-              </p>
-            </Reveal>
-            <ul className="space-y-5">
+        <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
+          <div className="grid gap-14 lg:grid-cols-[1fr_1.25fr] lg:gap-24">
+            <div>
+              <p className="kicker">Ton rapport</p>
+              <RevealTitle texte={COPY.recois.titre} pivot="reçois" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+              <Reveal delay={0.15}>
+                <p className="mt-10 font-display text-2xl italic leading-snug text-accent sm:text-3xl">
+                  {COPY.recois.mention}
+                </p>
+              </Reveal>
+            </div>
+            <ul>
               {COPY.recois.items.map((item, i) => (
-                <Reveal key={item} delay={i * 0.07} y={24}>
-                  <li className="flex gap-4 rounded-2xl border border-line bg-white p-5 shadow-float">
-                    <span
-                      aria-hidden="true"
-                      className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white"
-                    >
-                      ✓
-                    </span>
-                    <span className="text-lg">{item}</span>
+                <Reveal key={item} delay={i * 0.06} y={20}>
+                  <li className="flex gap-5 border-t border-ink/10 py-6 last:border-b">
+                    <DrawnCheck delay={0.15 + i * 0.07} className="mt-1 h-6 w-6" />
+                    <span className="text-lg leading-relaxed">{item}</span>
                   </li>
                 </Reveal>
               ))}
@@ -96,12 +112,26 @@ export default function HomeBody() {
       {/* À QUOI RESSEMBLE TON RAPPORT */}
       <RapportApercu />
 
-      {/* POURQUOI UN SEUL BUSINESS */}
-      <section>
-        <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:py-32">
-          <Reveal>
-            <h2 className="text-4xl font-semibold sm:text-5xl">{COPY.unSeul.titre}</h2>
-            <p className="mt-10 whitespace-pre-line font-display text-xl leading-relaxed text-ink/80 sm:text-2xl">
+      {/* LE MANIFESTE — le moment typographique de la page */}
+      <section className="overflow-hidden">
+        <div className="mx-auto max-w-6xl px-6 py-32 sm:py-44">
+          <h2 className="font-display font-semibold leading-[0.95]">
+            <Reveal y={48}>
+              <span className="block text-[clamp(2.6rem,7vw,6.5rem)]">Pourquoi un seul</span>
+            </Reveal>
+            <Reveal y={48} delay={0.1}>
+              <span className="block text-[clamp(3.2rem,9vw,8.5rem)] italic text-accent">
+                business,
+              </span>
+            </Reveal>
+            <Reveal y={48} delay={0.2}>
+              <span className="block text-[clamp(2.2rem,5.5vw,5rem)] text-muted">
+                et pas une liste
+              </span>
+            </Reveal>
+          </h2>
+          <Reveal delay={0.3}>
+            <p className="mt-16 max-w-[36rem] whitespace-pre-line text-xl leading-relaxed text-ink/80 lg:ml-[42%]">
               {COPY.unSeul.texte}
             </p>
           </Reveal>
@@ -111,16 +141,15 @@ export default function HomeBody() {
       {/* TÉMOIGNAGES — seulement quand il y en a de VRAIS */}
       {TEMOIGNAGES.length > 0 && (
         <section id="temoignages" className="bg-accent-soft/60">
-          <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
-            <Reveal>
-              <h2 className="text-4xl font-semibold sm:text-5xl">Ils ont reçu leur rapport</h2>
-            </Reveal>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
+            <p className="kicker">Ils l'ont fait</p>
+            <RevealTitle texte="Ils ont reçu leur rapport" pivot="rapport" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+            <div className="mt-14 grid gap-6 sm:grid-cols-2">
               {TEMOIGNAGES.map((t, i) => (
                 <Reveal key={`${t.prenom}-${i}`} delay={i * 0.08}>
-                  <blockquote className="rounded-2xl border border-line bg-white p-7 shadow-float">
-                    <p className="text-lg">« {t.texte} »</p>
-                    <cite className="mt-4 block text-sm font-semibold text-accent">
+                  <blockquote className="border-t border-ink/10 pt-6">
+                    <p className="font-display text-xl italic leading-relaxed">« {t.texte} »</p>
+                    <cite className="mt-4 block text-sm font-semibold not-italic text-accent">
                       — {t.prenom}
                     </cite>
                   </blockquote>
@@ -132,56 +161,79 @@ export default function HomeBody() {
       )}
 
       {/* TON CONSEILLER */}
-      <section className="border-y border-line bg-white/60">
-        <div className="mx-auto max-w-4xl px-6 py-24 sm:py-32">
-          <Reveal>
-            <p className="text-xs uppercase tracking-[0.25em] text-accent">Genève, Suisse</p>
-            <h2 className="mt-3 text-4xl font-semibold sm:text-5xl">{COPY.qui.titre}</h2>
-            <p className="mt-8 whitespace-pre-line text-lg leading-relaxed text-muted sm:text-xl">
-              {COPY.qui.texte}
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* PRIX */}
-      <section id="prix" className="relative overflow-hidden">
-        <div className="hero-aura absolute inset-0 rotate-180" aria-hidden="true" />
-        <div className="relative mx-auto max-w-2xl px-6 py-24 sm:py-32">
-          <Reveal>
-            <TiltCard className="rounded-[2rem] border border-line bg-white p-10 text-center shadow-lift sm:p-14">
-              <h2 className="text-3xl font-semibold sm:text-4xl">{COPY.prix.titre}</h2>
-              <p className="mt-8 font-display text-6xl font-semibold text-accent sm:text-7xl">
-                {COPY.prix.montant}
+      <section className="relative overflow-hidden border-y border-line bg-white/50">
+        <Gem
+          size={420}
+          variant="pale"
+          className="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 opacity-50"
+        />
+        <div className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
+          <div className="max-w-3xl">
+            <p className="kicker">Genève, Suisse</p>
+            <RevealTitle texte={COPY.qui.titre} pivot="conseiller" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+            <Reveal delay={0.15}>
+              <p className="mt-10 whitespace-pre-line text-lg leading-relaxed text-muted sm:text-xl">
+                {COPY.qui.texte}
               </p>
-              <ul className="mx-auto mt-10 max-w-md space-y-3 text-left">
-                {COPY.prix.inclus.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span aria-hidden="true" className="font-bold text-accent">
-                      ✓
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-sm text-muted">{COPY.prix.garantie}</p>
-              <div className="mt-10">
-                <CtaButton href="/mini-test/">{COPY.prix.cta}</CtaButton>
-                <p className="mt-4 text-sm text-muted">{COPY.prix.reassurance}</p>
-              </div>
-            </TiltCard>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq">
-        <div className="mx-auto max-w-3xl px-6 pb-28 pt-4 sm:pb-36">
+      {/* PRIX — la scène sombre : UNE décision, UN prix */}
+      <section id="prix" className="relative overflow-hidden bg-accent-deep text-paper">
+        <Gem
+          size={560}
+          variant="plein"
+          className="pointer-events-none absolute -bottom-40 -right-32 opacity-[0.18]"
+        />
+        <div className="relative mx-auto max-w-6xl px-6 py-32 sm:py-44">
           <Reveal>
-            <h2 className="text-4xl font-semibold sm:text-5xl">{COPY.faqTitre}</h2>
+            <p className="font-display text-2xl italic text-paper/85 sm:text-3xl">{COPY.prix.titre}</p>
           </Reveal>
           <Reveal delay={0.1}>
+            <p className="tabular mt-6 font-display text-[clamp(4.5rem,13vw,12rem)] font-light leading-[0.9]">
+              49<span className="text-gold">.90</span>
+              <span className="ml-3 align-middle font-sans text-[0.18em] font-semibold uppercase tracking-[0.2em] text-paper/70">
+                CHF
+              </span>
+            </p>
+          </Reveal>
+          <div className="mt-14 grid gap-x-16 gap-y-5 sm:grid-cols-2">
+            {COPY.prix.inclus.map((item, i) => (
+              <Reveal key={item} delay={0.15 + i * 0.06} y={16}>
+                <div className="flex gap-4 border-t border-paper/15 pt-5">
+                  <DrawnCheck or delay={0.25 + i * 0.08} className="mt-0.5 h-5 w-5" />
+                  <span className="text-lg text-paper/90">{item}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.25}>
+            <p className="mt-10 max-w-xl text-paper/60">{COPY.prix.garantie}</p>
             <div className="mt-12">
+              <Link
+                href="/mini-test/"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper px-8 py-4 text-base font-semibold text-accent-deep shadow-lift transition duration-300 hover:-translate-y-0.5 hover:bg-white sm:px-9 sm:text-lg"
+              >
+                {COPY.prix.cta}
+                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+              <p className="mt-4 text-sm text-paper/60">{COPY.prix.reassurance}</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* FAQ — index éditorial */}
+      <section id="faq">
+        <div className="mx-auto max-w-4xl px-6 pb-32 pt-28 sm:pb-40 sm:pt-36">
+          <p className="kicker">Avant de te lancer</p>
+          <RevealTitle texte={COPY.faqTitre} pivot="fréquentes" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+          <Reveal delay={0.1}>
+            <div className="mt-14">
               <Faq />
             </div>
           </Reveal>

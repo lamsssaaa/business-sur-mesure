@@ -24,7 +24,7 @@ function Page({
 }) {
   return (
     <div
-      className={`w-72 shrink-0 rounded-xl border border-line bg-white p-6 shadow-float sm:w-80 ${className}`}
+      className={`w-72 shrink-0 rounded-xl border border-line bg-white p-6 shadow-float transition duration-500 hover:-translate-y-2 hover:rotate-0 hover:shadow-lift sm:w-80 ${className}`}
     >
       {children}
     </div>
@@ -36,16 +36,14 @@ export default function RapportApercu() {
     <section id="apercu" className="overflow-hidden border-y border-line bg-white/60">
       <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
         <Reveal>
-          <h2 className="text-4xl font-semibold sm:text-5xl">{COPY.apercu.titre}</h2>
+          <p className="kicker">La preuve</p>
+          <h2 className="mt-4 text-4xl font-semibold sm:text-6xl">{COPY.apercu.titre}</h2>
           <p className="mt-5 max-w-2xl text-lg text-muted">{COPY.apercu.intro}</p>
         </Reveal>
-        <Reveal delay={0.12}>
-          <div className="mt-14 flex flex-col items-center gap-6 lg:flex-row lg:items-stretch lg:justify-center">
+        <div className="mt-14 flex flex-col items-center gap-6 lg:flex-row lg:items-stretch lg:justify-center">
             {/* Page de garde */}
-            <Page className="lg:-rotate-2">
-              <p className="font-display text-xs uppercase tracking-[0.2em] text-muted">
-                Rapport personnalisé
-              </p>
+            <Reveal delay={0.1} y={48}><Page className="lg:-rotate-2">
+              <p className="kicker">Rapport personnalisé</p>
               <p className="mt-6 font-display text-2xl font-semibold leading-snug">
                 Ton Business <span className="italic text-accent">Sur Mesure</span>
               </p>
@@ -56,9 +54,9 @@ export default function RapportApercu() {
               <p className="mt-10 border-t border-line pt-4 text-xs text-muted">
                 Basé sur ses 50 réponses · 17 pages · livré en 48 h
               </p>
-            </Page>
+            </Page></Reveal>
             {/* Sommaire */}
-            <Page className="lg:translate-y-3">
+            <Reveal delay={0.22} y={48}><Page className="lg:translate-y-3">
               <p className="font-display text-lg font-semibold">Sommaire</p>
               <ol className="mt-4 space-y-2.5">
                 {SOMMAIRE.map((item, i) => (
@@ -68,9 +66,9 @@ export default function RapportApercu() {
                   </li>
                 ))}
               </ol>
-            </Page>
+            </Page></Reveal>
             {/* Extrait « Pourquoi TOI » */}
-            <Page className="lg:rotate-2">
+            <Reveal delay={0.34} y={48}><Page className="lg:rotate-2">
               <p className="font-display text-lg font-semibold">
                 1.2 — Pourquoi <span className="italic text-accent">TOI</span>
               </p>
@@ -92,9 +90,8 @@ export default function RapportApercu() {
               <p className="mt-3 text-xs text-muted">
                 La suite est dans le rapport — chaque rapport est rédigé pour son destinataire.
               </p>
-            </Page>
-          </div>
-        </Reveal>
+            </Page></Reveal>
+        </div>
         <Reveal delay={0.2}>
           <p className="mt-12 text-center">
             <a
@@ -102,7 +99,7 @@ export default function RapportApercu() {
               target="_blank"
               rel="noopener noreferrer"
               data-goatcounter-click="pdf-exemple"
-              className="font-semibold text-accent underline underline-offset-4 hover:text-accent-deep"
+              className="link-anim font-semibold text-accent"
             >
               {COPY.apercu.cta}
               <span className="sr-only"> (PDF, s'ouvre dans une nouvelle fenêtre)</span>

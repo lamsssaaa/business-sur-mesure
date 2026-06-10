@@ -4,15 +4,39 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import CtaButton from "@/components/CtaButton";
 import { COPY } from "@/lib/copy";
+import { Gem } from "@/components/Gem";
 
 /** Fallback léger : blobs CSS (mobile, reduced-motion, sans WebGL, ou 3D en cours de chargement). */
 function HeroFallback() {
+  // Le concept, lisible sans WebGL : des fragments dispersés, UNE gemme.
+  const fragments = [
+    { right: "34%", top: "16%", size: 30, rot: -18 },
+    { right: "12%", top: "11%", size: 44, rot: 12 },
+    { right: "6%", top: "34%", size: 24, rot: 40 },
+    { right: "40%", top: "42%", size: 20, rot: -30 },
+    { right: "30%", top: "66%", size: 36, rot: 22 },
+    { right: "9%", top: "72%", size: 28, rot: -8 },
+    { right: "22%", top: "85%", size: 18, rot: 55 },
+  ];
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      <div className="blob absolute left-[8%] top-[18%] h-40 w-40 rounded-[38%_62%_55%_45%/55%_40%_60%_45%] bg-line/70 blur-[2px]" />
-      <div className="blob absolute right-[12%] top-[12%] h-28 w-28 rounded-[55%_45%_40%_60%/45%_60%_40%_55%] bg-accent-soft" />
-      <div className="blob absolute bottom-[22%] left-[18%] h-24 w-24 rounded-[45%_55%_60%_40%/60%_45%_55%_40%] bg-[#e3ddd0]" />
-      <div className="blob absolute bottom-[14%] right-[20%] h-36 w-36 rounded-[60%_40%_45%_55%/40%_55%_45%_60%] bg-accent/15" />
+      <div className="blob absolute left-[8%] top-[18%] h-40 w-40 rounded-[38%_62%_55%_45%/55%_40%_60%_45%] bg-line/60 blur-[2px]" />
+      <div className="blob absolute bottom-[20%] left-[16%] h-24 w-24 rounded-[45%_55%_60%_40%/60%_45%_55%_40%] bg-[#e3ddd0]" />
+      {fragments.map((f, i) => (
+        <div
+          key={i}
+          className="blob absolute hidden sm:block"
+          style={{ right: f.right, top: f.top, transform: `rotate(${f.rot}deg)`, opacity: 0.8 }}
+        >
+          <Gem size={f.size} variant="pale" />
+        </div>
+      ))}
+      <div className="blob absolute hidden sm:right-[18%] sm:top-[38%] sm:block">
+        <Gem size={120} variant="plein" className="drop-shadow-xl" />
+      </div>
+      <div className="blob absolute bottom-[16%] right-[7%] sm:hidden">
+        <Gem size={56} variant="plein" className="drop-shadow-lg" />
+      </div>
     </div>
   );
 }
@@ -30,6 +54,14 @@ export default function Hero() {
   const pointer = useRef({ x: 0, y: 0 });
   const [use3D, setUse3D] = useState(false);
   const [enVue, setEnVue] = useState(true);
+  const [masqueHint, setMasqueHint] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setMasqueHint(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const wide = window.matchMedia("(min-width: 768px)").matches;
@@ -93,7 +125,7 @@ export default function Hero() {
         <div className="relative mx-auto w-full max-w-6xl px-6 pt-24 sm:pt-20">
           <div className="max-w-2xl">
             {/* Entrée animée en pur CSS : le texte est visible même sans JavaScript */}
-            <h1 className="text-5xl font-semibold leading-[1.04] sm:text-7xl">
+            <h1 className="text-[clamp(3.2rem,8.5vw,7.5rem)] font-semibold leading-[0.98] tracking-tight">
               {titleWords.map((word, i) => (
                 <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom">
                   <span
@@ -120,14 +152,15 @@ export default function Hero() {
           </div>
         </div>
 
-        {use3D && (
-          <div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.25em] text-muted"
-            aria-hidden="true"
-          >
-            scroll
-          </div>
-        )}
+        <div
+          className={`absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-muted transition-opacity duration-300 ${
+            masqueHint ? "opacity-0" : "opacity-100"
+          }`}
+          aria-hidden="true"
+        >
+          scroll
+          <span className="scroll-ligne block h-7 w-px bg-ink/30" />
+        </div>
       </div>
     </section>
   );

@@ -129,7 +129,7 @@ summary:focus-visible {
   }
 }
 
-/* FAQ : rotation du marqueur + */
+/* FAQ : rotation du marqueur + et ouverture animée en pur CSS */
 details > summary {
   list-style: none;
 }
@@ -141,4 +141,122 @@ details .faq-plus {
 }
 details[open] .faq-plus {
   transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+    details::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition:
+        block-size 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        content-visibility 0.45s allow-discrete;
+    }
+    details[open]::details-content {
+      block-size: auto;
+    }
+  }
+  details[open] .faq-reponse {
+    animation: faq-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+  }
+}
+
+@keyframes faq-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Lien éditorial : soulignement qui se dessine */
+.link-anim {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat;
+  transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-anim:hover,
+.link-anim:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Étiquette de section (kicker) */
+.kicker {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Coche dessinée au scroll */
+@media (prefers-reduced-motion: no-preference) {
+  .check-draw .check-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  .check-draw.est-visible .check-path {
+    animation: check-in 0.45s ease-out both;
+    animation-delay: var(--check-delay, 0.2s);
+  }
+}
+@keyframes check-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Chiffres stables pendant les compteurs */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar dans la palette papier */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+/* Indice de scroll : segment qui descend en boucle */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-ligne {
+    background: linear-gradient(var(--color-accent), var(--color-accent)) 0 0 / 100% 30% no-repeat,
+      rgb(22 24 29 / 0.18);
+    animation: scroll-descend 1.8s ease-in-out infinite;
+  }
+}
+@keyframes scroll-descend {
+  0% {
+    background-position: 0 -10px;
+  }
+  100% {
+    background-position: 0 38px;
+  }
+}
+
+/* Gemme complète : scintillement à la 10e réponse */
+@media (prefers-reduced-motion: no-preference) {
+  .gem-complete {
+    animation: gem-glint 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+@keyframes gem-glint {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  40% {
+    transform: scale(1.12) rotate(6deg);
+    filter: brightness(1.25);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
 }

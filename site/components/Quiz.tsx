@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { QUESTIONS, PROFILS, calculerProfil, type Lettre } from "@/lib/quiz";
 import { LINKS, CONTACT_EMAIL } from "@/lib/config";
 import { CTA_CLASSES } from "@/components/CtaButton";
+import { QuizGem } from "@/components/Gem";
 
 const STORAGE_KEY = "bsm-quiz-v1";
 const pret = (url: string) => !url.includes("A_REMPLACER");
@@ -17,6 +18,7 @@ export default function Quiz() {
   const [reponses, setReponses] = useState<Lettre[]>([]);
   const [resultatVisible, setResultatVisible] = useState(false);
   const [restaure, setRestaure] = useState(false);
+  const [choix, setChoix] = useState<Lettre | null>(null);
   const h2Ref = useRef<HTMLHeadingElement>(null);
   const resultatRef = useRef<HTMLHeadingElement>(null);
   const reduced = useReducedMotion();
@@ -71,10 +73,25 @@ export default function Quiz() {
     if (fini && (resultatVisible || !emailPret)) resultatRef.current?.focus();
   }, [fini, resultatVisible, emailPret]);
 
-  const repondre = useCallback((l: Lettre, etapeAuClic: number) => {
+  const avancer = useCallback((l: Lettre, etapeAuClic: number) => {
     // Garde par index : un double-clic/double-Entrée ne peut JAMAIS répondre à la question suivante
     setReponses((prev) => (prev.length === etapeAuClic ? [...prev, l] : prev));
+    setChoix(null);
   }, []);
+
+  const repondre = useCallback(
+    (l: Lettre, etapeAuClic: number) => {
+      if (choix !== null) return; // un beat à la fois
+      if (reduced) {
+        avancer(l, etapeAuClic);
+        return;
+      }
+      // Beat de reconnaissance : la réponse est « accusée réception » avant d'avancer
+      setChoix(l);
+      window.setTimeout(() => avancer(l, etapeAuClic), 300);
+    },
+    [choix, reduced, avancer]
+  );
 
   const recommencer = () => {
     try {
@@ -194,21 +211,23 @@ export default function Quiz() {
   const q = QUESTIONS[etape];
   return (
     <div>
-      <div className="mb-6 h-2 overflow-hidden rounded-full bg-line" aria-hidden="true">
-        <motion.div
-          className="h-full bg-accent"
-          animate={{ width: `${(etape / QUESTIONS.length) * 100}%` }}
-          transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 90, damping: 20 }}
-        />
-      </div>
-      <div className="flex items-baseline justify-between gap-4">
-        <p className="text-sm text-muted" aria-live="polite">
-          Question {etape + 1} / {QUESTIONS.length} — {q.titre}
-        </p>
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <QuizGem taillees={etape} size={52} />
+          <p className="text-sm text-muted" aria-live="polite">
+            Question {etape + 1} / {QUESTIONS.length} — {q.titre}
+            <span className="mt-0.5 block text-xs text-muted/70">
+              Chaque réponse taille ta gemme.
+            </span>
+          </p>
+        </div>
         {etape > 0 && (
           <button
-            onClick={() => setReponses((prev) => prev.slice(0, -1))}
-            className="shrink-0 text-sm text-muted underline"
+            onClick={() => {
+              setChoix(null);
+              setReponses((prev) => prev.slice(0, -1));
+            }}
+            className="link-anim shrink-0 text-sm text-muted"
           >
             ← Précédent
           </button>
@@ -226,7 +245,7 @@ export default function Quiz() {
             if (definition !== "exit" && etape > 0) h2Ref.current?.focus();
           }}
         >
-          <h2 ref={h2Ref} tabIndex={-1} className="mt-2 text-2xl font-semibold outline-none sm:text-3xl">
+          <h2 ref={h2Ref} tabIndex={-1} className="mt-2 text-3xl font-semibold leading-tight outline-none sm:text-4xl">
             {q.question}
           </h2>
           <div className="mt-6 space-y-3">
