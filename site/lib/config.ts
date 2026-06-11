@@ -1,6 +1,6 @@
 export const LINKS = {
   // Formulaire Tally des 50 questions (envoyé après paiement) — voir contenu/guide-branchement.md
-  questionnaire: "https://tally.so/r/rjYNoX",
+  questionnaire: "https://tally.so/r/NpOlEj",
   // Stripe Payment Link 49.90 CHF — voir contenu/guide-branchement.md
   paiement: "https://buy.stripe.com/A_REMPLACER",
   // Formulaire Tally de capture email sur le résultat du mini-test (optionnel v1)

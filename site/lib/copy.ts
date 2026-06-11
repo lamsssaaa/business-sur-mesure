@@ -47,7 +47,7 @@ export const COPY = {
   unSeul: {
     titre: "Pourquoi un seul business, et pas une liste",
     texte:
-      "Tu as déjà lu des listes de « 20 idées de business ». Et après ? Rien. Trop de choix, c'est zéro décision : tu compares, tu doutes, tu reportes. Nous, on fait l'inverse. On analyse tes 50 réponses et on te recommande UN business — un seul — choisi pour ta situation, ton budget et ton temps. Avec l'argumentaire complet et le plan pour démarrer en 30 jours. Parce que ce qui te manque, ce n'est pas une idée de plus. C'est une décision claire.",
+      "Tu as déjà lu des listes de « 20 idées de business ». Et après ? Rien. Trop de choix, c'est zéro décision : tu compares, tu doutes, tu reportes. Nous, on fait l'inverse. On analyse tes 50 réponses et on te recommande UN business — un seul — choisi pour ta situation, ton budget et ton temps. Avec l'argumentaire complet et le plan pour démarrer en 30 jours. Parce que ce qui te manque, ce n'est pas une idée de plus. C'est une décision claire. Et ce business, c'est le tien : avec 50 questions — dont une grande partie en réponses libres, avec tes propres mots — ta combinaison de réponses n'existe qu'une fois. Pour recevoir la même recommandation que toi, il faudrait répondre exactement comme toi aux 50 questions : même expérience, même budget, même temps, mêmes contraintes. Autant dire personne.",
   },
   qui: {
     titre: "Ton conseiller",
@@ -73,6 +73,10 @@ export const COPY = {
     {
       q: "Qui analyse mes réponses ?",
       r: "Ton conseiller — une vraie personne, pas un robot qui envoie un PDF automatique. J'analyse tes 50 réponses une par une, en m'appuyant sur des outils d'analyse professionnels (dont l'intelligence artificielle, utilisée comme instrument de travail), puis je construis, vérifie et valide chaque rapport moi-même avant l'envoi. Rien ne part sans ma validation.",
+    },
+    {
+      q: "Vous recommandez le même business à tout le monde ?",
+      r: "Impossible. La recommandation sort de tes 50 réponses : expérience, compétences, budget, temps, contraintes — et une grande partie du questionnaire est en réponses libres, avec tes propres mots. Pour recevoir le même rapport que toi, quelqu'un devrait répondre exactement comme toi aux 50 questions : la probabilité est quasi nulle. C'est tout l'intérêt du sur-mesure — un boulanger de 45 ans avec 5 000 CHF et un étudiant de 22 ans avec 500 CHF ne recevront jamais le même plan.",
     },
     {
       q: "Et si le business proposé ne me plaît pas ?",

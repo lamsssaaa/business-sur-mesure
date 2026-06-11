@@ -30,23 +30,27 @@ const heading = (t) =>
   blocks.push({ uuid: u(), type: "HEADING_2", groupUuid: u(), groupType: "HEADING_2", payload: { html: html(t) } });
 const question = (t) =>
   blocks.push({ uuid: u(), type: "TITLE", groupUuid: u(), groupType: "QUESTION", payload: { html: html(t) } });
-const textarea = () =>
+const textarea = (requis = true, placeholder = "Ta réponse…") =>
   blocks.push({
     uuid: u(),
     type: "TEXTAREA",
     groupUuid: u(),
     groupType: "TEXTAREA",
-    payload: { isRequired: true, placeholder: "Ta réponse…" },
+    payload: { isRequired: requis, placeholder },
   });
-const choices = (options) => {
+// Choix unique (MULTIPLE_CHOICE) ou multiple (CHECKBOXES) si la question
+// annonce « plusieurs réponses possibles » / « coche tout ».
+const choices = (options, multi = false) => {
   const g = u();
+  const type = multi ? "CHECKBOX" : "MULTIPLE_CHOICE_OPTION";
+  const groupType = multi ? "CHECKBOXES" : "MULTIPLE_CHOICE";
   options.forEach((opt, i) =>
     blocks.push({
       uuid: u(),
-      type: "MULTIPLE_CHOICE_OPTION",
+      type,
       groupUuid: g,
-      groupType: "MULTIPLE_CHOICE",
-      payload: { index: i, text: opt, isFirst: i === 0, isLast: i === options.length - 1, isRequired: true },
+      groupType,
+      payload: { index: i, text: opt, isFirst: i === 0, isLast: i === options.length - 1, isRequired: !multi },
     })
   );
 };
@@ -64,14 +68,25 @@ let i = 0;
 let enIntro = true;
 let questionEnCours = null; // texte de la question en construction
 let optionsEnCours = [];
+let suiviEnCours = null; // ligne « ↳ … » : champ de précision facultatif après les choix
 
 const flushQuestion = () => {
   if (!questionEnCours) return;
-  question(questionEnCours);
-  if (optionsEnCours.length > 0) choices(optionsEnCours);
-  else textarea();
+  if (optionsEnCours.length > 0) {
+    const multi = /plusieurs réponses possibles|coche tout/i.test(questionEnCours);
+    question(questionEnCours);
+    choices(optionsEnCours, multi);
+    if (suiviEnCours) {
+      question(suiviEnCours + " (facultatif)");
+      textarea(false, "Ta précision…");
+    }
+  } else {
+    question(questionEnCours);
+    textarea();
+  }
   questionEnCours = null;
   optionsEnCours = [];
+  suiviEnCours = null;
 };
 
 for (; i < lines.length; i++) {
@@ -99,16 +114,24 @@ for (; i < lines.length; i++) {
     continue;
   }
 
-  const debutQuestion = line.match(/^\*\*(\d+)\.\*\*\s*(.*)$/);
+  const debutQuestion = line.match(/^\*\*(\d+[a-z]?)\.\*\*\s*(.*)$/);
   if (debutQuestion) {
     flushQuestion();
     questionEnCours = `${debutQuestion[1]}. ${debutQuestion[2]}`;
     continue;
   }
 
-  const option = line.match(/^- ([A-H])\.\s+(.*)$/);
+  // Options « - A. … » à « - H. … » et échelles numériques « - 1. … » à « - 9. … »
+  const option = line.match(/^- ([A-H]|[1-9])[.)]\s+(.*)$/);
   if (option && questionEnCours) {
     optionsEnCours.push(`${option[1]}. ${option[2]}`);
+    continue;
+  }
+
+  // « ↳ Si oui : … » → champ de précision facultatif rattaché à la question à choix
+  const suivi = line.match(/^↳\s*(.*)$/);
+  if (suivi && questionEnCours) {
+    suiviEnCours = suivi[1];
     continue;
   }
 

@@ -9,7 +9,7 @@ Tes 50 réponses sont la matière première de ton rapport. C'est à partir d'el
 - **Honnêteté > impressionner.** Personne ne te juge. Si tu gonfles ton budget ou ton niveau de compétence, le rapport recommandera un business que tu ne pourras pas lancer. Tu te pénalises toi-même.
 - **Prévois 20 à 30 minutes au calme.** Réponds d'une traite si possible : tes premières réponses sont souvent les plus justes.
 - **Écris comme tu parles.** Pas besoin de belles phrases. Des mots-clés, des exemples concrets, des chiffres : c'est ça qui nous sert.
-- Pour les questions à choix, prends l'option **la plus proche** de ta réalité. Tu peux ajouter une nuance à côté si besoin.
+- Pour les questions à choix, prends l'option **la plus proche** de ta réalité. Un champ « précise » suit quand c'est utile.
 - « Je ne sais pas » est une réponse acceptable — mais essaie d'abord.
 
 **Confidentialité.**
@@ -28,7 +28,12 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 - D. 45–54 ans
 - E. 55 ans et plus
 
-**2.** Dans quel pays et quelle ville (ou région) vis-tu ? Si tu prévois de déménager dans les 12 prochains mois, précise où.
+**2a.** Dans quel pays et quelle ville (ou région) vis-tu ?
+
+**2b.** Prévois-tu de déménager dans les 12 prochains mois ?
+- A. Non
+- B. Oui
+↳ Si oui : où ?
 
 **3.** Quelles langues parles-tu, et à quel niveau réel ? Pour chacune, indique : « je peux travailler dans cette langue » ou « notions seulement ».
 
@@ -40,7 +45,14 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 - E. En formation / aux études
 - F. Autre (au foyer, congé, retraite...) — précise
 
-**5.** Qui dépend de toi au quotidien (enfants, parents, autres) ? Et à combien s'élèvent environ tes charges fixes mensuelles (loyer, famille, crédits, assurances) ? Donne un montant approximatif en chiffres.
+**5a.** Qui dépend de toi au quotidien ? (plusieurs réponses possibles)
+- A. Personne
+- B. Enfant(s)
+- C. Parent(s) ou proche(s) à charge
+- D. Autre
+↳ Si « Autre » : précise.
+
+**5b.** À combien s'élèvent environ tes charges fixes mensuelles (loyer, famille, crédits, assurances) ? Donne un montant approximatif en chiffres.
 
 **6.** Pourquoi veux-tu lancer un business **maintenant** — et pas il y a deux ans, ni dans deux ans ? Qu'est-ce qui a changé ou déclenché cette décision ?
 
@@ -50,7 +62,13 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 
 **7.** Liste tes postes principaux (les 5 derniers ou les plus marquants) : intitulé du poste, secteur, durée pour chacun.
 
-**8.** Quel secteur connais-tu le mieux de l'intérieur, et combien d'années d'expérience professionnelle as-tu au total ?
+**8a.** Quel secteur connais-tu le mieux de l'intérieur ?
+
+**8b.** Combien d'années d'expérience professionnelle as-tu au total ?
+- A. Moins de 3 ans
+- B. 3–7 ans
+- C. 8–15 ans
+- D. Plus de 15 ans
 
 **9.** Quelle est la réalisation professionnelle dont tu es le plus fier ? Raconte concrètement : ce que tu as fait, et le résultat obtenu.
 
@@ -58,7 +76,10 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 
 **11.** Sur quelles tâches précises étais-tu objectivement meilleur(e) ou plus rapide que tes collègues ?
 
-**12.** As-tu déjà tenté un projet entrepreneurial, même petit, même raté ? (vente en ligne, petits services payés, marché, side-project...) Décris : quoi, pendant combien de temps, et comment ça s'est terminé.
+**12.** As-tu déjà tenté un projet entrepreneurial, même petit, même raté ? (vente en ligne, petits services payés, marché, side-project...)
+- A. Oui
+- B. Non
+↳ Si oui : quoi, pendant combien de temps, et comment ça s'est terminé ?
 
 **13.** Si tu as arrêté (ou jamais commencé), qu'est-ce qui a manqué en premier ?
 - A. Pas assez de clients
@@ -100,7 +121,10 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 - C. Ça me coûte, mais je suis prêt(e) à apprendre
 - D. Non — c'est rédhibitoire pour moi
 
-**22.** As-tu déjà été payé(e), en dehors d'un salaire, pour un service rendu ou un objet que tu as produit ? Quoi, pour qui, et à quel prix environ ?
+**22.** As-tu déjà été payé(e), en dehors d'un salaire, pour un service rendu ou un objet que tu as produit ?
+- A. Oui
+- B. Non
+↳ Si oui : quoi, pour qui, et à quel prix environ ?
 
 **23.** Quelle compétence pourrais-tu enseigner **dès demain** à un débutant, pendant deux heures, sans aucune préparation ?
 
@@ -116,7 +140,14 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 - C. À épargner sur 6 mois ou plus
 - D. Dépendant d'un tiers (proche, prêt) — précise
 
-**26.** Combien d'heures par semaine peux-tu **réellement** consacrer au lancement ? Donne un chiffre, puis précise les créneaux : soirs, week-ends, journées libres.
+**26a.** Combien d'heures par semaine peux-tu **réellement** consacrer au lancement ?
+- A. Moins de 5 h
+- B. 5–10 h
+- C. 10–20 h
+- D. Plus de 20 h
+- E. Temps plein
+
+**26b.** Précise tes créneaux concrets : soirs, week-ends, journées libres ?
 
 **27.** À partir de quand peux-tu commencer à y travailler ?
 - A. Cette semaine
@@ -126,17 +157,28 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 
 **28.** Qui, dans ton entourage, peut t'aider concrètement ? Indique le lien et la compétence (ex. : « beau-frère comptable », « amie graphiste », « ancien collègue qui a une camionnette »).
 
-**29.** Connais-tu déjà des personnes qui pourraient être tes 3 premiers clients ? Qui sont-elles, et quel problème concret pourrais-tu leur résoudre ?
+**29.** Connais-tu déjà des personnes qui pourraient être tes 3 premiers clients ?
+- A. Oui, je sais déjà qui
+- B. J'ai quelques pistes
+- C. Non, personne pour l'instant
+↳ Si oui ou pistes : qui sont-elles, et quel problème concret pourrais-tu leur résoudre ?
 
-**30.** De quel matériel et de quels lieux disposes-tu déjà ? Coche tout ce qui s'applique :
+**30.** De quel matériel et de quels lieux disposes-tu déjà ? (plusieurs réponses possibles)
 - A. Ordinateur fiable
 - B. Smartphone récent (photos/vidéos correctes)
 - C. Voiture ou véhicule utilitaire
 - D. Local, garage, cave ou atelier utilisable
-- E. Outillage ou équipement spécifique — précise
-- F. Autre — précise
+- E. Outillage ou équipement spécifique
+- F. Autre
+↳ Si E ou F : précise ton équipement.
 
-**31.** Pendant les premiers mois de lancement, de quoi vis-tu ? (salaire conservé, économies, revenus du conjoint, indemnités...) Réponds en une phrase : c'est essentiel pour calibrer le bon rythme de lancement.
+**31.** Pendant les premiers mois de lancement, de quoi vis-tu ? (plusieurs réponses possibles — c'est essentiel pour calibrer le bon rythme de lancement)
+- A. Mon salaire, que je conserve
+- B. Mes économies
+- C. Les revenus de mon conjoint / ma famille
+- D. Des indemnités (chômage ou autres)
+- E. Autre
+↳ Si « Autre » ou à nuancer : précise.
 
 ---
 
@@ -184,9 +226,15 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 
 **40.** Qu'est-ce que tu **refuses catégoriquement** de faire, même si c'était objectivement « la » bonne idée pour toi ? (ex. : montrer mon visage, démarcher des inconnus, gérer du stock, travailler le week-end, m'endetter...)
 
-**41.** As-tu des contraintes de santé ou de mobilité à prendre en compte ? (port de charges, station debout prolongée, déplacements limités, fatigue chronique...) Si oui, lesquelles ?
+**41.** As-tu des contraintes de santé ou de mobilité à prendre en compte ?
+- A. Non
+- B. Oui
+↳ Si oui : lesquelles ? (port de charges, station debout prolongée, déplacements limités, fatigue chronique...)
 
-**42.** Quelles sont tes contraintes d'horaires **non négociables** ? (enfants à récupérer à 17 h, travail posté, obligations familiales ou religieuses...)
+**42.** As-tu des contraintes d'horaires **non négociables** ?
+- A. Non
+- B. Oui
+↳ Si oui : lesquelles ? (enfants à récupérer à 17 h, travail posté, obligations familiales ou religieuses...)
 
 **43.** Ta tolérance au risque, sur cette échelle :
 - 1. Je veux du quasi-certain, même si c'est plus lent et plus modeste
@@ -201,7 +249,10 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 - C. Moins de 6 mois
 - D. Je peux tenir jusqu'à 1 an
 
-**45.** Y a-t-il des secteurs ou des types d'activités que tu exclus pour des raisons éthiques, religieuses ou personnelles ? (ex. : alcool, jeux d'argent, crédit à la consommation, certains produits ou clientèles...)
+**45.** Exclus-tu certains secteurs ou types d'activités pour des raisons éthiques, religieuses ou personnelles ?
+- A. Non
+- B. Oui
+↳ Si oui : lesquels ? (ex. : alcool, jeux d'argent, crédit à la consommation, certains produits ou clientèles...)
 
 ---
 
@@ -221,7 +272,11 @@ Tes réponses servent uniquement à produire ton rapport. Elles ne sont jamais r
 - C. Une petite équipe (2 à 5 personnes)
 - D. Plus grand si ça fonctionne — je n'ai pas de plafond en tête
 
-**49.** Une fois ton activité installée (dans 2 ans environ), combien d'heures par semaine veux-tu y consacrer ? Donne un chiffre.
+**49.** Une fois ton activité installée (dans 2 ans environ), combien d'heures par semaine veux-tu y consacrer ?
+- A. Moins de 20 h
+- B. 20–30 h
+- C. 30–40 h
+- D. Plus de 40 h
 
 **50.** Pour finir : qu'est-ce qu'un bon business doit **absolument respecter** chez toi ? Cite tes 3 non-négociables (ex. : « jamais le dimanche », « rester dans ma région », « garder mes soirées en famille », « ne dépendre de personne »...).
 

@@ -112,7 +112,7 @@ export default function Hero() {
 
   return (
     // Hauteurs 100 % CSS (identiques avant/après hydratation) : zéro décalage de mise en page
-    <section ref={sectionRef} className="relative md:h-[170vh]">
+    <section ref={sectionRef} className="relative md:h-[130vh]">
       <div className="relative flex min-h-[92vh] items-center overflow-hidden md:sticky md:top-0 md:h-screen">
         <div className="hero-aura absolute inset-0" aria-hidden="true" />
         <HeroFallback />

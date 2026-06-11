@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import CtaButton from "@/components/CtaButton";
 import RevealTitle from "@/components/RevealTitle";
 import RapportApercu from "@/components/RapportApercu";
 import Counter from "@/components/Counter";
@@ -134,6 +135,13 @@ export default function HomeBody() {
             <p className="mt-16 max-w-[36rem] whitespace-pre-line text-xl leading-relaxed text-ink/80 lg:ml-[42%]">
               {COPY.unSeul.texte}
             </p>
+          </Reveal>
+          {/* CTA de mi-page : un lecteur convaincu ici ne doit pas chercher le bouton en bas */}
+          <Reveal delay={0.4}>
+            <div className="mt-12 lg:ml-[42%]">
+              <CtaButton href="/mini-test/">{COPY.hero.cta}</CtaButton>
+              <p className="mt-4 text-sm text-muted">{COPY.hero.reassurance}</p>
+            </div>
           </Reveal>
         </div>
       </section>

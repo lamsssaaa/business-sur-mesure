@@ -71,7 +71,7 @@ Feuilleter le rapport-exemple complet (PDF)
 Pourquoi un seul business, et pas une liste
 
 **Texte :**
-Tu as déjà lu des listes de « 20 idées de business ». Et après ? Rien. Trop de choix, c'est zéro décision : tu compares, tu doutes, tu reportes. Nous, on fait l'inverse. On analyse tes 50 réponses et on te recommande UN business — un seul — choisi pour ta situation, ton budget et ton temps. Avec l'argumentaire complet et le plan pour démarrer en 30 jours. Parce que ce qui te manque, ce n'est pas une idée de plus. C'est une décision claire.
+Tu as déjà lu des listes de « 20 idées de business ». Et après ? Rien. Trop de choix, c'est zéro décision : tu compares, tu doutes, tu reportes. Nous, on fait l'inverse. On analyse tes 50 réponses et on te recommande UN business — un seul — choisi pour ta situation, ton budget et ton temps. Avec l'argumentaire complet et le plan pour démarrer en 30 jours. Parce que ce qui te manque, ce n'est pas une idée de plus. C'est une décision claire. Et ce business, c'est le tien : avec 50 questions — dont une grande partie en réponses libres, avec tes propres mots — ta combinaison de réponses n'existe qu'une fois. Pour recevoir la même recommandation que toi, il faudrait répondre exactement comme toi aux 50 questions : même expérience, même budget, même temps, mêmes contraintes. Autant dire personne.
 
 ---
 
@@ -118,28 +118,31 @@ Questions fréquentes
 **Q1. Qui analyse mes réponses ?**
 Ton conseiller — une vraie personne, pas un robot qui envoie un PDF automatique. J'analyse tes 50 réponses une par une, en m'appuyant sur des outils d'analyse professionnels (dont l'intelligence artificielle, utilisée comme instrument de travail), puis je construis, vérifie et valide chaque rapport moi-même avant l'envoi. Rien ne part sans ma validation.
 
-**Q2. Et si le business proposé ne me plaît pas ?**
+**Q2. Vous recommandez le même business à tout le monde ?**
+Impossible. La recommandation sort de tes 50 réponses : expérience, compétences, budget, temps, contraintes — et une grande partie du questionnaire est en réponses libres, avec tes propres mots. Pour recevoir le même rapport que toi, quelqu'un devrait répondre exactement comme toi aux 50 questions : la probabilité est quasi nulle. C'est tout l'intérêt du sur-mesure — un boulanger de 45 ans avec 5 000 CHF et un étudiant de 22 ans avec 500 CHF ne recevront jamais le même plan.
+
+**Q3. Et si le business proposé ne me plaît pas ?**
 Tu es couvert par la garantie satisfait ou remboursé de 14 jours. Si le rapport ne te convient pas, tu écris un simple email et tu es intégralement remboursé, sans débat. On préfère un remboursement à un client déçu. Tu ne prends donc aucun risque en essayant.
 
-**Q3. C'est un conseil financier ?**
+**Q4. C'est un conseil financier ?**
 Non. Ce service est une orientation entrepreneuriale : il t'aide à choisir un business adapté à ta situation et te donne un plan d'action. Ce n'est ni un conseil financier, ni un conseil juridique ou fiscal, et aucun revenu n'est garanti — les résultats dépendent de ton travail et de ton contexte. Pour toute décision juridique, fiscale ou d'investissement, consulte un professionnel agréé dans ton pays.
 
-**Q4. C'est livré en combien de temps ?**
+**Q5. C'est livré en combien de temps ?**
 Ton rapport PDF est livré sous 48 heures après l'envoi de tes 50 réponses complètes. Ce délai existe parce que chaque rapport est relu, vérifié et validé par un humain — ce n'est pas un document généré en un clic. Dans les rares cas où il faut un peu plus de temps, tu es prévenu par email avant l'échéance.
 
-**Q5. Que deviennent mes données ?**
+**Q6. Que deviennent mes données ?**
 Tes réponses servent uniquement à produire ton rapport, rien d'autre. Elles ne sont jamais revendues, jamais partagées avec des tiers à des fins commerciales, jamais utilisées pour de la publicité. Sur simple demande par email, elles sont supprimées définitivement. C'est une règle non négociable.
 
-**Q6. Pourquoi un seul business et pas plusieurs ?**
+**Q7. Pourquoi un seul business et pas plusieurs ?**
 Parce que les listes d'idées ne font pas avancer : avec 20 options, on compare, on doute, et on ne lance rien. Ce que tu achètes ici, c'est une décision claire — un business choisi pour toi, avec l'argumentaire qui explique pourquoi celui-là, et le plan pour démarrer en 30 jours. Et si cette recommandation ne te convient vraiment pas, la garantie 14 jours te protège.
 
-**Q7. Ça marche dans mon pays ?**
+**Q8. Ça marche dans mon pays ?**
 Oui : le service s'adresse à toute la francophonie — Suisse, France, Belgique, Québec et au-delà. Ton pays de résidence fait partie des 50 questions, et ton plan d'action tient compte de ton marché et de ton contexte local. Pour les démarches administratives précises (statut, immatriculation, taxes), le rapport t'indique par où commencer, mais vérifie toujours les détails auprès des autorités compétentes de ton pays.
 
 ---
 
 
-**Q8. Pourquoi payer, alors qu'une IA gratuite peut me donner des idées ?**
+**Q9. Pourquoi payer, alors qu'une IA gratuite peut me donner des idées ?**
 Parce qu'une liste d'idées ne t'a jamais fait avancer — et c'est tout ce qu'un chatbot gratuit te donne : des suggestions génériques, différentes à chaque conversation, sans engagement et sans suite. Ici, tu achètes une décision : ton conseiller croise réellement tes 50 réponses, s'engage par écrit sur UN business, t'explique pourquoi les autres pistes ont été écartées, et te livre le plan des 30 premiers jours. Et il assume sa recommandation avec la garantie satisfait ou remboursé de 14 jours — essaie d'obtenir ça d'un chatbot.
 
 ## SECTION 8 — FOOTER
