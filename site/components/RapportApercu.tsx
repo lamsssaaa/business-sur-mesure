@@ -7,12 +7,12 @@ import { COPY } from "@/lib/copy";
    empilées comme des feuilles posées sur la table. */
 
 const SOMMAIRE = [
-  "TON business : c'est quoi, pourquoi toi, et ce qu'on a écarté",
-  "Ton plan des 30 premiers jours — semaine par semaine",
-  "Ton budget de démarrage — poste par poste",
-  "Tes 3 premiers clients — où ils sont, message prêt à copier",
+  "VOTRE business : c'est quoi, pourquoi vous, et ce qu'on a écarté",
+  "Votre plan des 30 premiers jours — semaine par semaine",
+  "Votre budget de démarrage — poste par poste",
+  "Vos 3 premiers clients — où ils sont, message prêt à copier",
   "Les pièges de ce secteur — et comment les éviter",
-  "Ta toute première action demain matin",
+  "Votre toute première action demain matin",
 ];
 
 function Page({
@@ -67,10 +67,10 @@ export default function RapportApercu() {
                 ))}
               </ol>
             </Page></Reveal>
-            {/* Extrait « Pourquoi TOI » */}
+            {/* Extrait « Pourquoi VOUS » */}
             <Reveal delay={0.34} y={48}><Page className="lg:rotate-2">
               <p className="font-display text-lg font-semibold">
-                1.2 — Pourquoi <span className="italic text-accent">TOI</span>
+                1.2 — Pourquoi <span className="italic text-accent">VOUS</span>
               </p>
               <blockquote className="mt-4 rounded-lg bg-accent-soft p-3 text-sm italic leading-snug">
                 « J'ai réorganisé toute la mise en place d'une cuisine de 40 couverts. »

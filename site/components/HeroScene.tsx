@@ -117,9 +117,10 @@ function Particules({ progress, pointer }: SceneProps) {
     if (!pts) return;
     const p = Math.min(Math.max(progress.current ?? 0, 0), 1);
 
-    // Avant 6 % de scroll : nuage libre ; ensuite, un segment par phrase.
+    // La première phrase est la cible dès l'arrivée (les particules convergent
+    // depuis le nuage en ~1 s) ; ensuite, un segment par phrase au scroll.
     const nb = COPY.hero.sequence.length;
-    const seg = p < 0.06 ? -1 : Math.min(nb - 1, Math.floor(((p - 0.06) / 0.94) * nb));
+    const seg = Math.min(nb - 1, Math.floor(p * nb));
 
     // Impulsion de dispersion à chaque changement de phrase
     const v = vitesses.current!;

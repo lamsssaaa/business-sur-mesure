@@ -4,7 +4,7 @@ import { CONTACT_EMAIL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Confidentialité — Ton Business Sur Mesure",
-  description: "Ce qu'on collecte, pourquoi, combien de temps — et tes droits (LPD/RGPD). Tes réponses servent uniquement à produire ton rapport.",
+  description: "Ce qu'on collecte, pourquoi, combien de temps — et vos droits (LPD/RGPD). Vos réponses servent uniquement à produire votre rapport.",
 };
 
 export default function Confidentialite() {
@@ -14,26 +14,26 @@ export default function Confidentialite() {
         <h1 className="text-3xl font-bold">Confidentialité</h1>
         <div className="mt-6 space-y-4 text-muted">
           <p>
-            <strong className="text-ink">Ce qu&apos;on collecte.</strong> Ton adresse email et tes réponses aux
+            <strong className="text-ink">Ce qu&apos;on collecte.</strong> Votre adresse email et vos réponses aux
             formulaires (commande et questionnaire de 50 questions). Rien d&apos;autre — pas de cookies
             publicitaires, pas de traqueurs.
           </p>
           <p>
-            <strong className="text-ink">Pourquoi.</strong> Uniquement pour produire ton rapport personnalisé et
-            te l&apos;envoyer. Tes réponses sont analysées avec l&apos;aide d&apos;une intelligence artificielle (Claude,
+            <strong className="text-ink">Pourquoi.</strong> Uniquement pour produire votre rapport personnalisé et
+            vous l&apos;envoyer. Vos réponses sont analysées avec l&apos;aide d&apos;une intelligence artificielle (Claude,
             d&apos;Anthropic), puis relues et validées par un humain.
           </p>
           <p>
-            <strong className="text-ink">Ce qu&apos;on ne fait jamais.</strong> Vendre, louer ou partager tes données.
-            Elles ne servent à rien d&apos;autre qu&apos;à ton rapport.
+            <strong className="text-ink">Ce qu&apos;on ne fait jamais.</strong> Vendre, louer ou partager vos données.
+            Elles ne servent à rien d&apos;autre qu&apos;à votre rapport.
           </p>
           <p>
-            <strong className="text-ink">Combien de temps.</strong> Tes réponses sont conservées le temps de
-            produire et garantir ton rapport (90 jours), puis supprimées. Tu peux demander leur suppression à
+            <strong className="text-ink">Combien de temps.</strong> Vos réponses sont conservées le temps de
+            produire et garantir votre rapport (90 jours), puis supprimées. Vous pouvez demander leur suppression à
             tout moment, avant comme après.
           </p>
           <p>
-            <strong className="text-ink">Tes droits.</strong> Accès, rectification, suppression : un email à{" "}
+            <strong className="text-ink">Vos droits.</strong> Accès, rectification, suppression : un email à{" "}
             <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> suffit. Service basé à
             Genève, Suisse (LPD) ; les clients de l&apos;UE bénéficient des droits équivalents du RGPD.
           </p>

@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 // Le mini-test a été retiré (décision v4 : le site vend le rapport directement).
 // Cette page reste pour ne casser aucun lien déjà partagé : elle renvoie vers l'offre.
 export const metadata: Metadata = {
-  title: "Ton rapport sur mesure",
+  title: "Votre rapport sur mesure",
   description:
-    "Le mini-test a été remplacé : commande directement ton rapport personnalisé — LE business à lancer selon tes 50 réponses, livré en 48 h.",
+    "Le mini-test a été remplacé : commandez directement votre rapport personnalisé — LE business à lancer selon vos 50 réponses, livré en 48 h.",
   robots: { index: false },
 };
 
@@ -18,8 +18,8 @@ export default function MiniTest() {
       <div className="mx-auto max-w-2xl px-6 pb-16 pt-32 text-center sm:pt-40">
         <h1 className="text-3xl font-bold">Cette page a changé</h1>
         <p className="mt-4 text-muted">
-          Le mini-test a pris sa retraite : on va à l&apos;essentiel. Ton rapport sur mesure —
-          LE business à lancer selon tes 50 réponses — se commande directement.
+          Le mini-test a pris sa retraite : on va à l&apos;essentiel. Votre rapport sur mesure —
+          LE business à lancer selon vos 50 réponses — se commande directement.
         </p>
         <p className="mt-8">
           <Link href="/#prix" className="font-semibold text-accent underline">

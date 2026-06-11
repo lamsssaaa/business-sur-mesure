@@ -13,8 +13,8 @@ import { COPY } from "@/lib/copy";
 import { TEMOIGNAGES, LIEN_COMMANDE } from "@/lib/config";
 
 const STATS = [
-  { valeur: 50, suffixe: "", label: "questions sur ton profil" },
-  { valeur: 48, suffixe: " h", label: "pour recevoir ton rapport" },
+  { valeur: 50, suffixe: "", label: "questions sur votre profil" },
+  { valeur: 48, suffixe: " h", label: "pour recevoir votre rapport" },
   { valeur: 30, suffixe: " j", label: "de plan d'action concret" },
 ];
 
@@ -88,8 +88,8 @@ export default function HomeBody() {
         <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
           <div className="grid gap-14 lg:grid-cols-[1fr_1.25fr] lg:gap-24">
             <div>
-              <p className="kicker">Ton rapport</p>
-              <RevealTitle texte={COPY.recois.titre} pivot="reçois" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+              <p className="kicker">Votre rapport</p>
+              <RevealTitle texte={COPY.recois.titre} pivot="recevez" className="mt-4 text-4xl font-semibold sm:text-6xl" />
               <Reveal delay={0.15}>
                 <p className="mt-10 font-display text-2xl italic leading-snug text-accent sm:text-3xl">
                   {COPY.recois.mention}
@@ -192,7 +192,7 @@ export default function HomeBody() {
               <div className="relative hidden overflow-hidden rounded-[2rem] border border-line shadow-lift lg:block">
                 <VideoFond src="videos/conseiller-plume.mp4" className="aspect-[4/5] w-full object-cover" />
                 <p className="absolute bottom-4 left-5 text-xs uppercase tracking-[0.22em] text-white/85">
-                  Rédigé pour toi, ligne par ligne
+                  Rédigé pour vous, ligne par ligne
                 </p>
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" aria-hidden="true" />
               </div>

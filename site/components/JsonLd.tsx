@@ -20,7 +20,7 @@ export default function JsonLd() {
     name: "Ton Business Sur Mesure",
     serviceType: "Orientation entrepreneuriale personnalisée",
     description:
-      "50 questions sur ton expérience, tes compétences, ton budget et ton temps — un rapport personnalisé qui recommande LE business à lancer, avec un plan d'action sur 30 jours. Livré en 48 h.",
+      "50 questions sur votre expérience, vos compétences, votre budget et votre temps — un rapport personnalisé qui recommande LE business à lancer, avec un plan d'action sur 30 jours. Livré en 48 h.",
     url: `${SITE_URL}/`,
     areaServed: ["FR", "CH", "BE", "CA"],
     availableLanguage: "fr",

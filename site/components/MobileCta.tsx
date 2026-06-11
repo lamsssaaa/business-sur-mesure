@@ -45,7 +45,7 @@ export default function MobileCta() {
     >
       <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-line bg-white/95 p-2 pl-5 shadow-lift backdrop-blur">
         <p className="min-w-0 flex-1 truncate text-sm font-medium">
-          TON business, taillé sur mesure
+          VOTRE business, taillé sur mesure
         </p>
         <Link
           href="/#prix"

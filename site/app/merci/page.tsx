@@ -4,8 +4,8 @@ import { CTA_CLASSES } from "@/components/CtaButton";
 import { LINKS, CONTACT_EMAIL } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Merci ! Dernière étape : tes 50 questions",
-  description: "Paiement reçu — réponds aux 50 questions pour recevoir ton rapport personnalisé sous 48 h.",
+  title: "Merci ! Dernière étape : vos 50 questions",
+  description: "Paiement reçu — répondez aux 50 questions pour recevoir votre rapport personnalisé sous 48 h.",
   robots: { index: false, follow: false },
 };
 
@@ -14,10 +14,10 @@ export default function Merci() {
   return (
     <main>
       <div className="mx-auto max-w-2xl px-6 pb-16 pt-32 text-center">
-        <h1 className="text-3xl font-bold">Merci, ton paiement est bien reçu ✅</h1>
+        <h1 className="text-3xl font-bold">Merci, votre paiement est bien reçu ✅</h1>
         <p className="mt-4 text-lg text-muted">
-          Dernière étape : réponds aux 50 questions (20-30 minutes, au calme). Ton rapport personnalisé
-          arrive par email <strong>sous 48 h</strong> après réception de tes réponses.
+          Dernière étape : répondez aux 50 questions (20-30 minutes, au calme). Votre rapport personnalisé
+          arrive par email <strong>sous 48 h</strong> après réception de vos réponses.
         </p>
         {questionnairePret ? (
           <a
@@ -37,7 +37,7 @@ export default function Merci() {
           </a>
         )}
         <p className="mt-6 text-sm text-muted">
-          Un souci, une question ? Écris à <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+          Un souci, une question ? Écrivez à <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
           Garantie satisfait ou remboursé 14 jours.
         </p>
       </div>
