@@ -17,7 +17,7 @@
 À vous qui lisez ces lignes : répondez à 50 questions et changez votre vie professionnelle.
 
 **Sous-titre :**
-Votre vie risque de basculer après avoir reçu votre rapport : 50 questions sur votre situation réelle, et vous savez exactement quoi lancer, comment, et avec quel budget — le plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.
+Votre vie risque de basculer après avoir reçu votre rapport. 50 questions passent au crible votre expérience, vos compétences, votre budget et votre temps disponible — et vous savez exactement quoi lancer, comment le lancer, avec votre budget. Plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.
 
 **CTA principal (bouton) :**
 Mon rapport sur mesure — 49.90 CHF
