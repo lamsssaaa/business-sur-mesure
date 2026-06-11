@@ -61,7 +61,7 @@ export const COPY = {
       "Ton rapport complet personnalisé (PDF, 12-18 pages, livré en 48 h)",
       "UN business recommandé, argumenté, choisi pour toi",
       "Ton plan d'action détaillé sur 30 jours",
-      "La garantie satisfait ou remboursé 14 jours",
+      "Ton conseiller joignable par email, avant comme après",
     ],
     garantie:
       "Pas d'abonnement, pas d'upsell, pas de « formation premium » cachée derrière. Tu paies une fois, tu reçois tout.",

@@ -161,6 +161,22 @@ export default function Quiz() {
               ? "Satisfait ou remboursé 14 jours · Rapport livré en 48 h · Paiement sécurisé Stripe"
               : "Tu reçois ton lien de paiement par email (réponse en quelques heures) · Satisfait ou remboursé 14 jours"}
           </p>
+          {/* La preuve au moment du doute : voir un rapport réel avant de payer */}
+          <div className="mt-6 rounded-2xl bg-accent-soft/70 p-5 text-center">
+            <p className="text-sm text-muted">
+              Ton profil est un aperçu. Le rapport, lui, croise tes <b>50 réponses</b> — ta
+              combinaison n&apos;existe qu&apos;une fois, ta recommandation non plus.
+            </p>
+            <a
+              href="../rapport-exemple.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-goatcounter-click="pdf-exemple-resultat"
+              className="link-anim mt-3 inline-block text-sm font-semibold text-accent"
+            >
+              Feuilleter un rapport-exemple complet (PDF) →<NouvelOnglet />
+            </a>
+          </div>
           <button
             onClick={recommencer}
             className="mt-4 block w-full py-2 text-center text-sm text-muted underline"
