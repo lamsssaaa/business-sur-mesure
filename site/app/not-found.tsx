@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Footer from "@/components/Footer";
 import { CTA_CLASSES } from "@/components/CtaButton";
 

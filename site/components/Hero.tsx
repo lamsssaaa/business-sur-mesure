@@ -50,6 +50,7 @@ const titleWords = COPY.hero.titre.split(" ");
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const titreRef = useRef<HTMLHeadingElement>(null);
   const progress = useRef(0);
   const pointer = useRef({ x: 0, y: 0 });
   const [use3D, setUse3D] = useState(false);
@@ -89,11 +90,23 @@ export default function Hero() {
 
   useEffect(() => {
     if (!use3D) return;
+    let soft = -1;
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
       const total = el.offsetHeight - window.innerHeight;
       progress.current = total > 0 ? Math.min(Math.max(window.scrollY / total, 0), 1) : 0;
+      // Le lapidaire typographique : la typo subit la même taille que la gemme.
+      // Brut (SOFT 100, WONK 1) → facetté (0, 0). Une seule écriture par palier
+      // entier de SOFT pour limiter la rastérisation.
+      const t = titreRef.current;
+      if (t) {
+        const s = Math.round(100 * (1 - progress.current));
+        if (s !== soft) {
+          soft = s;
+          t.style.fontVariationSettings = `"opsz" 144, "SOFT" ${s}, "WONK" ${(s / 100).toFixed(2)}`;
+        }
+      }
     };
     const onMove = (e: MouseEvent) => {
       pointer.current = {
@@ -125,7 +138,7 @@ export default function Hero() {
         <div className="relative mx-auto w-full max-w-6xl px-6 pt-24 sm:pt-20">
           <div className="max-w-2xl">
             {/* Entrée animée en pur CSS : le texte est visible même sans JavaScript */}
-            <h1 className="text-[clamp(3.2rem,8.5vw,7.5rem)] font-semibold leading-[0.98] tracking-tight">
+            <h1 ref={titreRef} className="text-[clamp(3.2rem,8.5vw,7.5rem)] font-semibold leading-[0.98] tracking-tight">
               {titleWords.map((word, i) => (
                 <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom">
                   <span

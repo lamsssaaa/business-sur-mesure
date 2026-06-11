@@ -36,6 +36,13 @@ h3,
 .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.015em;
+  /* Édition imprimée : pas de ligne orpheline dans les titres */
+  text-wrap: balance;
+}
+
+p {
+  /* Progressive enhancement (Chrome/Safari) : wrapping typographique soigné */
+  text-wrap: pretty;
 }
 
 ::selection {
@@ -237,6 +244,46 @@ html {
   }
   100% {
     background-position: 0 38px;
+  }
+}
+
+/* Écran analyse du quiz : pulsation discrète de l'étape en cours */
+@media (prefers-reduced-motion: no-preference) {
+  .quiz-pulse {
+    display: inline-block;
+    animation: quiz-pulse 1.1s ease-in-out infinite;
+  }
+}
+@keyframes quiz-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Scène prix : une lumière dorée très lente traverse l'aplat émeraude,
+   comme un rayon dans une pierre. GPU only (transform), coupée en reduced-motion. */
+.prix-lumiere {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(42rem 30rem at 30% 40%, rgb(184 138 46 / 0.13), transparent 65%);
+  will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .prix-lumiere {
+    animation: lumiere-derive 22s ease-in-out infinite alternate;
+  }
+}
+@keyframes lumiere-derive {
+  from {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(10%, 8%, 0) scale(1.15);
   }
 }
 

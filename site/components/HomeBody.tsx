@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
 import RevealTitle from "@/components/RevealTitle";
@@ -190,6 +190,7 @@ export default function HomeBody() {
 
       {/* PRIX — la scène sombre : UNE décision, UN prix */}
       <section id="prix" className="relative overflow-hidden bg-accent-deep text-paper">
+        <div className="prix-lumiere" aria-hidden="true" />
         <Gem
           size={560}
           variant="plein"
@@ -211,6 +212,8 @@ export default function HomeBody() {
               <span aria-hidden="true" className="text-gold">✓</span>
               Satisfait ou remboursé — 14 jours, sans justification
             </p>
+            {/* Ancrage honnête : des références réelles, pas de faux prix barré */}
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-paper/55">{COPY.prix.repere}</p>
           </Reveal>
           <div className="mt-14 grid gap-x-16 gap-y-5 sm:grid-cols-2">
             {COPY.prix.inclus.map((item, i) => (

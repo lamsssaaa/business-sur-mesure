@@ -65,6 +65,8 @@ export const COPY = {
     ],
     garantie:
       "Pas d'abonnement, pas d'upsell, pas de « formation premium » cachée derrière. Tu paies une fois, tu reçois tout.",
+    repere:
+      "Pour situer : une séance avec un conseiller en création d'entreprise coûte 150 à 300 CHF. Ton rapport — analyse complète, recommandation argumentée, plan 30 jours — coûte 49.90. Une fois.",
     cta: "Fais le mini-test gratuit (2 min)",
     reassurance: "Le mini-test est gratuit et sans engagement. Tu décides après.",
   },

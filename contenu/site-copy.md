@@ -102,6 +102,9 @@ Un prix. Une offre. C'est tout.
 **Pastille sous le prix :**
 ✓ Satisfait ou remboursé — 14 jours, sans justification
 
+**Repère (sous la pastille) :**
+Pour situer : une séance avec un conseiller en création d'entreprise coûte 150 à 300 CHF. Ton rapport — analyse complète, recommandation argumentée, plan 30 jours — coûte 49.90. Une fois.
+
 **Texte de clôture :**
 Pas d'abonnement, pas d'upsell, pas de « formation premium » cachée derrière. Tu paies une fois, tu reçois tout.
 

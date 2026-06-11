@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { COPY } from "@/lib/copy";
 import { CONTACT_EMAIL } from "@/lib/config";
 import { Gem } from "@/components/Gem";

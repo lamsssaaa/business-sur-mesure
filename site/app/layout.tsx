@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import Analytics from "@/components/Analytics";
@@ -7,7 +8,9 @@ import "./globals.css";
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  axes: ["opsz"],
+  // SOFT + WONK alimentent le « lapidaire typographique » : la typo se taille au
+  // scroll du héro, comme la gemme (brut → facetté).
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
 const hanken = Hanken_Grotesk({
@@ -46,7 +49,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${fraunces.variable} ${hanken.variable}`}>
+    <ViewTransitions>
+      <html lang="fr" className={`${fraunces.variable} ${hanken.variable}`}>
       <body className="antialiased">
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
@@ -62,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="contenu">{children}</div>
         <Analytics />
       </body>
-    </html>
+      </html>
+    </ViewTransitions>
   );
 }

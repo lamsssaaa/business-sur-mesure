@@ -10,6 +10,15 @@ import { QuizGem } from "@/components/Gem";
 const STORAGE_KEY = "bsm-quiz-v1";
 const pret = (url: string) => !url.includes("A_REMPLACER");
 
+// Écran « analyse » entre la 10e réponse et le résultat (transparence
+// opérationnelle : on montre le travail réellement effectué — Buell & Norton).
+// Chaque étape décrit une opération qui a vraiment lieu.
+const ETAPES_ANALYSE = [
+  "Lecture de tes 10 réponses",
+  "Calcul de ton profil entrepreneur",
+  "Préparation de ton aperçu",
+];
+
 function NouvelOnglet() {
   return <span className="sr-only"> (s'ouvre dans une nouvelle fenêtre)</span>;
 }
@@ -19,6 +28,8 @@ export default function Quiz() {
   const [resultatVisible, setResultatVisible] = useState(false);
   const [restaure, setRestaure] = useState(false);
   const [choix, setChoix] = useState<Lettre | null>(null);
+  const [analyseEtape, setAnalyseEtape] = useState(0);
+  const [analyseFinie, setAnalyseFinie] = useState(false);
   const h2Ref = useRef<HTMLHeadingElement>(null);
   const resultatRef = useRef<HTMLHeadingElement>(null);
   const reduced = useReducedMotion();
@@ -35,7 +46,10 @@ export default function Quiz() {
       if (brut) {
         const data = JSON.parse(brut) as { reponses?: Lettre[]; resultatVisible?: boolean };
         if (Array.isArray(data.reponses)) setReponses(data.reponses.slice(0, QUESTIONS.length));
-        if (data.resultatVisible) setResultatVisible(true);
+        if (data.resultatVisible) {
+          setResultatVisible(true);
+          setAnalyseFinie(true); // l'analyse ne se rejoue pas après un refresh
+        }
       }
     } catch {
       /* stockage indisponible : le quiz fonctionne quand même */
@@ -73,6 +87,23 @@ export default function Quiz() {
     if (fini && (resultatVisible || !emailPret)) resultatRef.current?.focus();
   }, [fini, resultatVisible, emailPret]);
 
+  // Séquence de l'écran « analyse » : les étapes se cochent l'une après l'autre.
+  // En mouvement réduit, on passe directement (le théâtre est optionnel, pas le résultat).
+  useEffect(() => {
+    if (!fini || analyseFinie || resultatVisible) return;
+    if (reduced) {
+      setAnalyseFinie(true);
+      return;
+    }
+    const timers = ETAPES_ANALYSE.map((_, i) =>
+      window.setTimeout(() => setAnalyseEtape(i + 1), 500 + i * 1200)
+    );
+    timers.push(
+      window.setTimeout(() => setAnalyseFinie(true), 500 + ETAPES_ANALYSE.length * 1200 + 600)
+    );
+    return () => timers.forEach((t) => clearTimeout(t));
+  }, [fini, analyseFinie, resultatVisible, reduced]);
+
   const avancer = useCallback((l: Lettre, etapeAuClic: number) => {
     // Garde par index : un double-clic/double-Entrée ne peut JAMAIS répondre à la question suivante
     setReponses((prev) => (prev.length === etapeAuClic ? [...prev, l] : prev));
@@ -101,10 +132,57 @@ export default function Quiz() {
     }
     setReponses([]);
     setResultatVisible(false);
+    setAnalyseEtape(0);
+    setAnalyseFinie(false);
   };
 
   if (!restaure) {
     return <div className="h-64" aria-hidden="true" />;
+  }
+
+  /* ── ÉCRAN ANALYSE (entre la 10e réponse et la suite) ─────────── */
+  if (fini && !analyseFinie && !resultatVisible) {
+    return (
+      <motion.div
+        initial={reduced ? false : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="rounded-[2rem] border border-line bg-white p-8 shadow-lift sm:p-10"
+      >
+        <div className="flex items-center gap-4">
+          <QuizGem taillees={QUESTIONS.length} size={52} />
+          <p className="text-xs uppercase tracking-[0.25em] text-accent">Analyse en cours</p>
+        </div>
+        <h2 className="mt-5 text-3xl font-semibold">On taille ton profil…</h2>
+        <ul className="mt-7 space-y-4" role="status" aria-live="polite">
+          {ETAPES_ANALYSE.map((etapeTexte, i) => {
+            const faite = analyseEtape > i;
+            const enCours = analyseEtape === i;
+            return (
+              <li
+                key={etapeTexte}
+                className={`flex items-center gap-3 transition-opacity duration-500 ${
+                  faite || enCours ? "opacity-100" : "opacity-35"
+                }`}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs transition-colors duration-300 ${
+                    faite ? "bg-accent text-white" : "border border-line text-transparent"
+                  }`}
+                >
+                  ✓
+                </span>
+                <span className={faite ? "" : "text-muted"}>
+                  {etapeTexte}
+                  {enCours && <span className="quiz-pulse" aria-hidden="true">…</span>}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      </motion.div>
+    );
   }
 
   /* ── ÉCRAN RÉSULTAT ─────────────────────────────────────────── */
@@ -132,7 +210,28 @@ export default function Quiz() {
           ))}
         </ul>
         <p className="mt-7 font-medium">{p.rapportFeraitQuoi}</p>
-        <div className="mt-9 space-y-3">
+        {/* Le « delta » : ce que l'aperçu gratuit ne dit pas encore — structure
+            teaser → complet (la valeur gratuite est réelle, la suite est nommée) */}
+        <div className="mt-7 rounded-2xl border border-line p-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+            Ton aperçu gratuit s&apos;arrête ici
+          </p>
+          <p className="mt-2 text-sm text-muted">Ton rapport complet (50 questions) ajoute :</p>
+          <ul className="mt-4 space-y-2.5">
+            {[
+              "LE business précis — un seul, nommé, choisi pour ta situation",
+              "Pourquoi celui-là — et les pistes écartées, avec les raisons",
+              "Ton plan des 30 premiers jours, budget réel inclus",
+              "Les pièges connus de CE business précis",
+            ].map((item) => (
+              <li key={item} className="flex gap-3 text-[0.95rem]">
+                <span aria-hidden="true" className="mt-0.5 text-accent">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="mt-7 space-y-3">
           {paiementPret ? (
             <a
               href={LINKS.paiement}
@@ -174,7 +273,7 @@ export default function Quiz() {
               data-goatcounter-click="pdf-exemple-resultat"
               className="link-anim mt-3 inline-block text-sm font-semibold text-accent"
             >
-              Feuilleter un rapport-exemple complet (PDF) →<NouvelOnglet />
+              Feuilleter un rapport réel anonymisé (PDF, 12 pages) →<NouvelOnglet />
             </a>
           </div>
           <button

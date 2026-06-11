@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 // Style partagé du CTA principal — réutilisable sur <a>/<button> (ex. mini-test).
 // Pas d'utilitaire de display concurrent : ajouter "w-full" au besoin, jamais "block".
