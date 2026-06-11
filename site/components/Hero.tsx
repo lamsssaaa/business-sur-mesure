@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import CtaButton from "@/components/CtaButton";
-import VideoFond from "@/components/VideoFond";
+import HeroDecors from "@/components/HeroDecors";
 import { COPY } from "@/lib/copy";
 import { Gem } from "@/components/Gem";
 
@@ -26,6 +26,7 @@ export default function Hero() {
   const [enVue, setEnVue] = useState(true);
   const [finale, setFinale] = useState(false); // bloc CTA visible (fin de séquence)
   const [masqueHint, setMasqueHint] = useState(false);
+  const [segment, setSegment] = useState(0); // phrase courante → pilote le décor
 
   useEffect(() => {
     const wide = window.matchMedia("(min-width: 768px)").matches;
@@ -63,8 +64,11 @@ export default function Hero() {
       const p = total > 0 ? Math.min(Math.max(window.scrollY / total, 0), 1) : 0;
       progress.current = p;
       setMasqueHint(p > 0.04);
+      const nb = COPY.hero.sequence.length;
+      // La phrase courante pilote le décor (React n'applique le setState que s'il change)
+      setSegment(Math.min(nb - 1, Math.floor(p * nb)));
       // Le bloc CTA apparaît avec la DERNIÈRE phrase de la séquence
-      setFinale(p > (COPY.hero.sequence.length - 1) / COPY.hero.sequence.length);
+      setFinale(p > (nb - 1) / nb);
     };
     const onMove = (e: MouseEvent) => {
       pointer.current = {
@@ -85,16 +89,12 @@ export default function Hero() {
     // Hauteurs 100 % CSS (identiques avant/après hydratation) : zéro décalage
     <section ref={sectionRef} className="relative bg-[#072a1f] text-paper md:h-[400vh]">
       <div className="relative flex min-h-[100svh] items-center justify-center overflow-hidden md:sticky md:top-0 md:h-screen">
-        {/* Fond vidéo immersif : encre émeraude lumineuse sur noir (Mixkit #48472,
-            inversée/réétalonnée), coupée en reduced-motion, variante légère mobile */}
+        {/* Décors immersifs : un paysage par phrase (fondu-enchaîné), qualité
+            adaptée au réseau de l'utilisateur (HD / léger / coupé) */}
         <div className="absolute inset-0" aria-hidden="true">
-          <VideoFond
-            src="videos/hero-encre-sombre.mp4"
-            srcMobile="videos/hero-encre-sombre-mobile.mp4"
-            className="h-full w-full object-cover opacity-60"
-          />
-          {/* Voile : garde le texte de particules lisible sur les volutes claires */}
-          <div className="absolute inset-0 bg-[#072a1f]/55" />
+          <HeroDecors segment={segment} />
+          {/* Voile neutre : le texte de particules reste lisible sur tout paysage */}
+          <div className="absolute inset-0 bg-black/45" />
         </div>
         {/* Atmosphère : la lumière de la pierre dans le noir */}
         <div
