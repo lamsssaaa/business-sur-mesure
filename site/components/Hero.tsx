@@ -170,10 +170,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Petit cartouche de marque, en haut de la scène */}
-        <div className="pointer-events-none absolute left-1/2 top-24 -translate-x-1/2">
-          <Gem size={42} variant="plein" className="mx-auto opacity-90" />
-        </div>
+        {/* Cartouche de marque : SVG plat seulement sans 3D (sinon la gemme
+            taillée 3D vit dans la scène, au même endroit) */}
+        {!use3D && (
+          <div className="pointer-events-none absolute left-1/2 top-24 -translate-x-1/2">
+            <Gem size={42} variant="plein" className="mx-auto opacity-90" />
+          </div>
+        )}
 
         <div
           className={`absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-paper/50 transition-opacity duration-300 ${

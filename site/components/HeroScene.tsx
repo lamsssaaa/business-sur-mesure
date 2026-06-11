@@ -83,6 +83,49 @@ function echantillonner(phrases: string[], largeurMonde: number): Float32Array[]
   });
 }
 
+/**
+ * Le logo en 3D : une gemme taillée (couronne + pavillon à 8 facettes),
+ * émeraude vernie aux arêtes d'or, en rotation lente au-dessus du message.
+ */
+function GemmeLogo() {
+  const g = useRef<THREE.Group>(null);
+
+  const { geoCouronne, geoPavillon, aretesC, aretesP, matPierre, matOr } = useMemo(() => {
+    const geoCouronne = new THREE.CylinderGeometry(0.26, 0.46, 0.2, 8, 1);
+    const geoPavillon = new THREE.CylinderGeometry(0.46, 0.001, 0.5, 8, 1);
+    const aretesC = new THREE.EdgesGeometry(geoCouronne);
+    const aretesP = new THREE.EdgesGeometry(geoPavillon);
+    const matPierre = new THREE.MeshPhysicalMaterial({
+      color: "#0e6b4f",
+      flatShading: true,
+      roughness: 0.16,
+      metalness: 0.08,
+      clearcoat: 1,
+      clearcoatRoughness: 0.2,
+      emissive: new THREE.Color("#06301f"),
+    });
+    const matOr = new THREE.LineBasicMaterial({ color: "#d8a948", transparent: true, opacity: 0.9 });
+    return { geoCouronne, geoPavillon, aretesC, aretesP, matPierre, matOr };
+  }, []);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    const gr = g.current;
+    if (!gr) return;
+    gr.rotation.y = t * 0.45; // rotation joaillière, lente
+    gr.position.y = 2.72 + Math.sin(t * 0.9) * 0.07; // flottement
+  });
+
+  return (
+    <group ref={g} position={[0, 2.72, 0]}>
+      <mesh geometry={geoCouronne} material={matPierre} position={[0, 0.1, 0]} />
+      <mesh geometry={geoPavillon} material={matPierre} position={[0, -0.25, 0]} />
+      <lineSegments geometry={aretesC} material={matOr} position={[0, 0.1, 0]} />
+      <lineSegments geometry={aretesP} material={matOr} position={[0, -0.25, 0]} />
+    </group>
+  );
+}
+
 function Particules({ progress, pointer, onSegment }: SceneProps) {
   const ref = useRef<THREE.Points>(null);
   const groupe = useRef<THREE.Group>(null);
@@ -207,6 +250,11 @@ export default function HeroScene(props: SceneProps) {
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       style={{ pointerEvents: "none" }}
     >
+      {/* Éclairage de la gemme uniquement (les particules additives n'y réagissent pas) */}
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[3, 5, 4]} intensity={1.7} />
+      <directionalLight position={[-4, -2, 3]} intensity={0.5} color="#d8a948" />
+      <GemmeLogo />
       <Particules {...props} />
     </Canvas>
   );
