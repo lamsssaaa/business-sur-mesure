@@ -29,7 +29,8 @@ export default function Hero() {
   const [segment, setSegment] = useState(0); // phrase courante → pilote le décor
 
   useEffect(() => {
-    const wide = window.matchMedia("(min-width: 768px)").matches;
+    // 3D partout, mobile compris (demande Farouk) — seuls reduced-motion et
+    // l'absence de WebGL basculent sur le fallback HTML
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let webgl = false;
     try {
@@ -38,7 +39,7 @@ export default function Hero() {
     } catch {
       webgl = false;
     }
-    setUse3D(Boolean(wide && webgl && !reduced));
+    setUse3D(Boolean(webgl && !reduced));
   }, []);
 
   // La scène ne tourne que quand le héro est (presque) à l'écran
@@ -57,6 +58,9 @@ export default function Hero() {
       setFinale(true); // sans 3D, le CTA est visible d'emblée
       return;
     }
+    // La 3D vient de s'activer : le CTA attend la fin de la séquence
+    setFinale(false);
+    setSegment(0);
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
@@ -64,11 +68,8 @@ export default function Hero() {
       const p = total > 0 ? Math.min(Math.max(window.scrollY / total, 0), 1) : 0;
       progress.current = p;
       setMasqueHint(p > 0.04);
-      const nb = COPY.hero.sequence.length;
-      // La phrase courante pilote le décor (React n'applique le setState que s'il change)
-      setSegment(Math.min(nb - 1, Math.floor(p * nb)));
-      // Le bloc CTA apparaît avec la DERNIÈRE phrase de la séquence
-      setFinale(p > (nb - 1) / nb);
+      // segment et finale sont pilotés par le verrou séquentiel de la scène
+      // (onSegment) : un scroll rapide ne peut pas sauter une phrase.
     };
     const onMove = (e: MouseEvent) => {
       pointer.current = {
@@ -86,9 +87,17 @@ export default function Hero() {
   }, [use3D]);
 
   return (
-    // Hauteurs 100 % CSS (identiques avant/après hydratation) : zéro décalage
-    <section ref={sectionRef} className="relative bg-[#072a1f] text-paper md:h-[400vh]">
-      <div className="relative flex min-h-[100svh] items-center justify-center overflow-hidden md:sticky md:top-0 md:h-screen">
+    // Desktop : hauteurs 100 % CSS (zéro décalage). Mobile : le pinning s'active
+    // avec la 3D après hydratation (le visiteur est encore en haut de page).
+    <section
+      ref={sectionRef}
+      className={`relative bg-[#072a1f] text-paper md:h-[400vh] ${use3D ? "h-[400vh]" : ""}`}
+    >
+      <div
+        className={`relative flex min-h-[100svh] items-center justify-center overflow-hidden md:sticky md:top-0 md:h-screen ${
+          use3D ? "sticky top-0 h-screen" : ""
+        }`}
+      >
         {/* Décors immersifs : un paysage par phrase (fondu-enchaîné), qualité
             adaptée au réseau de l'utilisateur (HD / léger / coupé) */}
         <div className="absolute inset-0" aria-hidden="true">
@@ -108,7 +117,14 @@ export default function Hero() {
 
         {use3D && enVue && (
           <div className="absolute inset-0" aria-hidden="true">
-            <HeroScene progress={progress} pointer={pointer} />
+            <HeroScene
+              progress={progress}
+              pointer={pointer}
+              onSegment={(s) => {
+                setSegment(s);
+                setFinale(s === COPY.hero.sequence.length - 1);
+              }}
+            />
           </div>
         )}
 
@@ -142,7 +158,9 @@ export default function Hero() {
               finale ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
             }`}
           >
-            <p className="text-lg leading-relaxed text-paper/80 sm:text-xl">
+            {/* Sur mobile, les phrases 3D viennent d'être lues : le sous-titre
+                complet serait une redite qui chevauche la scène — desktop only */}
+            <p className={`text-lg leading-relaxed text-paper/80 sm:text-xl ${use3D ? "hidden md:block" : ""}`}>
               {COPY.hero.sousTitre}
             </p>
             <div className="mt-8">

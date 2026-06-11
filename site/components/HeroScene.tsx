@@ -16,9 +16,12 @@ import { COPY } from "@/lib/copy";
 type SceneProps = {
   progress: React.RefObject<number>;
   pointer: React.RefObject<{ x: number; y: number }>;
+  /** Notifie la phrase visuellement active (pilote décors + apparition du CTA). */
+  onSegment?: (segment: number) => void;
 };
 
-const N = 16000;
+// Moins de particules sur mobile : même effet, fluidité garantie
+const N = typeof window !== "undefined" && window.innerWidth < 768 ? 7000 : 16000;
 const LARGEUR_MONDE = 11; // largeur de la zone texte en unités three
 
 /** Rend chaque phrase sur un canvas offscreen et échantillonne ses pixels opaques. */
@@ -80,19 +83,23 @@ function echantillonner(phrases: string[], largeurMonde: number): Float32Array[]
   });
 }
 
-function Particules({ progress, pointer }: SceneProps) {
+function Particules({ progress, pointer, onSegment }: SceneProps) {
   const ref = useRef<THREE.Points>(null);
   const groupe = useRef<THREE.Group>(null);
+  // Verrou séquentiel : la phrase affichée ne peut avancer (ou reculer) que d'UN
+  // pas à la fois, avec un temps de tenue minimum — un scroll rapide ne peut
+  // JAMAIS sauter une phrase, la séquence se joue toujours en entier.
+  const segVisuel = useRef(0);
+  const dernierPas = useRef(0);
   // Largeur du monde visible à z=0 : les phrases sont échantillonnées pour
   // toujours tenir dans ~90 % de l'écran, quel que soit le ratio. L'échelle est
   // intégrée AUX DONNÉES (cibles + nuage), recalculées au resize.
   const viewport = useThree((s) => s.viewport);
   const largeurCible = Math.min(LARGEUR_MONDE, viewport.width * 0.9);
-  const segmentCourant = useRef(-2);
   const vitesses = useRef<Float32Array | null>(null);
   if (!vitesses.current) vitesses.current = new Float32Array(N * 3);
 
-  const { positions, couleurs, cibles, nuage } = useMemo(() => {
+  const { positions, couleurs, cibles } = useMemo(() => {
     const cibles = echantillonner(COPY.hero.sequence, largeurCible);
     // Mise en scène : chaque phrase se forme un peu plus bas que la précédente —
     // la descente du regard accompagne le scroll. La FINALE remonte se poser
@@ -126,29 +133,34 @@ function Particules({ progress, pointer }: SceneProps) {
       couleurs[i * 3 + 1] = c.g;
       couleurs[i * 3 + 2] = c.b;
     }
-    return { positions, couleurs, cibles, nuage };
+    return { positions, couleurs, cibles };
   }, [largeurCible]);
 
-  useFrame(() => {
+  useFrame((state) => {
     const pts = ref.current;
     if (!pts) return;
     const p = Math.min(Math.max(progress.current ?? 0, 0), 1);
+    const t = state.clock.elapsedTime;
 
-    // La première phrase est la cible dès l'arrivée (les particules convergent
-    // depuis le nuage en ~1 s) ; ensuite, un segment par phrase au scroll.
+    // Phrase demandée par le scroll…
     const nb = COPY.hero.sequence.length;
-    const seg = Math.min(nb - 1, Math.floor(p * nb));
+    const segCible = Math.min(nb - 1, Math.floor(p * nb));
 
-    // Impulsion de dispersion à chaque changement de phrase
+    // …mais la phrase AFFICHÉE n'avance que d'un pas à la fois, jamais avant
+    // TENUE secondes : chaque phrase est vue, quel que soit le rythme du scroll.
+    const TENUE = 1.1;
     const v = vitesses.current!;
-    if (seg !== segmentCourant.current) {
-      segmentCourant.current = seg;
+    if (segVisuel.current !== segCible && t - dernierPas.current > TENUE) {
+      segVisuel.current += Math.sign(segCible - segVisuel.current);
+      dernierPas.current = t;
+      onSegment?.(segVisuel.current);
+      // Impulsion de dispersion au changement de phrase
       for (let i = 0; i < N * 3; i++) v[i] = (Math.random() - 0.5) * 0.22;
     }
 
     const arr = (pts.geometry.attributes.position as THREE.BufferAttribute)
       .array as Float32Array;
-    const cible = seg < 0 ? nuage : cibles[seg];
+    const cible = cibles[segVisuel.current];
     // Ressort amorti vers la cible + inertie de l'impulsion
     // (0.06/0.84 : formation un peu plus rapide, demande Farouk)
     for (let i = 0; i < N * 3; i++) {
