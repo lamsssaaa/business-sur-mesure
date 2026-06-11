@@ -94,6 +94,14 @@ function Particules({ progress, pointer }: SceneProps) {
 
   const { positions, couleurs, cibles, nuage } = useMemo(() => {
     const cibles = echantillonner(COPY.hero.sequence, largeurCible);
+    // Mise en scène : chaque phrase se forme un peu plus bas que la précédente —
+    // la descente du regard accompagne le scroll. La FINALE remonte se poser
+    // au-dessus du bloc sous-titre + bouton (sinon elles se chevauchent).
+    const derniere = cibles.length - 1;
+    cibles.forEach((c, k) => {
+      const decalage = k === derniere ? 0.32 : k * 0.3;
+      for (let j = 1; j < c.length; j += 3) c[j] -= decalage;
+    });
     // État initial : nuage ample, légèrement aplati, proportionnel à l'écran
     const ampleur = largeurCible / LARGEUR_MONDE;
     const nuage = new Float32Array(N * 3);
@@ -142,8 +150,9 @@ function Particules({ progress, pointer }: SceneProps) {
       .array as Float32Array;
     const cible = seg < 0 ? nuage : cibles[seg];
     // Ressort amorti vers la cible + inertie de l'impulsion
+    // (0.06/0.84 : formation un peu plus rapide, demande Farouk)
     for (let i = 0; i < N * 3; i++) {
-      v[i] = v[i] * 0.86 + (cible[i] - arr[i]) * 0.045;
+      v[i] = v[i] * 0.84 + (cible[i] - arr[i]) * 0.06;
       arr[i] += v[i];
     }
     pts.geometry.attributes.position.needsUpdate = true;
