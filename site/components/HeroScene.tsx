@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { COPY } from "@/lib/copy";
 
@@ -22,7 +22,7 @@ const N = 16000;
 const LARGEUR_MONDE = 11; // largeur de la zone texte en unités three
 
 /** Rend chaque phrase sur un canvas offscreen et échantillonne ses pixels opaques. */
-function echantillonner(phrases: string[]): Float32Array[] {
+function echantillonner(phrases: string[], largeurMonde: number): Float32Array[] {
   const c = document.createElement("canvas");
   c.width = 1400;
   c.height = 320;
@@ -39,12 +39,15 @@ function echantillonner(phrases: string[]): Float32Array[] {
     ctx.fillStyle = "#fff";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    // Taille adaptée à la largeur (les phrases longues rétrécissent)
+    // Taille adaptée à la largeur — AJUSTEMENT ITÉRATIF obligatoire : Fraunces a un
+    // axe optique (opsz), ses métriques ne se réduisent pas proportionnellement à la
+    // taille. Une seule passe laissait le texte déborder du canvas (phrases coupées).
     let taille = 190;
     ctx.font = `600 ${taille}px ${famille}`;
-    const mesure = ctx.measureText(phrase).width;
-    if (mesure > c.width - 80) {
-      taille = Math.floor((taille * (c.width - 80)) / mesure);
+    for (let essai = 0; essai < 4; essai++) {
+      const mesure = ctx.measureText(phrase).width;
+      if (mesure <= c.width - 120) break;
+      taille = Math.floor((taille * (c.width - 120)) / mesure);
       ctx.font = `600 ${taille}px ${famille}`;
     }
     ctx.fillText(phrase, c.width / 2, c.height / 2);
@@ -56,8 +59,8 @@ function echantillonner(phrases: string[]): Float32Array[] {
       for (let x = 0; x < c.width; x += pas) {
         if (data[(y * c.width + x) * 4 + 3] > 140) {
           points.push(
-            ((x - c.width / 2) / c.width) * LARGEUR_MONDE,
-            (-(y - c.height / 2) / c.width) * LARGEUR_MONDE,
+            ((x - c.width / 2) / c.width) * largeurMonde,
+            (-(y - c.height / 2) / c.width) * largeurMonde,
             0
           );
         }
@@ -80,16 +83,22 @@ function echantillonner(phrases: string[]): Float32Array[] {
 function Particules({ progress, pointer }: SceneProps) {
   const ref = useRef<THREE.Points>(null);
   const groupe = useRef<THREE.Group>(null);
+  // Largeur du monde visible à z=0 : les phrases sont échantillonnées pour
+  // toujours tenir dans ~90 % de l'écran, quel que soit le ratio. L'échelle est
+  // intégrée AUX DONNÉES (cibles + nuage), recalculées au resize.
+  const viewport = useThree((s) => s.viewport);
+  const largeurCible = Math.min(LARGEUR_MONDE, viewport.width * 0.9);
   const segmentCourant = useRef(-2);
   const vitesses = useRef<Float32Array | null>(null);
   if (!vitesses.current) vitesses.current = new Float32Array(N * 3);
 
   const { positions, couleurs, cibles, nuage } = useMemo(() => {
-    const cibles = echantillonner(COPY.hero.sequence);
-    // État initial : nuage ample, légèrement aplati
+    const cibles = echantillonner(COPY.hero.sequence, largeurCible);
+    // État initial : nuage ample, légèrement aplati, proportionnel à l'écran
+    const ampleur = largeurCible / LARGEUR_MONDE;
     const nuage = new Float32Array(N * 3);
     for (let i = 0; i < N; i++) {
-      const r = 4.5 + Math.random() * 4.5;
+      const r = (4.5 + Math.random() * 4.5) * ampleur;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       nuage[i * 3] = r * Math.sin(phi) * Math.cos(theta);
@@ -110,7 +119,7 @@ function Particules({ progress, pointer }: SceneProps) {
       couleurs[i * 3 + 2] = c.b;
     }
     return { positions, couleurs, cibles, nuage };
-  }, []);
+  }, [largeurCible]);
 
   useFrame(() => {
     const pts = ref.current;
@@ -150,7 +159,7 @@ function Particules({ progress, pointer }: SceneProps) {
   return (
     // Légèrement au-dessus du centre : le bloc sous-titre + CTA vit dans le tiers bas
     <group ref={groupe} position={[0, 1.1, 0]}>
-      <points ref={ref}>
+      <points ref={ref} key={largeurCible}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
           <bufferAttribute attach="attributes-color" args={[couleurs, 3]} />
