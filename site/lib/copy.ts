@@ -20,6 +20,37 @@ export const COPY = {
     cta: "Mon rapport sur mesure — 49.90 CHF",
     reassurance: "Garantie 14 jours · Livré en 48 h · Une fois, pas d'abonnement.",
   },
+  histoire: {
+    kicker: "L'histoire",
+    titre: "Pourquoi ce service existe",
+    chapitres: [
+      {
+        titre: "Le constat",
+        texte:
+          "J'ai passé des années à construire et lancer des projets en ligne, depuis Genève. Certains ont tenu, d'autres m'ont surtout appris une chose : le plus dur n'est pas de travailler dur. C'est de choisir QUOI lancer. J'ai connu les nuits à comparer dix idées, les tableaux d'avantages et d'inconvénients, les « je commence lundi » qui ne commencent jamais.",
+      },
+      {
+        titre: "Le déclic",
+        texte:
+          "Le déclic est venu le jour où j'ai arrêté de chercher « la bonne idée » pour me poser de vraies questions. Qu'est-ce que je sais faire, vraiment ? Combien je peux investir sans me mettre en danger ? Combien d'heures par semaine, une fois la vraie vie déduite ? Qu'est-ce que je refuse de faire, même si c'est rentable ? En répondant, la liste s'est réduite toute seule. Il en restait une.",
+      },
+      {
+        titre: "La méthode",
+        texte:
+          "J'en ai fait une méthode : 50 questions précises — celles qui changent la réponse. Expérience, compétences, budget, temps, limites. Pas pour produire une liste d'idées de plus : pour en éliminer neuf et argumenter celle qui reste. Je ne suis pas un grand cabinet, et ce n'est pas une formation à 2 000 CHF. Une personne, une méthode, un rapport.",
+      },
+      {
+        titre: "Vous",
+        texte:
+          "Maintenant, imaginez-la pour vous. Vous répondez aux 50 questions — 20 à 30 minutes, honnêtement. 48 heures plus tard, vous ouvrez un PDF qui parle de votre situation : LE business à lancer, pourquoi celui-là et pas les autres, votre plan des 30 premiers jours, avec votre budget. Plus de brouillard. Une direction.",
+      },
+      {
+        titre: "Ce que je ne vous promets pas",
+        texte:
+          "Je ne vous promets aucun revenu, aucun « six chiffres en six mois ». Personne d'honnête ne le peut — et c'est exactement pour ça que ce service existe. Je vous promets une décision claire, argumentée, taillée pour vous. Le reste dépendra de votre travail. Vous le saviez déjà : rien ne tombe du ciel.",
+      },
+    ],
+  },
   etapesTitre: "Comment ça marche",
   etapes: [
     {

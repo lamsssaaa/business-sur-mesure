@@ -4,7 +4,6 @@ import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
 import RevealTitle from "@/components/RevealTitle";
 import RapportApercu from "@/components/RapportApercu";
-import Counter from "@/components/Counter";
 import DrawnCheck from "@/components/DrawnCheck";
 import Faq from "@/components/Faq";
 import { Gem } from "@/components/Gem";
@@ -12,29 +11,46 @@ import VideoFond from "@/components/VideoFond";
 import { COPY } from "@/lib/copy";
 import { TEMOIGNAGES, LIEN_COMMANDE } from "@/lib/config";
 
-const STATS = [
-  { valeur: 50, suffixe: "", label: "questions sur votre profil" },
-  { valeur: 48, suffixe: " h", label: "pour recevoir votre rapport" },
-  { valeur: 30, suffixe: " j", label: "de plan d'action concret" },
-];
-
 export default function HomeBody() {
   return (
     <>
-      {/* CHIFFRES — composés en géant, à même le papier */}
+      {/* L'HISTOIRE — le récit d'origine qui porte vers l'achat (structure issue
+          de la recherche : « je » concret → méthode → bascule « vous » → aveu
+          honnête après le positif → CTA comme suite logique du récit) */}
       <section className="border-y border-line">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 divide-y divide-line px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.1} y={24} className="py-12 sm:px-8 sm:py-16">
-              <p className="tabular font-display text-[clamp(5.5rem,11vw,10rem)] font-light leading-[0.85] text-ink">
-                <Counter value={s.valeur} />
-                <span className="text-[0.45em] text-accent">{s.suffixe}</span>
-              </p>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-                {s.label}
-              </p>
-            </Reveal>
-          ))}
+        <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
+          <p className="kicker">{COPY.histoire.kicker}</p>
+          <RevealTitle texte={COPY.histoire.titre} pivot="existe" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+          <div className="mt-16 sm:mt-20">
+            {COPY.histoire.chapitres.map((ch, i) => (
+              <Reveal key={ch.titre} delay={0.05}>
+                <div className="relative border-t border-line py-12 sm:py-16">
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -top-4 select-none font-display text-[clamp(5rem,12vw,9rem)] font-semibold leading-none text-accent/[0.07] sm:-top-7"
+                    style={{ left: i % 2 === 1 ? "auto" : "-0.04em", right: i % 2 === 1 ? "-0.02em" : "auto" }}
+                  >
+                    0{i + 1}
+                  </span>
+                  <div className="relative grid gap-4 sm:grid-cols-12">
+                    <h3 className={`text-2xl font-semibold sm:text-3xl ${i % 2 === 1 ? "sm:col-span-4 sm:col-start-2" : "sm:col-span-4 sm:col-start-1"}`}>
+                      {ch.titre}
+                    </h3>
+                    <p className="max-w-2xl text-lg leading-relaxed text-ink/80 sm:col-span-7 sm:col-start-6">
+                      {ch.texte}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          {/* L'achat comme suite logique du récit */}
+          <Reveal delay={0.15}>
+            <div className="mt-14 border-t border-line pt-12 sm:pl-[41.666%]">
+              <CtaButton href="#prix">{COPY.hero.cta}</CtaButton>
+              <p className="mt-4 text-sm text-muted">{COPY.hero.reassurance}</p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
