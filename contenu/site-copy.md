@@ -5,15 +5,16 @@
 
 ## SECTION 1 — HERO (v4.1 : les particules 3D forment les phrases ; la 1re est écrite dès l'arrivée)
 
-**Séquence 3D (validée mot pour mot par le fondateur) :**
+**Séquence 3D (validée mot pour mot par le fondateur ; fond vidéo encre émeraude) :**
 1. À vous qui lisez ces lignes.
 2. Votre vie risque de basculer.
 3. Seuls les déterminés réussiront.
 4. Rien ne tombe du ciel.
-5. 50 questions. VOTRE business.
+5. Répondez à 50 questions.
+6. Changez votre vie professionnelle.
 
 **Titre (H1, SEO + fallback sans 3D) :**
-À vous qui lisez ces lignes : votre vie risque de basculer. 50 questions. VOTRE business.
+À vous qui lisez ces lignes : répondez à 50 questions et changez votre vie professionnelle.
 
 **Sous-titre :**
 Votre vie risque de basculer après avoir reçu votre rapport : 50 questions sur votre situation réelle, et vous savez exactement quoi lancer, comment, et avec quel budget — le plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.

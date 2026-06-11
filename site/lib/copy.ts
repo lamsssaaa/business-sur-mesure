@@ -10,10 +10,11 @@ export const COPY = {
       "Votre vie risque de basculer.",
       "Seuls les déterminés réussiront.",
       "Rien ne tombe du ciel.",
-      "50 questions. VOTRE business.",
+      "Répondez à 50 questions.",
+      "Changez votre vie professionnelle.",
     ],
     titre:
-      "À vous qui lisez ces lignes : votre vie risque de basculer. 50 questions. VOTRE business.",
+      "À vous qui lisez ces lignes : répondez à 50 questions et changez votre vie professionnelle.",
     sousTitre:
       "Votre vie risque de basculer après avoir reçu votre rapport : 50 questions sur votre situation réelle, et vous savez exactement quoi lancer, comment, et avec quel budget — le plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.",
     cta: "Mon rapport sur mesure — 49.90 CHF",

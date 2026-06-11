@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import CtaButton from "@/components/CtaButton";
+import VideoFond from "@/components/VideoFond";
 import { COPY } from "@/lib/copy";
 import { Gem } from "@/components/Gem";
 
@@ -62,7 +63,8 @@ export default function Hero() {
       const p = total > 0 ? Math.min(Math.max(window.scrollY / total, 0), 1) : 0;
       progress.current = p;
       setMasqueHint(p > 0.04);
-      setFinale(p > 0.8);
+      // Le bloc CTA apparaît avec la DERNIÈRE phrase de la séquence
+      setFinale(p > (COPY.hero.sequence.length - 1) / COPY.hero.sequence.length);
     };
     const onMove = (e: MouseEvent) => {
       pointer.current = {
@@ -83,6 +85,17 @@ export default function Hero() {
     // Hauteurs 100 % CSS (identiques avant/après hydratation) : zéro décalage
     <section ref={sectionRef} className="relative bg-[#072a1f] text-paper md:h-[400vh]">
       <div className="relative flex min-h-[100svh] items-center justify-center overflow-hidden md:sticky md:top-0 md:h-screen">
+        {/* Fond vidéo immersif : encre émeraude lumineuse sur noir (Mixkit #48472,
+            inversée/réétalonnée), coupée en reduced-motion, variante légère mobile */}
+        <div className="absolute inset-0" aria-hidden="true">
+          <VideoFond
+            src="videos/hero-encre-sombre.mp4"
+            srcMobile="videos/hero-encre-sombre-mobile.mp4"
+            className="h-full w-full object-cover opacity-60"
+          />
+          {/* Voile : garde le texte de particules lisible sur les volutes claires */}
+          <div className="absolute inset-0 bg-[#072a1f]/55" />
+        </div>
         {/* Atmosphère : la lumière de la pierre dans le noir */}
         <div
           aria-hidden="true"
@@ -105,7 +118,7 @@ export default function Hero() {
             {use3D ? (
               COPY.hero.titre
             ) : (
-              <span className="block space-y-2 pt-24">
+              <span className="block space-y-2 pt-40">
                 {COPY.hero.sequence.map((phrase, i) => (
                   <span
                     key={phrase}
