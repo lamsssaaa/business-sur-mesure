@@ -1,6 +1,5 @@
 "use client";
 
-import { Link } from "next-view-transitions";
 import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
 import RevealTitle from "@/components/RevealTitle";
@@ -9,8 +8,9 @@ import Counter from "@/components/Counter";
 import DrawnCheck from "@/components/DrawnCheck";
 import Faq from "@/components/Faq";
 import { Gem } from "@/components/Gem";
+import VideoFond from "@/components/VideoFond";
 import { COPY } from "@/lib/copy";
-import { TEMOIGNAGES } from "@/lib/config";
+import { TEMOIGNAGES, LIEN_COMMANDE } from "@/lib/config";
 
 const STATS = [
   { valeur: 50, suffixe: "", label: "questions sur ton profil" },
@@ -139,7 +139,7 @@ export default function HomeBody() {
           {/* CTA de mi-page : un lecteur convaincu ici ne doit pas chercher le bouton en bas */}
           <Reveal delay={0.4}>
             <div className="mt-12 lg:ml-[42%]">
-              <CtaButton href="/mini-test/">{COPY.hero.cta}</CtaButton>
+              <CtaButton href="#prix">{COPY.hero.cta}</CtaButton>
               <p className="mt-4 text-sm text-muted">{COPY.hero.reassurance}</p>
             </div>
           </Reveal>
@@ -176,13 +176,26 @@ export default function HomeBody() {
           className="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 opacity-50"
         />
         <div className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
-          <div className="max-w-3xl">
-            <p className="kicker">Genève, Suisse</p>
-            <RevealTitle texte={COPY.qui.titre} pivot="conseiller" className="mt-4 text-4xl font-semibold sm:text-6xl" />
-            <Reveal delay={0.15}>
-              <p className="mt-10 whitespace-pre-line text-lg leading-relaxed text-muted sm:text-xl">
-                {COPY.qui.texte}
-              </p>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
+            <div className="max-w-3xl">
+              <p className="kicker">Genève, Suisse</p>
+              <RevealTitle texte={COPY.qui.titre} pivot="conseiller" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+              <Reveal delay={0.15}>
+                <p className="mt-10 whitespace-pre-line text-lg leading-relaxed text-muted sm:text-xl">
+                  {COPY.qui.texte}
+                </p>
+              </Reveal>
+            </div>
+            {/* Vignette d'atelier : l'encre sur le papier — la métaphore du rapport
+                rédigé pour toi (Mixkit #50704, licence libre usage commercial) */}
+            <Reveal delay={0.2}>
+              <div className="relative hidden overflow-hidden rounded-[2rem] border border-line shadow-lift lg:block">
+                <VideoFond src="videos/conseiller-plume.mp4" className="aspect-[4/5] w-full object-cover" />
+                <p className="absolute bottom-4 left-5 text-xs uppercase tracking-[0.22em] text-white/85">
+                  Rédigé pour toi, ligne par ligne
+                </p>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" aria-hidden="true" />
+              </div>
             </Reveal>
           </div>
         </div>
@@ -228,15 +241,19 @@ export default function HomeBody() {
           <Reveal delay={0.25}>
             <p className="mt-10 max-w-xl text-paper/60">{COPY.prix.garantie}</p>
             <div className="mt-12">
-              <Link
-                href="/mini-test/"
+              <a
+                href={LIEN_COMMANDE}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-goatcounter-click="clic-achat"
                 className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper px-8 py-4 text-base font-semibold text-accent-deep shadow-lift transition duration-300 hover:-translate-y-0.5 hover:bg-white sm:px-9 sm:text-lg"
               >
                 {COPY.prix.cta}
                 <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
-              </Link>
+                <span className="sr-only"> (s&apos;ouvre dans une nouvelle fenêtre)</span>
+              </a>
               <p className="mt-4 text-sm text-paper/60">{COPY.prix.reassurance}</p>
             </div>
           </Reveal>

@@ -36,10 +36,10 @@ export default function SiteHeader() {
           Ton Business <span className="italic text-accent">Sur Mesure</span>
         </Link>
         <Link
-          href="/mini-test/"
+          href="/#prix"
           className="rounded-full border border-ink/15 bg-paper/70 px-5 py-2 text-sm font-semibold backdrop-blur-md transition hover:border-accent hover:text-accent"
         >
-          Mini-test gratuit
+          Commander
         </Link>
       </div>
       <motion.div

@@ -6,63 +6,25 @@ import CtaButton from "@/components/CtaButton";
 import { COPY } from "@/lib/copy";
 import { Gem } from "@/components/Gem";
 
-/** Fallback léger : blobs CSS (mobile, reduced-motion, sans WebGL, ou 3D en cours de chargement). */
-function HeroFallback() {
-  // Le concept, lisible sans WebGL : des fragments dispersés, UNE gemme.
-  const fragments = [
-    { right: "34%", top: "16%", size: 30, rot: -18 },
-    { right: "12%", top: "11%", size: 44, rot: 12 },
-    { right: "6%", top: "34%", size: 24, rot: 40 },
-    { right: "40%", top: "42%", size: 20, rot: -30 },
-    { right: "30%", top: "66%", size: 36, rot: 22 },
-    { right: "9%", top: "72%", size: 28, rot: -8 },
-    { right: "22%", top: "85%", size: 18, rot: 55 },
-  ];
-  return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      <div className="blob absolute left-[8%] top-[18%] h-40 w-40 rounded-[38%_62%_55%_45%/55%_40%_60%_45%] bg-line/60 blur-[2px]" />
-      <div className="blob absolute bottom-[20%] left-[16%] h-24 w-24 rounded-[45%_55%_60%_40%/60%_45%_55%_40%] bg-[#e3ddd0]" />
-      {fragments.map((f, i) => (
-        <div
-          key={i}
-          className="blob absolute hidden sm:block"
-          style={{ right: f.right, top: f.top, transform: `rotate(${f.rot}deg)`, opacity: 0.8 }}
-        >
-          <Gem size={f.size} variant="pale" />
-        </div>
-      ))}
-      <div className="blob absolute hidden sm:right-[18%] sm:top-[38%] sm:block">
-        <Gem size={120} variant="plein" className="drop-shadow-xl" />
-      </div>
-      <div className="blob absolute bottom-[16%] right-[7%] sm:hidden">
-        <Gem size={56} variant="plein" className="drop-shadow-lg" />
-      </div>
-    </div>
-  );
-}
-
 const HeroScene = dynamic(() => import("@/components/HeroScene"), {
   ssr: false,
-  loading: () => null, // le fallback reste affiché derrière pendant le chargement
+  loading: () => null,
 });
 
-const titleWords = COPY.hero.titre.split(" ");
-
+/**
+ * Héro v4 — scène sombre épinglée sur 400vh : les particules 3D forment les
+ * phrases de COPY.hero.sequence au scroll, la dernière reste, puis le bloc
+ * CTA apparaît. Fallback sans 3D (mobile, reduced-motion, sans WebGL) :
+ * les phrases en HTML, CTA visible immédiatement.
+ */
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titreRef = useRef<HTMLHeadingElement>(null);
   const progress = useRef(0);
   const pointer = useRef({ x: 0, y: 0 });
   const [use3D, setUse3D] = useState(false);
   const [enVue, setEnVue] = useState(true);
+  const [finale, setFinale] = useState(false); // bloc CTA visible (fin de séquence)
   const [masqueHint, setMasqueHint] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setMasqueHint(window.scrollY > 60);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const wide = window.matchMedia("(min-width: 768px)").matches;
@@ -77,7 +39,7 @@ export default function Hero() {
     setUse3D(Boolean(wide && webgl && !reduced));
   }, []);
 
-  // La scène 3D ne tourne que quand le héro est (presque) à l'écran — zéro GPU au-delà
+  // La scène ne tourne que quand le héro est (presque) à l'écran
   useEffect(() => {
     const el = sectionRef.current;
     if (!el || !use3D) return;
@@ -89,24 +51,18 @@ export default function Hero() {
   }, [use3D]);
 
   useEffect(() => {
-    if (!use3D) return;
-    let soft = -1;
+    if (!use3D) {
+      setFinale(true); // sans 3D, le CTA est visible d'emblée
+      return;
+    }
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
       const total = el.offsetHeight - window.innerHeight;
-      progress.current = total > 0 ? Math.min(Math.max(window.scrollY / total, 0), 1) : 0;
-      // Le lapidaire typographique : la typo subit la même taille que la gemme.
-      // Brut (SOFT 100, WONK 1) → facetté (0, 0). Une seule écriture par palier
-      // entier de SOFT pour limiter la rastérisation.
-      const t = titreRef.current;
-      if (t) {
-        const s = Math.round(100 * (1 - progress.current));
-        if (s !== soft) {
-          soft = s;
-          t.style.fontVariationSettings = `"opsz" 144, "SOFT" ${s}, "WONK" ${(s / 100).toFixed(2)}`;
-        }
-      }
+      const p = total > 0 ? Math.min(Math.max(window.scrollY / total, 0), 1) : 0;
+      progress.current = p;
+      setMasqueHint(p > 0.04);
+      setFinale(p > 0.8);
     };
     const onMove = (e: MouseEvent) => {
       pointer.current = {
@@ -124,55 +80,78 @@ export default function Hero() {
   }, [use3D]);
 
   return (
-    // Hauteurs 100 % CSS (identiques avant/après hydratation) : zéro décalage de mise en page
-    <section ref={sectionRef} className="relative md:h-[130vh]">
-      <div className="relative flex min-h-[92vh] items-center overflow-hidden md:sticky md:top-0 md:h-screen">
-        <div className="hero-aura absolute inset-0" aria-hidden="true" />
-        <HeroFallback />
+    // Hauteurs 100 % CSS (identiques avant/après hydratation) : zéro décalage
+    <section ref={sectionRef} className="relative bg-[#072a1f] text-paper md:h-[400vh]">
+      <div className="relative flex min-h-[100svh] items-center justify-center overflow-hidden md:sticky md:top-0 md:h-screen">
+        {/* Atmosphère : la lumière de la pierre dans le noir */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(60rem 38rem at 50% 42%, rgb(14 107 79 / 0.35), transparent 70%), radial-gradient(34rem 22rem at 72% 70%, rgb(184 138 46 / 0.10), transparent 65%)",
+          }}
+        />
+
         {use3D && enVue && (
           <div className="absolute inset-0" aria-hidden="true">
             <HeroScene progress={progress} pointer={pointer} />
           </div>
         )}
 
-        <div className="relative mx-auto w-full max-w-6xl px-6 pt-24 sm:pt-20">
-          <div className="max-w-2xl">
-            {/* Entrée animée en pur CSS : le texte est visible même sans JavaScript */}
-            <h1 ref={titreRef} className="text-[clamp(3.2rem,8.5vw,7.5rem)] font-semibold leading-[0.98] tracking-tight">
-              {titleWords.map((word, i) => (
-                <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom">
+        {/* H1 réel : lu par les moteurs et les lecteurs d'écran ; visible quand pas de 3D */}
+        <div className="relative mx-auto w-full max-w-5xl px-6 text-center">
+          <h1 className={use3D ? "sr-only" : "font-display"}>
+            {use3D ? (
+              COPY.hero.titre
+            ) : (
+              <span className="block space-y-2 pt-24">
+                {COPY.hero.sequence.map((phrase, i) => (
                   <span
-                    className={`rise inline-block whitespace-pre ${
-                      word.includes("TON") || word.includes("business") ? "text-accent italic" : ""
+                    key={phrase}
+                    className={`rise block text-[clamp(2.6rem,9vw,6rem)] font-semibold leading-[1.04] ${
+                      i === COPY.hero.sequence.length - 1 ? "text-gold" : ""
                     }`}
-                    style={{ animationDelay: `${0.08 + i * 0.055}s` }}
+                    style={{ animationDelay: `${0.15 + i * 0.18}s` }}
                   >
-                    {word}{" "}
+                    {phrase}
                   </span>
-                </span>
-              ))}
-            </h1>
-            <p
-              className="rise-soft mt-7 max-w-xl text-lg text-muted sm:text-xl"
-              style={{ animationDelay: "0.55s" }}
-            >
+                ))}
+              </span>
+            )}
+          </h1>
+
+          {/* Bloc final : sous-titre + CTA — apparaît à la fin de la séquence */}
+          <div
+            className={`mx-auto max-w-2xl transition-all duration-700 ${
+              use3D ? "mt-[34vh]" : "mt-10"
+            } ${
+              finale ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
+            }`}
+          >
+            <p className="text-lg leading-relaxed text-paper/80 sm:text-xl">
               {COPY.hero.sousTitre}
             </p>
-            <div className="rise-soft mt-10" style={{ animationDelay: "0.72s" }}>
-              <CtaButton href="/mini-test/">{COPY.hero.cta}</CtaButton>
-              <p className="mt-4 text-sm text-muted">{COPY.hero.reassurance}</p>
+            <div className="mt-8">
+              <CtaButton href="#prix">{COPY.hero.cta}</CtaButton>
+              <p className="mt-4 text-sm text-paper/60">{COPY.hero.reassurance}</p>
             </div>
           </div>
         </div>
 
+        {/* Petit cartouche de marque, en haut de la scène */}
+        <div className="pointer-events-none absolute left-1/2 top-24 -translate-x-1/2">
+          <Gem size={42} variant="plein" className="mx-auto opacity-90" />
+        </div>
+
         <div
-          className={`absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-muted transition-opacity duration-300 ${
+          className={`absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-paper/50 transition-opacity duration-300 ${
             masqueHint ? "opacity-0" : "opacity-100"
           }`}
           aria-hidden="true"
         >
           scroll
-          <span className="scroll-ligne block h-7 w-px bg-ink/30" />
+          <span className="scroll-ligne block h-7 w-px bg-paper/30" />
         </div>
       </div>
     </section>

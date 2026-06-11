@@ -29,7 +29,7 @@ export default function JsonLd() {
       "@type": "Offer",
       price: "49.90",
       priceCurrency: "CHF",
-      url: `${SITE_URL}/mini-test/`,
+      url: `${SITE_URL}/#prix`,
       availability: "https://schema.org/InStock",
     },
   };

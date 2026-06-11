@@ -3,23 +3,25 @@
 
 export const COPY = {
   hero: {
-    titre: "Arrête de chercher une idée. Trouve TON business.",
+    // La séquence que les particules 3D forment au scroll ; la dernière reste à l'écran.
+    sequence: ["Ton expérience.", "Ton budget.", "Ton temps.", "= TON business."],
+    titre: "Ton expérience. Ton budget. Ton temps. = TON business.",
     sousTitre:
-      "Réponds à 50 questions sur ton expérience, tes compétences, ton budget et ton temps : on te dit LE business à lancer — un seul — et comment le démarrer en 30 jours.",
-    cta: "Fais le mini-test gratuit (2 min)",
-    reassurance: "Gratuit, sans engagement, sans carte bancaire.",
+      "50 questions sur ta situation réelle — et tu reçois LE business à lancer. Un seul, argumenté, avec le plan des 30 premiers jours. Rédigé pour toi, livré en 48 h.",
+    cta: "Mon rapport sur mesure — 49.90 CHF",
+    reassurance: "Garantie 14 jours · Livré en 48 h · Une fois, pas d'abonnement.",
   },
   etapesTitre: "Comment ça marche",
   etapes: [
     {
-      titre: "Le mini-test gratuit",
+      titre: "Tu commandes ton rapport",
       texte:
-        "Fais le mini-test : 10 questions, 2 minutes, sans créer de compte. Tu reçois tout de suite un premier aperçu de ton profil entrepreneurial — et tu vois concrètement comment on travaille, avant de sortir un centime.",
+        "49.90 CHF, une fois. Couvert par la garantie satisfait ou remboursé 14 jours : si le rapport ne t'apprend rien d'actionnable, tu es remboursé sur simple email. Tu reçois le questionnaire immédiatement après.",
     },
     {
       titre: "Les 50 questions",
       texte:
-        "Si le résultat te parle, commande ton rapport (49.90 CHF). Tu réponds alors aux 50 questions complètes : expérience, compétences, budget, temps disponible, contraintes. Compte 20 à 30 minutes — plus tes réponses sont précises, plus ton plan le sera.",
+        "Tu réponds aux 50 questions : expérience, compétences, budget, temps disponible, contraintes. Compte 20 à 30 minutes — plus tes réponses sont précises, plus ton plan le sera.",
     },
     {
       titre: "Ton rapport en 48 h",
@@ -67,8 +69,8 @@ export const COPY = {
       "Pas d'abonnement, pas d'upsell, pas de « formation premium » cachée derrière. Tu paies une fois, tu reçois tout.",
     repere:
       "Pour situer : une séance avec un conseiller en création d'entreprise coûte 150 à 300 CHF. Ton rapport — analyse complète, recommandation argumentée, plan 30 jours — coûte 49.90. Une fois.",
-    cta: "Fais le mini-test gratuit (2 min)",
-    reassurance: "Le mini-test est gratuit et sans engagement. Tu décides après.",
+    cta: "Commander mon rapport — 49.90 CHF",
+    reassurance: "Paiement simple, garanti 14 jours. Tu reçois le questionnaire juste après.",
   },
   faqTitre: "Questions fréquentes",
   faq: [

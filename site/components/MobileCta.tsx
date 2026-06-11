@@ -45,13 +45,13 @@ export default function MobileCta() {
     >
       <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-line bg-white/95 p-2 pl-5 shadow-lift backdrop-blur">
         <p className="min-w-0 flex-1 truncate text-sm font-medium">
-          Trouve TON business <span className="text-muted">· test 2 min</span>
+          TON business, taillé sur mesure
         </p>
         <Link
-          href="/mini-test/"
+          href="/#prix"
           className="shrink-0 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white"
         >
-          Mini-test gratuit
+          Mon rapport — 49.90
         </Link>
         <button
           onClick={fermer}

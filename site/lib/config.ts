@@ -3,9 +3,15 @@ export const LINKS = {
   questionnaire: "https://tally.so/r/NpOlEj",
   // Stripe Payment Link 49.90 CHF — voir contenu/guide-branchement.md
   paiement: "https://buy.stripe.com/A_REMPLACER",
-  // Formulaire Tally de capture email sur le résultat du mini-test (optionnel v1)
+  // Formulaire Tally de commande (email) — utilisé tant que Stripe n'est pas branché
   profilParEmail: "https://tally.so/r/Ek6jxA",
 };
+
+// Lien de commande effectif : Stripe dès qu'il est branché, sinon le formulaire
+// Tally de commande (Farouk reçoit la demande par email et envoie le lien de paiement).
+export const LIEN_COMMANDE = LINKS.paiement.includes("A_REMPLACER")
+  ? `${LINKS.profilParEmail}?intent=commande`
+  : LINKS.paiement;
 
 // Mesure du tunnel (GoatCounter) — vide = totalement désactivé. Voir components/Analytics.tsx.
 export const GOATCOUNTER_CODE = "";

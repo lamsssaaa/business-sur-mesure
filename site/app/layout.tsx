@@ -8,9 +8,7 @@ import "./globals.css";
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  // SOFT + WONK alimentent le « lapidaire typographique » : la typo se taille au
-  // scroll du héro, comme la gemme (brut → facetté).
-  axes: ["opsz", "SOFT", "WONK"],
+  axes: ["opsz"],
 });
 
 const hanken = Hanken_Grotesk({

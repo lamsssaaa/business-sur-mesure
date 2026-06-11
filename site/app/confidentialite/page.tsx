@@ -15,7 +15,7 @@ export default function Confidentialite() {
         <div className="mt-6 space-y-4 text-muted">
           <p>
             <strong className="text-ink">Ce qu&apos;on collecte.</strong> Ton adresse email et tes réponses aux
-            questionnaires (mini-test et questionnaire de 50 questions). Rien d&apos;autre — pas de cookies
+            formulaires (commande et questionnaire de 50 questions). Rien d&apos;autre — pas de cookies
             publicitaires, pas de traqueurs.
           </p>
           <p>

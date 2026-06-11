@@ -3,19 +3,25 @@
 
 ---
 
-## SECTION 1 — HERO
+## SECTION 1 — HERO (v4 : les particules 3D forment les phrases au scroll)
 
-**Titre (H1) :**
-Arrête de chercher une idée. Trouve TON business.
+**Séquence 3D (chaque phrase se forme en particules, la dernière reste) :**
+1. Ton expérience.
+2. Ton budget.
+3. Ton temps.
+4. = TON business.
+
+**Titre (H1, SEO + fallback sans 3D) :**
+Ton expérience. Ton budget. Ton temps. = TON business.
 
 **Sous-titre :**
-Réponds à 50 questions sur ton expérience, tes compétences, ton budget et ton temps : on te dit LE business à lancer — un seul — et comment le démarrer en 30 jours.
+50 questions sur ta situation réelle — et tu reçois LE business à lancer. Un seul, argumenté, avec le plan des 30 premiers jours. Rédigé pour toi, livré en 48 h.
 
 **CTA principal (bouton) :**
-Fais le mini-test gratuit (2 min)
+Mon rapport sur mesure — 49.90 CHF
 
 **Micro-réassurance (sous le bouton) :**
-Gratuit, sans engagement, sans carte bancaire.
+Garantie 14 jours · Livré en 48 h · Une fois, pas d'abonnement.
 
 ---
 
@@ -24,11 +30,11 @@ Gratuit, sans engagement, sans carte bancaire.
 **Titre de section :**
 Comment ça marche
 
-**Étape 1 — Le mini-test gratuit**
-Fais le mini-test : 10 questions, 2 minutes, sans créer de compte. Tu reçois tout de suite un premier aperçu de ton profil entrepreneurial — et tu vois concrètement comment on travaille, avant de sortir un centime.
+**Étape 1 — Tu commandes ton rapport**
+49.90 CHF, une fois. Couvert par la garantie satisfait ou remboursé 14 jours : si le rapport ne t'apprend rien d'actionnable, tu es remboursé sur simple email. Tu reçois le questionnaire immédiatement après.
 
 **Étape 2 — Les 50 questions**
-Si le résultat te parle, commande ton rapport (49.90 CHF). Tu réponds alors aux 50 questions complètes : expérience, compétences, budget, temps disponible, contraintes. Compte 20 à 30 minutes — plus tes réponses sont précises, plus ton plan le sera.
+Tu réponds aux 50 questions : expérience, compétences, budget, temps disponible, contraintes. Compte 20 à 30 minutes — plus tes réponses sont précises, plus ton plan le sera.
 
 **Étape 3 — Ton rapport en 48 h**
 Sous 48 heures, tu reçois ton rapport PDF de 12 à 18 pages : LE business adapté à ta situation, argumenté, avec un plan d'action concret sur 30 jours. Préparé et validé personnellement par ton conseiller.
@@ -109,10 +115,10 @@ Pour situer : une séance avec un conseiller en création d'entreprise coûte 15
 Pas d'abonnement, pas d'upsell, pas de « formation premium » cachée derrière. Tu paies une fois, tu reçois tout.
 
 **CTA (bouton) :**
-Fais le mini-test gratuit (2 min)
+Commander mon rapport — 49.90 CHF
 
 **Micro-réassurance (sous le bouton) :**
-Le mini-test est gratuit et sans engagement. Tu décides après.
+Paiement simple, garanti 14 jours. Tu reçois le questionnaire juste après.
 
 ---
 
