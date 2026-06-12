@@ -21,7 +21,9 @@ type SceneProps = {
 };
 
 // Moins de particules sur mobile : même effet, fluidité garantie
-const N = typeof window !== "undefined" && window.innerWidth < 768 ? 9000 : 16000;
+const N = typeof window !== "undefined" && window.innerWidth < 768 ? 12000 : 22000;
+// Pas d'échantillonnage : plus fin quand on a assez de particules pour le couvrir
+const PAS = N > 12000 ? 2 : 3;
 const LARGEUR_MONDE = 11; // largeur max de la zone texte en unités three
 
 /** Découpe une phrase en lignes qui tiennent dans maxW pixels (police déjà réglée). */
@@ -107,10 +109,9 @@ function construireCibles(
     });
     const data = ctx.getImageData(0, 0, c.width, c.height).data;
     const points: number[] = [];
-    const pas = 3;
     const centreY = yCurseur - (lignes.length * interligne) / 2;
-    for (let y = 0; y < c.height; y += pas) {
-      for (let x = 0; x < c.width; x += pas) {
+    for (let y = 0; y < c.height; y += PAS) {
+      for (let x = 0; x < c.width; x += PAS) {
         if (data[(y * c.width + x) * 4 + 3] > 140) {
           points.push(
             ((x - c.width / 2) / c.width) * largeurMonde,
@@ -139,9 +140,10 @@ function construireCibles(
       // particules que la phrase n'a de points, seul le HAUT serait couvert —
       // les 2es lignes disparaissaient sur mobile)
       const j = compte < nb ? Math.floor((i * nb) / compte) % nb : i % Math.max(nb, 1);
-      cibles[gi * 3] = points[j * 3] + (Math.random() - 0.5) * 0.02;
-      cibles[gi * 3 + 1] = points[j * 3 + 1] + (Math.random() - 0.5) * 0.02;
-      cibles[gi * 3 + 2] = (Math.random() - 0.5) * 0.12;
+      // Jitter minimal : les lettres restent nettes (la vie vient de l'oscillation)
+      cibles[gi * 3] = points[j * 3] + (Math.random() - 0.5) * 0.012;
+      cibles[gi * 3 + 1] = points[j * 3 + 1] + (Math.random() - 0.5) * 0.012;
+      cibles[gi * 3 + 2] = (Math.random() - 0.5) * 0.04;
     }
     tranches[k] = { debut, fin: debut + compte };
     debut += compte;
@@ -210,6 +212,21 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
   const vitesses = useRef<Float32Array | null>(null);
   if (!vitesses.current) vitesses.current = new Float32Array(N * 3);
 
+  // Vie des particules : chaque point oscille en permanence autour de sa cible
+  // (phase, fréquence et amplitude propres → respiration organique, jamais figée)
+  const anim = useMemo(() => {
+    const phases = new Float32Array(N);
+    const freqs = new Float32Array(N);
+    const amps = new Float32Array(N);
+    for (let i = 0; i < N; i++) {
+      phases[i] = Math.random() * Math.PI * 2;
+      freqs[i] = 0.6 + Math.random() * 1.1;
+      // Amplitude FINE sur le texte (frémissement, pas de brouillage des lettres)
+      amps[i] = 0.005 + Math.random() * 0.007;
+    }
+    return { phases, freqs, amps };
+  }, []);
+
   const { positions, couleurs, cibles, nuage, tranches } = useMemo(() => {
     const { cibles, tranches } = construireCibles(
       COPY.hero.sequence,
@@ -277,14 +294,27 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
     const arr = (pts.geometry.attributes.position as THREE.BufferAttribute)
       .array as Float32Array;
     // Chaque tranche vise sa phrase si elle est atteinte, sinon le nuage —
-    // ressort amorti vers la cible + inertie de l'impulsion
+    // ressort amorti vers la cible + inertie de l'impulsion + oscillation
+    // permanente (les points « respirent » autour des lettres, le nuage
+    // dérive plus largement)
     const seg = segVisuel.current;
+    const { phases, freqs, amps } = anim;
     for (let k = 0; k < tranches.length; k++) {
-      const src = k <= seg ? cibles : nuage;
+      const forme = k <= seg;
+      const src = forme ? cibles : nuage;
+      const ampli = forme ? 1 : 9;
       const { debut, fin } = tranches[k];
-      for (let i = debut * 3; i < fin * 3; i++) {
-        v[i] = v[i] * 0.84 + (src[i] - arr[i]) * 0.06;
-        arr[i] += v[i];
+      for (let idx = debut; idx < fin; idx++) {
+        const i3 = idx * 3;
+        const a = amps[idx] * ampli;
+        const ox = Math.sin(t * freqs[idx] + phases[idx]) * a;
+        const oy = Math.cos(t * freqs[idx] * 1.27 + phases[idx]) * a;
+        v[i3] = v[i3] * 0.84 + (src[i3] + ox - arr[i3]) * 0.06;
+        v[i3 + 1] = v[i3 + 1] * 0.84 + (src[i3 + 1] + oy - arr[i3 + 1]) * 0.06;
+        v[i3 + 2] = v[i3 + 2] * 0.84 + (src[i3 + 2] - arr[i3 + 2]) * 0.06;
+        arr[i3] += v[i3];
+        arr[i3 + 1] += v[i3 + 1];
+        arr[i3 + 2] += v[i3 + 2];
       }
     }
     pts.geometry.attributes.position.needsUpdate = true;
@@ -306,10 +336,10 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
           <bufferAttribute attach="attributes-color" args={[couleurs, 3]} />
         </bufferGeometry>
         <pointsMaterial
-          size={0.035}
+          size={0.04}
           vertexColors
           transparent
-          opacity={0.92}
+          opacity={0.96}
           sizeAttenuation
           depthWrite={false}
           blending={THREE.AdditiveBlending}

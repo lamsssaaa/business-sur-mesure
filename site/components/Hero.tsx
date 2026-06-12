@@ -103,7 +103,7 @@ export default function Hero() {
         <div className="absolute inset-0" aria-hidden="true">
           <HeroDecors segment={segment} />
           {/* Voile neutre : le texte de particules reste lisible sur tout paysage */}
-          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-black/55" />
         </div>
         {/* Atmosphère : la lumière de la pierre dans le noir */}
         <div
