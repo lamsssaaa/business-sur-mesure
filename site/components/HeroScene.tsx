@@ -9,7 +9,7 @@ import { COPY } from "@/lib/copy";
  * Héro v5 — « les phrases s'accumulent » (demande Farouk : une phrase formée
  * ne disparaît JAMAIS). Chaque phrase de COPY.hero.sequence possède sa propre
  * tranche de particules : au scroll, la phrase suivante se forme SOUS les
- * précédentes, qui restent affichées. La dernière (en or) complète le tableau.
+ * précédentes, qui restent affichées.
  * `progress` (0→1) est piloté par le scroll du héro, `pointer` par la souris.
  */
 
@@ -73,7 +73,7 @@ function construireCibles(
   // Hauteur monde du bloc complet pour une taille de police donnée.
   // ⚠️ opsz de Fraunces : métriques non proportionnelles → toujours re-mesurer.
   const hauteurBloc = (taille: number): { h: number; parPhrase: string[][] } => {
-    ctx.font = `600 ${taille}px ${famille}`;
+    ctx.font = `800 ${taille}px ${famille}`;
     const parPhrase = phrases.map((p) => decouperEnLignes(ctx, p, maxW));
     const interligne = (taille * 1.32) / ppu;
     const ecartBloc = (taille * 0.52) / ppu;
@@ -95,7 +95,7 @@ function construireCibles(
   const ecartBloc = (taille * 0.52) / ppu;
 
   // Échantillonner chaque phrase (avec ses retours à la ligne) à sa place dans la pile
-  ctx.font = `600 ${taille}px ${famille}`;
+  ctx.font = `800 ${taille}px ${famille}`;
   ctx.fillStyle = "#fff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
@@ -246,21 +246,15 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
       nuage[i * 3 + 2] = r * Math.cos(phi) * 0.5 - 1;
     }
     const positions = new Float32Array(nuage);
-    // Papier lumineux pour la masse, émeraude clair pour les accents…
+    // Blanc papier UNIFORME (légère variation de luminance seulement) : des
+    // accents colorés DANS les lettres les rendaient sales — lisibilité d'abord
     const couleurs = new Float32Array(N * 3);
-    const papier = new THREE.Color("#f2efe7");
-    const or = new THREE.Color("#d8a948");
-    const orClair = new THREE.Color("#e8c87a");
-    const emeraude = new THREE.Color("#7fc3a8");
-    const derniere = tranches[tranches.length - 1];
+    const papier = new THREE.Color("#f6f3ea");
     for (let i = 0; i < N; i++) {
-      const t = Math.random();
-      // …et la phrase FINALE entièrement en or (c'est elle qui reste avec le CTA)
-      const enOr = i >= derniere.debut && i < derniere.fin;
-      const c = enOr ? (t < 0.55 ? or : orClair) : t < 0.06 ? or : t < 0.22 ? emeraude : papier;
-      couleurs[i * 3] = c.r;
-      couleurs[i * 3 + 1] = c.g;
-      couleurs[i * 3 + 2] = c.b;
+      const lum = 0.88 + Math.random() * 0.12;
+      couleurs[i * 3] = papier.r * lum;
+      couleurs[i * 3 + 1] = papier.g * lum;
+      couleurs[i * 3 + 2] = papier.b * lum;
     }
     return { positions, couleurs, cibles, nuage, tranches };
   }, [largeurCible, bandeMonde]);

@@ -11,7 +11,7 @@
 3. Seuls les déterminés réussiront.
 4. Rien ne tombe du ciel.
 5. Répondez à 50 questions.
-6. Changez votre vie professionnelle.
+6. & Changez votre vie professionnelle.
 
 **Titre (H1, SEO + fallback sans 3D) :**
 À vous qui lisez ces lignes : répondez à 50 questions et changez votre vie professionnelle.
@@ -20,7 +20,7 @@
 Votre vie risque de basculer après avoir reçu votre rapport. 50 questions passent au crible votre expérience, vos compétences, votre budget et votre temps disponible — et vous savez exactement quoi lancer, comment le lancer, avec votre budget. Plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.
 
 **CTA principal (bouton) :**
-Mon rapport sur mesure — 49.90 CHF
+Répondez aux 50 questions et changez votre vie professionnelle
 
 **Micro-réassurance (sous le bouton) :**
 Garantie 14 jours · Livré en 48 h · Une fois, pas d'abonnement.
@@ -48,7 +48,7 @@ Maintenant, imaginez-la pour vous. Vous répondez aux 50 questions — 20 à 30 
 **05 — Ce que je ne vous promets pas.**
 Je ne vous promets aucun revenu, aucun « six chiffres en six mois ». Personne d'honnête ne le peut — et c'est exactement pour ça que ce service existe. Je vous promets une décision claire, argumentée, taillée pour vous. Le reste dépendra de votre travail. Vous le saviez déjà : rien ne tombe du ciel.
 
-**CTA :** Mon rapport sur mesure — 49.90 CHF
+**CTA :** Répondez aux 50 questions et changez votre vie professionnelle
 
 ---
 
