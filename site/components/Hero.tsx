@@ -12,10 +12,11 @@ const HeroScene = dynamic(() => import("@/components/HeroScene"), {
 });
 
 /**
- * Héro v4 — scène sombre épinglée sur 400vh : les particules 3D forment les
- * phrases de COPY.hero.sequence au scroll, la dernière reste, puis le bloc
- * CTA apparaît. Fallback sans 3D (mobile, reduced-motion, sans WebGL) :
- * les phrases en HTML, CTA visible immédiatement.
+ * Héro v6 — scène sombre épinglée : les particules 3D forment UNE phrase à la
+ * fois, en grand au centre ; chaque phrase passée se grave en HTML net dans la
+ * pile du haut (lisibilité d'abord — rien ne disparaît). segment ∈ 0..nb :
+ * nb = séquence terminée (pile complète, particules dispersées, CTA visible).
+ * Fallback sans 3D (reduced-motion, sans WebGL) : phrases HTML, CTA immédiat.
  */
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,7 +26,8 @@ export default function Hero() {
   const [enVue, setEnVue] = useState(true);
   const [finale, setFinale] = useState(false); // bloc CTA visible (fin de séquence)
   const [masqueHint, setMasqueHint] = useState(false);
-  const [segment, setSegment] = useState(0); // phrase courante → pilote le décor
+  const [segment, setSegment] = useState(0); // phrase en scène (nb = terminé) → décor + pile
+  const nb = COPY.hero.sequence.length;
 
   useEffect(() => {
     // 3D partout, mobile compris (demande Farouk) — seuls reduced-motion et
@@ -100,8 +102,8 @@ export default function Hero() {
         {/* Décors immersifs : un paysage par phrase (fondu-enchaîné), qualité
             adaptée au réseau de l'utilisateur (HD / léger / coupé) */}
         <div className="absolute inset-0" aria-hidden="true">
-          <HeroDecors segment={segment} />
-          {/* Voile neutre : le texte de particules reste lisible sur tout paysage */}
+          <HeroDecors segment={Math.min(segment, nb - 1)} />
+          {/* Voile neutre : le texte reste lisible sur tout paysage */}
           <div className="absolute inset-0 bg-black/55" />
         </div>
         {use3D && enVue && (
@@ -111,9 +113,28 @@ export default function Hero() {
               pointer={pointer}
               onSegment={(s) => {
                 setSegment(s);
-                setFinale(s === COPY.hero.sequence.length - 1);
+                setFinale(s === nb); // CTA quand la dernière phrase est gravée
               }}
             />
+          </div>
+        )}
+
+        {/* La pile : chaque phrase passée se grave ici en texte NET (elle monte
+            du centre — là où les particules viennent de la former). C'est ce
+            bloc qui garantit la lisibilité, les particules font le spectacle. */}
+        {use3D && (
+          <div
+            className="pointer-events-none absolute inset-x-0 top-[11vh] z-10 px-6 text-center"
+            aria-hidden="true"
+          >
+            {COPY.hero.sequence.slice(0, Math.min(segment, nb)).map((phrase) => (
+              <span
+                key={phrase}
+                className="graver block whitespace-pre-line font-display text-[clamp(1.35rem,4.5vw,2.5rem)] font-semibold leading-[1.15] text-paper drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
+              >
+                {phrase}
+              </span>
+            ))}
           </div>
         )}
 

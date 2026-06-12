@@ -81,6 +81,25 @@ p {
   }
 }
 
+/* Une phrase « se grave » dans la pile du héro : elle monte depuis le centre
+   de l'écran (là où les particules viennent de la former) vers sa place */
+@media (prefers-reduced-motion: no-preference) {
+  .graver {
+    animation: graver-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes graver-in {
+  from {
+    opacity: 0;
+    transform: translateY(32vh) scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;

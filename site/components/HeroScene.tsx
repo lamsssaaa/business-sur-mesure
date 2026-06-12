@@ -6,24 +6,25 @@ import * as THREE from "three";
 import { COPY } from "@/lib/copy";
 
 /**
- * Héro v5 — « les phrases s'accumulent » (demande Farouk : une phrase formée
- * ne disparaît JAMAIS). Chaque phrase de COPY.hero.sequence possède sa propre
- * tranche de particules : au scroll, la phrase suivante se forme SOUS les
- * précédentes, qui restent affichées.
+ * Héro v6 — « centre de scène » (lisibilité d'abord, demande Farouk).
+ * Les particules ne forment qu'UNE phrase à la fois, en grand au centre :
+ * toutes les particules pour une seule phrase = lettres denses, lisibles.
+ * Quand la phrase suivante arrive, la précédente se grave en HTML net dans
+ * la pile au-dessus (Hero.tsx) : rien ne disparaît, tout reste lisible.
  * `progress` (0→1) est piloté par le scroll du héro, `pointer` par la souris.
+ * onSegment(s) : s = phrase active (0..nb-1) ; s === nb → séquence terminée
+ * (la dernière phrase est gravée, les particules se dispersent, le CTA sort).
  */
 
 type SceneProps = {
   progress: React.RefObject<number>;
   pointer: React.RefObject<{ x: number; y: number }>;
-  /** Notifie la phrase visuellement active (pilote décors + apparition du CTA). */
   onSegment?: (segment: number) => void;
 };
 
 // Moins de particules sur mobile : même effet, fluidité garantie
-const N = typeof window !== "undefined" && window.innerWidth < 768 ? 12000 : 22000;
-// Pas d'échantillonnage : plus fin quand on a assez de particules pour le couvrir
-const PAS = N > 12000 ? 2 : 3;
+const MOBILE = typeof window !== "undefined" && window.innerWidth < 768;
+const N = MOBILE ? 12000 : 22000;
 const LARGEUR_MONDE = 11; // largeur max de la zone texte en unités three
 
 /** Découpe une phrase en lignes qui tiennent dans maxW pixels (police déjà réglée).
@@ -48,137 +49,100 @@ function decouperEnLignes(ctx: CanvasRenderingContext2D, phrase: string, maxW: n
 }
 
 /**
- * Échantillonne TOUTES les phrases, empilées verticalement, et répartit les N
- * particules en tranches contiguës (une par phrase, proportionnelle à son encre).
- * La taille de police est commune : la plus grande pour laquelle le bloc complet
- * (avec retours à la ligne) tient dans la bande verticale disponible.
+ * Échantillonne UNE phrase, centrée sur (0,0), la plus grande possible dans
+ * largeurMonde × bandeMonde. Toutes les N particules lui sont affectées.
+ * PAS ADAPTATIF : la grille s'élargit jusqu'à ce que le nombre de points
+ * soit ≤ N — chaque point reçoit au moins une particule, lettres pleines.
  */
-function construireCibles(
-  phrases: string[],
-  largeurMonde: number,
-  bandeMonde: number
-): { cibles: Float32Array; tranches: { debut: number; fin: number }[] } {
-  const tranches = phrases.map(() => ({ debut: 0, fin: 0 }));
-  const cibles = new Float32Array(N * 3);
+function construireCible(phrase: string, largeurMonde: number, bandeMonde: number): Float32Array {
+  const cible = new Float32Array(N * 3);
   const c = document.createElement("canvas");
   c.width = 1400;
   c.height = 760;
   const ctx = c.getContext("2d", { willReadFrequently: true });
-  if (!ctx) return { cibles, tranches };
+  if (!ctx) return cible;
 
-  // Fraunces si elle est chargée (next/font expose la famille via la CSS var)
   const famille =
     getComputedStyle(document.documentElement).getPropertyValue("--font-fraunces").trim() ||
     "serif";
   const ppu = c.width / largeurMonde; // pixels canvas par unité monde
   const maxW = c.width - 100;
+  const INTERLIGNE = 1.18;
 
-  // Hauteur monde du bloc complet pour une taille de police donnée.
-  // ⚠️ opsz de Fraunces : métriques non proportionnelles → toujours re-mesurer.
-  const hauteurBloc = (taille: number): { h: number; parPhrase: string[][] } => {
+  // Plus grande taille de police qui tient à la fois dans la bande monde et
+  // dans le canvas. ⚠️ opsz de Fraunces : métriques non proportionnelles →
+  // toujours re-mesurer après chaque ajustement.
+  const mesure = (taille: number) => {
     ctx.font = `800 ${taille}px ${famille}`;
-    const parPhrase = phrases.map((p) => decouperEnLignes(ctx, p, maxW));
-    const interligne = (taille * 1.32) / ppu;
-    const ecartBloc = (taille * 0.52) / ppu;
-    const totalLignes = parPhrase.reduce((a, l) => a + l.length, 0);
-    return { h: totalLignes * interligne + (phrases.length - 1) * ecartBloc, parPhrase };
+    const lignes = decouperEnLignes(ctx, phrase, maxW);
+    const hPx = lignes.length * taille * INTERLIGNE;
+    return { lignes, hPx, hMonde: hPx / ppu };
   };
-
-  // Taille commune par dichotomie : le bloc entier doit tenir dans la bande
-  let bas = 36;
-  let haut = 150;
-  for (let i = 0; i < 8; i++) {
+  let bas = 40;
+  let haut = 340;
+  for (let i = 0; i < 9; i++) {
     const milieu = Math.floor((bas + haut) / 2);
-    if (hauteurBloc(milieu).h <= bandeMonde) bas = milieu;
+    const m = mesure(milieu);
+    if (m.hMonde <= bandeMonde && m.hPx <= c.height - 60) bas = milieu;
     else haut = milieu;
   }
   const taille = bas;
-  const { h: hautTotal, parPhrase } = hauteurBloc(taille);
-  const interligne = (taille * 1.32) / ppu;
-  const ecartBloc = (taille * 0.52) / ppu;
+  const { lignes, hPx } = mesure(taille);
 
-  // Échantillonner chaque phrase (avec ses retours à la ligne) à sa place dans
-  // la pile. PAS ADAPTATIF : on élargit la grille jusqu'à ce que le nombre de
-  // points soit ≤ N — chaque point reçoit alors AU MOINS une particule, les
-  // lettres sont pleines (une grille régulière clairsemée laissait des stries
-  // illisibles quand les particules manquaient).
   ctx.font = `800 ${taille}px ${famille}`;
   ctx.fillStyle = "#fff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  let pointsParPhrase: number[][] = [];
-  for (let pas = PAS; pas <= 8; pas++) {
-    pointsParPhrase = [];
-    let total = 0;
-    let yCurseur = hautTotal / 2; // haut du bloc, centré sur 0
-    for (const lignes of parPhrase) {
-      ctx.clearRect(0, 0, c.width, c.height);
-      const hPx = lignes.length * taille * 1.32;
-      lignes.forEach((ligne, j) => {
-        ctx.fillText(ligne, c.width / 2, c.height / 2 - hPx / 2 + (j + 0.5) * taille * 1.32);
-      });
-      const data = ctx.getImageData(0, 0, c.width, c.height).data;
-      const points: number[] = [];
-      const centreY = yCurseur - (lignes.length * interligne) / 2;
-      for (let y = 0; y < c.height; y += pas) {
-        for (let x = 0; x < c.width; x += pas) {
-          if (data[(y * c.width + x) * 4 + 3] > 140) {
-            points.push(
-              ((x - c.width / 2) / c.width) * largeurMonde,
-              (-(y - c.height / 2) / c.width) * largeurMonde + centreY,
-              0
-            );
-          }
+  ctx.clearRect(0, 0, c.width, c.height);
+  lignes.forEach((ligne, j) => {
+    ctx.fillText(ligne, c.width / 2, c.height / 2 - hPx / 2 + (j + 0.5) * taille * INTERLIGNE);
+  });
+  const data = ctx.getImageData(0, 0, c.width, c.height).data;
+
+  let points: number[] = [];
+  for (let pas = 2; pas <= 9; pas++) {
+    points = [];
+    for (let y = 0; y < c.height; y += pas) {
+      for (let x = 0; x < c.width; x += pas) {
+        if (data[(y * c.width + x) * 4 + 3] > 140) {
+          points.push(
+            ((x - c.width / 2) / c.width) * largeurMonde,
+            (-(y - c.height / 2) / c.width) * largeurMonde,
+            0
+          );
         }
       }
-      pointsParPhrase.push(points);
-      total += points.length / 3;
-      yCurseur -= lignes.length * interligne + ecartBloc;
     }
-    if (total <= N) break;
+    if (points.length / 3 <= N) break;
   }
 
-  // Répartir les N particules proportionnellement à l'encre de chaque phrase
-  const totaux = pointsParPhrase.map((p) => p.length / 3);
-  const total = totaux.reduce((a, b) => a + b, 0) || 1;
-  let debut = 0;
-  pointsParPhrase.forEach((points, k) => {
-    const nb = totaux[k];
-    let compte =
-      k === phrases.length - 1 ? N - debut : Math.round((N * nb) / total);
-    compte = Math.max(0, Math.min(compte, N - debut));
-    for (let i = 0; i < compte; i++) {
-      const gi = debut + i;
-      // Enjambée sur TOUS les points (jamais i % nb : si la tranche a moins de
-      // particules que la phrase n'a de points, seul le HAUT serait couvert —
-      // les 2es lignes disparaissaient sur mobile)
-      const j = compte < nb ? Math.floor((i * nb) / compte) % nb : i % Math.max(nb, 1);
-      // Jitter minimal : les lettres restent nettes (la vie vient de l'oscillation)
-      cibles[gi * 3] = points[j * 3] + (Math.random() - 0.5) * 0.012;
-      cibles[gi * 3 + 1] = points[j * 3 + 1] + (Math.random() - 0.5) * 0.012;
-      cibles[gi * 3 + 2] = (Math.random() - 0.5) * 0.04;
-    }
-    tranches[k] = { debut, fin: debut + compte };
-    debut += compte;
-  });
-  return { cibles, tranches };
+  // Toutes les particules sur la phrase : i % M remplit chaque point au moins
+  // une fois, les surnuméraires densifient. Jitter proportionnel à l'échelle
+  // (un jitter fixe « moisissait » les lettres sur mobile, plus petites).
+  const M = Math.max(points.length / 3, 1);
+  const jit = 0.012 * (largeurMonde / LARGEUR_MONDE);
+  for (let i = 0; i < N; i++) {
+    const j = i % M;
+    cible[i * 3] = points[j * 3] + (Math.random() - 0.5) * jit;
+    cible[i * 3 + 1] = points[j * 3 + 1] + (Math.random() - 0.5) * jit;
+    cible[i * 3 + 2] = (Math.random() - 0.5) * jit * 3;
+  }
+  return cible;
 }
 
 function Particules({ progress, pointer, onSegment }: SceneProps) {
   const ref = useRef<THREE.Points>(null);
   const groupe = useRef<THREE.Group>(null);
-  // Verrou séquentiel : la phrase affichée ne peut avancer (ou reculer) que d'UN
-  // pas à la fois, avec un temps de tenue minimum — un scroll rapide ne peut
-  // JAMAIS sauter une phrase, la séquence se joue toujours en entier.
+  // Verrou séquentiel : la phrase affichée ne peut avancer (ou reculer) que
+  // d'UN pas à la fois, avec un temps de tenue minimum — un scroll rapide ne
+  // peut JAMAIS sauter une phrase, la séquence se joue toujours en entier.
   const segVisuel = useRef(0);
   const dernierPas = useRef(0);
-  // Largeur du monde visible à z=0 : le bloc est échantillonné pour toujours
-  // tenir dans ~90 % de l'écran. L'échelle est intégrée AUX DONNÉES
-  // (cibles + nuage), recalculées au resize.
+  const fini = useRef(false);
   const viewport = useThree((s) => s.viewport);
-  const largeurCible = Math.min(LARGEUR_MONDE, viewport.width * 0.9);
-  // Bande verticale réservée au bloc de phrases (le bas reste au CTA)
-  const bandeMonde = viewport.height * 0.52;
+  const largeurCible = Math.min(LARGEUR_MONDE, viewport.width * 0.92);
+  // Bande verticale de la phrase en scène (la pile HTML vit au-dessus)
+  const bandeMonde = viewport.height * 0.3;
   const vitesses = useRef<Float32Array | null>(null);
   if (!vitesses.current) vitesses.current = new Float32Array(N * 3);
 
@@ -192,19 +156,17 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
       phases[i] = Math.random() * Math.PI * 2;
       freqs[i] = 0.6 + Math.random() * 1.1;
       // Amplitude FINE sur le texte (frémissement, pas de brouillage des lettres)
-      amps[i] = 0.005 + Math.random() * 0.007;
+      amps[i] = 0.004 + Math.random() * 0.006;
     }
     return { phases, freqs, amps };
   }, []);
 
-  const { positions, couleurs, cibles, nuage, tranches } = useMemo(() => {
-    const { cibles, tranches } = construireCibles(
-      COPY.hero.sequence,
-      largeurCible,
-      bandeMonde
+  const { positions, couleurs, cibles, nuage } = useMemo(() => {
+    // Une cible par phrase : N positions chacune (la phrase entière en scène)
+    const cibles = COPY.hero.sequence.map((ph) =>
+      construireCible(ph, largeurCible, bandeMonde)
     );
-    // État initial : nuage ample, légèrement aplati, proportionnel à l'écran.
-    // Sert aussi de cible aux phrases pas encore formées.
+    // État initial + état final : nuage ample proportionnel à l'écran
     const ampleur = largeurCible / LARGEUR_MONDE;
     const nuage = new Float32Array(N * 3);
     for (let i = 0; i < N; i++) {
@@ -216,15 +178,7 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
       nuage[i * 3 + 2] = r * Math.cos(phi) * 0.5 - 1;
     }
     const positions = new Float32Array(nuage);
-    // Phrase 0 : part du centre (Y≈0) comme les phrases suivantes → effet "remonte"
-    const ch0 = tranches[0];
-    for (let i = ch0.debut; i < ch0.fin; i++) {
-      positions[i * 3]     = cibles[i * 3]     + (Math.random() - 0.5) * 0.2;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.3;
-      positions[i * 3 + 2] = cibles[i * 3 + 2] + (Math.random() - 0.5) * 0.1;
-    }
-    // Blanc papier UNIFORME (légère variation de luminance seulement) : des
-    // accents colorés DANS les lettres les rendaient sales — lisibilité d'abord
+    // Blanc papier uniforme (légère variation de luminance) : lisibilité d'abord
     const couleurs = new Float32Array(N * 3);
     const papier = new THREE.Color("#f6f3ea");
     for (let i = 0; i < N; i++) {
@@ -233,7 +187,7 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
       couleurs[i * 3 + 1] = papier.g * lum;
       couleurs[i * 3 + 2] = papier.b * lum;
     }
-    return { positions, couleurs, cibles, nuage, tranches };
+    return { positions, couleurs, cibles, nuage };
   }, [largeurCible, bandeMonde]);
 
   useFrame((state) => {
@@ -241,71 +195,56 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
     if (!pts) return;
     const p = Math.min(Math.max(progress.current ?? 0, 0), 1);
     const t = state.clock.elapsedTime;
-
-    // Phrase demandée par le scroll… Toutes les phrases sortent dans les
-    // premiers 85 % du parcours : la fin du héro sert à LIRE le bloc complet,
-    // pas à attendre les retardataires (la page descendait avant la fin).
     const nb = COPY.hero.sequence.length;
-    const segCible = Math.min(nb - 1, Math.floor((p / 0.85) * nb));
 
-    // …mais la phrase AFFICHÉE n'avance que d'un pas à la fois, jamais avant
-    // TENUE secondes : chaque phrase est vue, quel que soit le rythme du scroll.
-    // 0.5 s : assez pour voir chaque phrase se poser, assez court pour que la
-    // séquence rattrape toujours le scroll avant la sortie du héro
-    const TENUE = 0.5;
+    // Toutes les phrases passent en scène dans les premiers 80 % du parcours :
+    // la fin du héro sert à LIRE la pile complète, pas à attendre.
+    const segCible = Math.min(nb - 1, Math.floor((p / 0.8) * nb));
+    const TENUE = 1.0; // chaque phrase reste en scène au moins 1 s
     const v = vitesses.current!;
 
-    // arr déclaré ici pour être accessible dans le bloc segment (téléportation)
+    if (segVisuel.current !== segCible && t - dernierPas.current > TENUE) {
+      segVisuel.current += Math.sign(segCible - segVisuel.current);
+      dernierPas.current = t;
+      fini.current = false;
+      onSegment?.(segVisuel.current);
+      // Impulsion : la phrase en scène éclate, la suivante se reforme dessus
+      for (let i = 0; i < N * 3; i++) v[i] += (Math.random() - 0.5) * 0.2;
+    }
+
+    // Fin de séquence : la dernière phrase a été tenue et le scroll touche au
+    // but → elle se grave dans la pile (HTML net), les particules se libèrent.
+    if (
+      !fini.current &&
+      segVisuel.current === nb - 1 &&
+      p > 0.93 &&
+      t - dernierPas.current > TENUE
+    ) {
+      fini.current = true;
+      onSegment?.(nb);
+    } else if (fini.current && p < 0.88) {
+      fini.current = false;
+      onSegment?.(nb - 1);
+    }
+
     const arr = (pts.geometry.attributes.position as THREE.BufferAttribute)
       .array as Float32Array;
-
-    if (segVisuel.current !== segCible && t - dernierPas.current > TENUE) {
-      const avant = segVisuel.current;
-      segVisuel.current += Math.sign(segCible - avant);
-      dernierPas.current = t;
-      onSegment?.(segVisuel.current);
-
-      const nouvSeg = segVisuel.current;
-      if (nouvSeg > avant) {
-        // Nouvelle phrase → téléporter ses particules au centre de l'écran (Y≈0)
-        // Le ressort les fera monter vers leur position finale dans la pile.
-        const ch = tranches[nouvSeg];
-        for (let i = ch.debut; i < ch.fin; i++) {
-          const i3 = i * 3;
-          arr[i3]     = cibles[i3]     + (Math.random() - 0.5) * 0.2;
-          arr[i3 + 1] = (Math.random() - 0.5) * 0.3;
-          arr[i3 + 2] = cibles[i3 + 2] + (Math.random() - 0.5) * 0.1;
-          v[i3] = v[i3 + 1] = v[i3 + 2] = 0;
-        }
-      } else {
-        // Scroll arrière : impulsion de dispersion sur la tranche qui perd sa forme
-        const ch = tranches[avant];
-        for (let i = ch.debut * 3; i < ch.fin * 3; i++) v[i] = (Math.random() - 0.5) * 0.22;
-      }
-    }
-    // Chaque tranche vise sa phrase si elle est atteinte, sinon le nuage —
-    // ressort amorti vers la cible + inertie de l'impulsion + oscillation
-    // permanente (les points « respirent » autour des lettres, le nuage
-    // dérive plus largement)
-    const seg = segVisuel.current;
+    // Ressort amorti vers la cible (phrase en scène, ou nuage une fois fini)
+    // + oscillation permanente — fine sur le texte, ample dans le nuage
+    const src = fini.current ? nuage : cibles[segVisuel.current];
+    const ampli = fini.current ? 9 : 1;
     const { phases, freqs, amps } = anim;
-    for (let k = 0; k < tranches.length; k++) {
-      const forme = k <= seg;
-      const src = forme ? cibles : nuage;
-      const ampli = forme ? 1 : 9;
-      const { debut, fin } = tranches[k];
-      for (let idx = debut; idx < fin; idx++) {
-        const i3 = idx * 3;
-        const a = amps[idx] * ampli;
-        const ox = Math.sin(t * freqs[idx] + phases[idx]) * a;
-        const oy = Math.cos(t * freqs[idx] * 1.27 + phases[idx]) * a;
-        v[i3] = v[i3] * 0.84 + (src[i3] + ox - arr[i3]) * 0.06;
-        v[i3 + 1] = v[i3 + 1] * 0.84 + (src[i3 + 1] + oy - arr[i3 + 1]) * 0.06;
-        v[i3 + 2] = v[i3 + 2] * 0.84 + (src[i3 + 2] - arr[i3 + 2]) * 0.06;
-        arr[i3] += v[i3];
-        arr[i3 + 1] += v[i3 + 1];
-        arr[i3 + 2] += v[i3 + 2];
-      }
+    for (let i = 0; i < N; i++) {
+      const i3 = i * 3;
+      const a = amps[i] * ampli;
+      const ox = Math.sin(t * freqs[i] + phases[i]) * a;
+      const oy = Math.cos(t * freqs[i] * 1.27 + phases[i]) * a;
+      v[i3] = v[i3] * 0.84 + (src[i3] + ox - arr[i3]) * 0.06;
+      v[i3 + 1] = v[i3 + 1] * 0.84 + (src[i3 + 1] + oy - arr[i3 + 1]) * 0.06;
+      v[i3 + 2] = v[i3 + 2] * 0.84 + (src[i3 + 2] - arr[i3 + 2]) * 0.06;
+      arr[i3] += v[i3];
+      arr[i3 + 1] += v[i3 + 1];
+      arr[i3 + 2] += v[i3 + 2];
     }
     pts.geometry.attributes.position.needsUpdate = true;
 
@@ -318,15 +257,15 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
   });
 
   return (
-    // Légèrement au-dessus du centre : le bloc CTA vit dans le bas de l'écran
-    <group ref={groupe} position={[0, 0.45, 0]}>
+    // Sous le centre : la pile de phrases gravées vit dans le haut de l'écran
+    <group ref={groupe} position={[0, -0.8, 0]}>
       <points ref={ref} key={`${largeurCible}-${bandeMonde}`}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
           <bufferAttribute attach="attributes-color" args={[couleurs, 3]} />
         </bufferGeometry>
         <pointsMaterial
-          size={0.04}
+          size={MOBILE ? 0.026 : 0.04}
           vertexColors
           transparent
           opacity={0.96}
