@@ -217,6 +217,48 @@ export default function HomeBody() {
         </div>
       </section>
 
+      {/* EST-CE FAIT POUR VOUS ? — l'objection finale avant le prix : oui, qui
+          que vous soyez, et la preuve = le travail mis dans les 50 questions */}
+      <section id="pour-vous">
+        <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
+          <p className="kicker">{COPY.pourVous.kicker}</p>
+          <RevealTitle
+            texte={COPY.pourVous.titre}
+            pivot="vous"
+            className="mt-4 text-4xl font-semibold sm:text-6xl"
+          />
+          <Reveal delay={0.1}>
+            <p className="mt-10 max-w-2xl font-display text-2xl italic leading-snug text-accent sm:text-3xl">
+              {COPY.pourVous.reponse}
+            </p>
+          </Reveal>
+          <div className="mt-16 grid gap-14 lg:grid-cols-[1fr_1.25fr] lg:gap-24">
+            <ul className="self-start">
+              {COPY.pourVous.profils.map((profil, i) => (
+                <Reveal key={profil} delay={0.08 + i * 0.06} y={16}>
+                  <li className="flex gap-4 border-t border-line py-5 last:border-b">
+                    <DrawnCheck delay={0.15 + i * 0.07} className="mt-1 h-5 w-5 shrink-0" />
+                    <span className="text-lg leading-relaxed text-ink/85">{profil}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+            <div>
+              <Reveal delay={0.15}>
+                <p className="text-lg leading-relaxed text-ink/80 sm:text-xl">
+                  {COPY.pourVous.travail}
+                </p>
+              </Reveal>
+              <Reveal delay={0.25}>
+                <p className="mt-10 border-l-2 border-accent pl-6 font-display text-xl italic leading-relaxed text-muted">
+                  {COPY.pourVous.exception}
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PRIX — la scène sombre : UNE décision, UN prix */}
       <section id="prix" className="relative overflow-hidden bg-accent-deep text-paper">
         <div className="prix-lumiere" aria-hidden="true" />

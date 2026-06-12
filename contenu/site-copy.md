@@ -118,6 +118,29 @@ Derrière ce service, il y a une personne : un conseiller indépendant basé à 
 
 ---
 
+## SECTION 5bis — EST-CE FAIT POUR VOUS ? (ajout 2026-06-12, demande Farouk : convaincre tout le monde via le travail mis dans les 50 questions)
+
+**Kicker :** Avant de décider
+
+**Titre :** Est-ce que ce service est fait pour vous ?
+
+**Réponse :**
+Oui — qui que vous soyez. Et ce n'est pas une formule de vente : c'est le travail mis dans les questions qui permet de l'affirmer.
+
+**Profils (la preuve par l'exemple) :**
+- Vous êtes salarié et vous rêvez de lancer quelque chose à côté — sans savoir quoi.
+- Vous êtes étudiant, avec plus de temps que de budget.
+- Vous êtes en reconversion, avec de l'expérience et un capital à ne pas gaspiller.
+- Vous avez déjà une idée — mais vous doutez, et vous repoussez depuis des mois.
+
+**Le travail derrière (texte principal) :**
+Si le rapport s'adapte à tous ces profils, ce n'est pas magique : c'est le résultat d'un travail énorme sur les questions elles-mêmes. Chacune des 50 a été écrite, testée, reformulée, déplacée — jusqu'à ce qu'elle fasse exactement son travail : extraire de VOTRE situation l'information qui change la recommandation. Une question trop vague ? Supprimée. Redondante ? Supprimée. Il en reste 50 — pas une de trop, pas une qui manque. C'est ce travail invisible qui fait qu'un boulanger de 45 ans et un étudiant de 22 ans reçoivent deux rapports qui n'ont rien en commun — et que les deux sont justes.
+
+**L'exception (honnêteté de marque) :**
+Le seul profil pour qui ce service n'est pas fait : celui qui cherche un revenu sans rien faire. On vous donne la direction et le plan. La suite, c'est vous. Rien ne tombe du ciel.
+
+---
+
 ## SECTION 6 — PRIX
 
 **Titre de section :**
