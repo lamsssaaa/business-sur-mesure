@@ -26,21 +26,24 @@ const N = typeof window !== "undefined" && window.innerWidth < 768 ? 12000 : 220
 const PAS = N > 12000 ? 2 : 3;
 const LARGEUR_MONDE = 11; // largeur max de la zone texte en unités three
 
-/** Découpe une phrase en lignes qui tiennent dans maxW pixels (police déjà réglée). */
+/** Découpe une phrase en lignes qui tiennent dans maxW pixels (police déjà réglée).
+ *  Un "\n" dans la phrase force un retour à la ligne (ex. le « & » seul). */
 function decouperEnLignes(ctx: CanvasRenderingContext2D, phrase: string, maxW: number): string[] {
-  const mots = phrase.split(" ");
   const lignes: string[] = [];
-  let courante = "";
-  for (const mot of mots) {
-    const essai = courante ? `${courante} ${mot}` : mot;
-    if (ctx.measureText(essai).width > maxW && courante) {
-      lignes.push(courante);
-      courante = mot;
-    } else {
-      courante = essai;
+  for (const segment of phrase.split("\n")) {
+    const mots = segment.split(" ");
+    let courante = "";
+    for (const mot of mots) {
+      const essai = courante ? `${courante} ${mot}` : mot;
+      if (ctx.measureText(essai).width > maxW && courante) {
+        lignes.push(courante);
+        courante = mot;
+      } else {
+        courante = essai;
+      }
     }
+    if (courante) lignes.push(courante);
   }
-  if (courante) lignes.push(courante);
   return lignes;
 }
 
@@ -94,35 +97,45 @@ function construireCibles(
   const interligne = (taille * 1.32) / ppu;
   const ecartBloc = (taille * 0.52) / ppu;
 
-  // Échantillonner chaque phrase (avec ses retours à la ligne) à sa place dans la pile
+  // Échantillonner chaque phrase (avec ses retours à la ligne) à sa place dans
+  // la pile. PAS ADAPTATIF : on élargit la grille jusqu'à ce que le nombre de
+  // points soit ≤ N — chaque point reçoit alors AU MOINS une particule, les
+  // lettres sont pleines (une grille régulière clairsemée laissait des stries
+  // illisibles quand les particules manquaient).
   ctx.font = `800 ${taille}px ${famille}`;
   ctx.fillStyle = "#fff";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  let yCurseur = hautTotal / 2; // haut du bloc, centré sur 0
-  const pointsParPhrase: number[][] = [];
-  for (const lignes of parPhrase) {
-    ctx.clearRect(0, 0, c.width, c.height);
-    const hPx = lignes.length * taille * 1.32;
-    lignes.forEach((ligne, j) => {
-      ctx.fillText(ligne, c.width / 2, c.height / 2 - hPx / 2 + (j + 0.5) * taille * 1.32);
-    });
-    const data = ctx.getImageData(0, 0, c.width, c.height).data;
-    const points: number[] = [];
-    const centreY = yCurseur - (lignes.length * interligne) / 2;
-    for (let y = 0; y < c.height; y += PAS) {
-      for (let x = 0; x < c.width; x += PAS) {
-        if (data[(y * c.width + x) * 4 + 3] > 140) {
-          points.push(
-            ((x - c.width / 2) / c.width) * largeurMonde,
-            (-(y - c.height / 2) / c.width) * largeurMonde + centreY,
-            0
-          );
+  let pointsParPhrase: number[][] = [];
+  for (let pas = PAS; pas <= 8; pas++) {
+    pointsParPhrase = [];
+    let total = 0;
+    let yCurseur = hautTotal / 2; // haut du bloc, centré sur 0
+    for (const lignes of parPhrase) {
+      ctx.clearRect(0, 0, c.width, c.height);
+      const hPx = lignes.length * taille * 1.32;
+      lignes.forEach((ligne, j) => {
+        ctx.fillText(ligne, c.width / 2, c.height / 2 - hPx / 2 + (j + 0.5) * taille * 1.32);
+      });
+      const data = ctx.getImageData(0, 0, c.width, c.height).data;
+      const points: number[] = [];
+      const centreY = yCurseur - (lignes.length * interligne) / 2;
+      for (let y = 0; y < c.height; y += pas) {
+        for (let x = 0; x < c.width; x += pas) {
+          if (data[(y * c.width + x) * 4 + 3] > 140) {
+            points.push(
+              ((x - c.width / 2) / c.width) * largeurMonde,
+              (-(y - c.height / 2) / c.width) * largeurMonde + centreY,
+              0
+            );
+          }
         }
       }
+      pointsParPhrase.push(points);
+      total += points.length / 3;
+      yCurseur -= lignes.length * interligne + ecartBloc;
     }
-    pointsParPhrase.push(points);
-    yCurseur -= lignes.length * interligne + ecartBloc;
+    if (total <= N) break;
   }
 
   // Répartir les N particules proportionnellement à l'encre de chaque phrase

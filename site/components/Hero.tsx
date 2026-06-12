@@ -138,7 +138,7 @@ export default function Hero() {
                 {COPY.hero.sequence.map((phrase, i) => (
                   <span
                     key={phrase}
-                    className="rise block text-[clamp(2.6rem,9vw,6rem)] font-semibold leading-[1.04]"
+                    className="rise block whitespace-pre-line text-[clamp(2.6rem,9vw,6rem)] font-semibold leading-[1.04]"
                     style={{ animationDelay: `${0.15 + i * 0.18}s` }}
                   >
                     {phrase}

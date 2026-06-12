@@ -11,7 +11,7 @@ export const COPY = {
       "Seuls les déterminés réussiront.",
       "Rien ne tombe du ciel.",
       "Répondez à 50 questions.",
-      "& Changez votre vie professionnelle.",
+      "&\nChangez votre vie professionnelle.",
     ],
     titre:
       "À vous qui lisez ces lignes : répondez à 50 questions et changez votre vie professionnelle.",
