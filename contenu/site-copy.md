@@ -10,12 +10,12 @@
 2. Votre vie risque de basculer.
 3. Seuls les déterminés réussiront.
 4. Rien ne tombe du ciel.
-5. Répondez à 53 questions.
+5. Répondez aux 53 questions.
 6. & (seul en scène — sa propre étape)
 7. Changez votre vie professionnelle.
 
 **Titre (H1, SEO + fallback sans 3D) :**
-À vous qui lisez ces lignes : répondez à 53 questions et changez votre vie professionnelle.
+À vous qui lisez ces lignes : répondez aux 53 questions et changez votre vie professionnelle.
 
 **Sous-titre :**
 Votre vie risque de basculer après avoir reçu votre rapport. 53 questions passent au crible votre expérience, vos compétences, votre budget et votre temps disponible — et vous savez exactement quoi lancer, comment le lancer, avec votre budget. Plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.

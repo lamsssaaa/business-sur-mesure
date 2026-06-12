@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s · 53 Questions Sur Mesure",
   },
   description:
-    "Répondez à 53 questions sur votre expérience, vos compétences, votre budget et votre temps — on vous dit LE business à lancer, et comment, en 30 jours. Rapport personnalisé, livré en 48 h.",
+    "Répondez aux 53 questions sur votre expérience, vos compétences, votre budget et votre temps — on vous dit LE business à lancer, et comment, en 30 jours. Rapport personnalisé, livré en 48 h.",
   alternates: { canonical: "./" },
   openGraph: {
     type: "website",

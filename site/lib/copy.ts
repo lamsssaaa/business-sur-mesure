@@ -10,12 +10,12 @@ export const COPY = {
       "Votre vie risque de basculer.",
       "Seuls les déterminés réussiront.",
       "Rien ne tombe du ciel.",
-      "Répondez à 53 questions.",
+      "Répondez aux 53 questions.",
       "&",
       "Changez votre vie professionnelle.",
     ],
     titre:
-      "À vous qui lisez ces lignes : répondez à 53 questions et changez votre vie professionnelle.",
+      "À vous qui lisez ces lignes : répondez aux 53 questions et changez votre vie professionnelle.",
     sousTitre:
       "Votre vie risque de basculer après avoir reçu votre rapport. 53 questions passent au crible votre expérience, vos compétences, votre budget et votre temps disponible — et vous savez exactement quoi lancer, comment le lancer, avec votre budget. Plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.",
     cta: "Répondez aux 53 questions et changez votre vie professionnelle",
