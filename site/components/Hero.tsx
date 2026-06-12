@@ -143,9 +143,18 @@ export default function Hero() {
             {COPY.hero.sequence.slice(0, pile).map((phrase, i) => (
               <span
                 key={phrase}
-                className={`${
-                  i < Math.min(segment, nb) ? "graver" : "degraver"
-                } block whitespace-pre-line font-display text-[clamp(1.35rem,4.5vw,2.5rem)] font-semibold leading-[1.15] text-paper drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]`}
+                className={`${i < Math.min(segment, nb) ? "graver" : "degraver"} ${
+                  // Hiérarchie typographique : l'accroche (0-3) en retrait, puis
+                  // l'appel monte en puissance — « & » calligraphique, finale en
+                  // grand italique. Sept lignes identiques étaient plates.
+                  i <= 3
+                    ? "text-[clamp(1.1rem,3.1vw,1.8rem)] font-medium leading-[1.4] text-paper/75"
+                    : i === 4
+                      ? "mt-[1.2em] text-[clamp(1.5rem,4.4vw,2.7rem)] font-semibold leading-[1.2] text-paper"
+                      : i === 5
+                        ? "text-[clamp(1.6rem,4.8vw,3rem)] italic leading-[1.05] text-paper/90"
+                        : "text-[clamp(1.7rem,5.2vw,3.3rem)] font-semibold italic leading-[1.15] tracking-tight text-paper"
+                } block whitespace-pre-line font-display drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]`}
               >
                 {phrase}
               </span>
