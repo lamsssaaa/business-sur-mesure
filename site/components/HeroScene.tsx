@@ -139,6 +139,7 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
   const segVisuel = useRef(0);
   const dernierPas = useRef(0);
   const fini = useRef(false);
+  const initialise = useRef(false);
   const viewport = useThree((s) => s.viewport);
   const largeurCible = Math.min(LARGEUR_MONDE, viewport.width * 0.92);
   // Bande verticale de la phrase en scène (la pile HTML vit au-dessus)
@@ -202,6 +203,27 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
     const segCible = Math.min(nb - 1, Math.floor((p / 0.8) * nb));
     const TENUE = 1.0; // chaque phrase reste en scène au moins 1 s
     const v = vitesses.current!;
+
+    // REPRISE : la scène se démonte quand le héro sort de l'écran (perf) ; au
+    // remontage elle doit reprendre LÀ OÙ LE SCROLL EN EST — pas rejouer la
+    // séquence depuis 0 pendant que la pile HTML affiche déjà tout (bug vu par
+    // Farouk : pile complète + particules sur la phrase 1).
+    if (!initialise.current) {
+      initialise.current = true;
+      segVisuel.current = segCible;
+      fini.current = segCible === nb - 1 && p > 0.93;
+      dernierPas.current = t;
+      onSegment?.(fini.current ? nb : segVisuel.current);
+      if (segCible > 0 || fini.current) {
+        // Mi-parcours : poser les particules directement sur leur cible
+        // (le vol nuage→texte n'a de sens qu'à l'arrivée sur la page)
+        const arr0 = (pts.geometry.attributes.position as THREE.BufferAttribute)
+          .array as Float32Array;
+        const src0 = fini.current ? nuage : cibles[segVisuel.current];
+        arr0.set(src0);
+        v.fill(0);
+      }
+    }
 
     if (segVisuel.current !== segCible && t - dernierPas.current > TENUE) {
       segVisuel.current += Math.sign(segCible - segVisuel.current);
