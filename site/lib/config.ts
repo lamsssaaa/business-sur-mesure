@@ -20,6 +20,12 @@ export const GOATCOUNTER_CODE = "";
 // v1 : adresse perso ; à remplacer par une adresse dédiée dès que le domaine est acheté.
 export const CONTACT_EMAIL = "ahmed.salam@hotmail.ch";
 
+// Lien de commande pour l'Audit de croissance 299 CHF
+// Même logique que LIEN_COMMANDE : Stripe si branché, sinon formulaire Tally de commande.
+export const LIEN_AUDIT = LINKS.profilParEmail.includes("A_REMPLACER")
+  ? `${LINKS.profilParEmail}?intent=audit`
+  : "https://buy.stripe.com/A_REMPLACER_AUDIT";
+
 // Rempli après les 3 rapports offerts (prénom + autorisation obtenue). Tant que vide,
 // la section témoignages n'apparaît pas — on n'invente JAMAIS de témoignage.
 export const TEMOIGNAGES: { prenom: string; texte: string }[] = [];

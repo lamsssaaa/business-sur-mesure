@@ -9,7 +9,7 @@ import Faq from "@/components/Faq";
 import { Gem } from "@/components/Gem";
 import VideoFond from "@/components/VideoFond";
 import { COPY } from "@/lib/copy";
-import { TEMOIGNAGES, LIEN_COMMANDE } from "@/lib/config";
+import { TEMOIGNAGES, LIEN_COMMANDE, LIEN_AUDIT } from "@/lib/config";
 
 export default function HomeBody() {
   return (
@@ -268,6 +268,56 @@ export default function HomeBody() {
               <p className="mt-4 text-sm text-paper/60">{COPY.prix.reassurance}</p>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* AUDIT DE CROISSANCE — le second service pour les business déjà lancés */}
+      <section id="audit" className="border-y border-line">
+        <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
+          <Reveal>
+            <p className="kicker">{COPY.audit.kicker}</p>
+          </Reveal>
+          <RevealTitle texte={COPY.audit.titre} pivot="maintenant" className="mt-4 text-4xl font-semibold sm:text-6xl" />
+          <div className="mt-16 grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
+            <div>
+              <Reveal delay={0.1}>
+                <p className="text-xl leading-relaxed text-ink/75">{COPY.audit.texte}</p>
+              </Reveal>
+              {/* Prix de l'audit */}
+              <Reveal delay={0.2}>
+                <p className="tabular mt-12 font-display text-[clamp(4rem,10vw,9rem)] font-light leading-[0.9] text-accent">
+                  {COPY.audit.montant}
+                  <span className="ml-2 align-middle font-sans text-[0.18em] font-semibold uppercase tracking-[0.2em] text-ink/40">CHF</span>
+                </p>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{COPY.audit.repere}</p>
+              </Reveal>
+              <Reveal delay={0.3}>
+                <div className="mt-10">
+                  <a
+                    href={LIEN_AUDIT}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-accent px-8 py-4 text-base font-semibold text-paper shadow-lift transition duration-300 hover:-translate-y-0.5 hover:bg-accent-deep sm:px-9 sm:text-lg"
+                  >
+                    {COPY.audit.cta}
+                    <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </a>
+                  <p className="mt-4 text-sm text-muted">{COPY.audit.reassurance}</p>
+                </div>
+              </Reveal>
+            </div>
+            {/* Liste de ce qu'on analyse */}
+            <ul className="self-start">
+              {COPY.audit.inclus.map((item, i) => (
+                <Reveal key={item} delay={0.08 + i * 0.05} y={16}>
+                  <li className="flex gap-4 border-t border-line py-5 last:border-b">
+                    <DrawnCheck delay={0.15 + i * 0.06} className="mt-0.5 h-5 w-5 shrink-0" />
+                    <span className="text-base leading-relaxed text-ink/85">{item}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

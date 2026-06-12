@@ -18,7 +18,7 @@ export const COPY = {
     sousTitre:
       "Votre vie risque de basculer après avoir reçu votre rapport. 50 questions passent au crible votre expérience, vos compétences, votre budget et votre temps disponible — et vous savez exactement quoi lancer, comment le lancer, avec votre budget. Plan des 30 premiers jours inclus. Mais soyons honnêtes : seuls les plus déterminés réussiront. Rien ne tombe du ciel.",
     cta: "Mon rapport sur mesure — 49.90 CHF",
-    reassurance: "Garantie 14 jours · Livré en 48 h · Une fois, pas d'abonnement.",
+    reassurance: "Livré en 48 h · Une fois, pas d'abonnement.",
   },
   histoire: {
     kicker: "L'histoire",
@@ -56,7 +56,7 @@ export const COPY = {
     {
       titre: "Vous commandez votre rapport",
       texte:
-        "49.90 CHF, une fois. Couvert par la garantie satisfait ou remboursé 14 jours : si le rapport ne vous apprend rien d'actionnable, vous êtes remboursé sur simple email. Vous recevez le questionnaire immédiatement après.",
+        "49.90 CHF, une fois. Pas d'abonnement, pas de frais cachés. Vous recevez le questionnaire immédiatement après votre commande.",
     },
     {
       titre: "Les 50 questions",
@@ -110,7 +110,7 @@ export const COPY = {
     repere:
       "Pour situer : une séance avec un conseiller en création d'entreprise coûte 150 à 300 CHF. Votre rapport — analyse complète, recommandation argumentée, plan 30 jours — coûte 49.90. Une fois.",
     cta: "Commander mon rapport — 49.90 CHF",
-    reassurance: "Paiement simple, garanti 14 jours. Vous recevez le questionnaire juste après.",
+    reassurance: "Paiement sécurisé. Vous recevez le questionnaire juste après.",
   },
   faqTitre: "Questions fréquentes",
   faq: [
@@ -124,7 +124,7 @@ export const COPY = {
     },
     {
       q: "Et si le business proposé ne me plaît pas ?",
-      r: "Vous êtes couvert par la garantie satisfait ou remboursé de 14 jours. Si le rapport ne vous convient pas, vous écrivez un simple email et vous êtes intégralement remboursé, sans débat. On préfère un remboursement à un client déçu. Vous ne prenez donc aucun risque en essayant.",
+      r: "Le rapport est personnalisé et argumenté pour votre situation — mais si vous avez une question ou souhaitez un éclaircissement sur la recommandation, votre conseiller est joignable par email avant comme après la livraison. On construit le bon rapport pour vous, pas un PDF générique.",
     },
     {
       q: "C'est un conseil financier ?",
@@ -140,7 +140,7 @@ export const COPY = {
     },
     {
       q: "Pourquoi un seul business et pas plusieurs ?",
-      r: "Parce que les listes d'idées ne font pas avancer : avec 20 options, on compare, on doute, et on ne lance rien. Ce que vous achetez ici, c'est une décision claire — un business choisi pour vous, avec l'argumentaire qui explique pourquoi celui-là, et le plan pour démarrer en 30 jours. Et si cette recommandation ne vous convient vraiment pas, la garantie 14 jours vous protège.",
+      r: "Parce que les listes d'idées ne font pas avancer : avec 20 options, on compare, on doute, et on ne lance rien. Ce que vous achetez ici, c'est une décision claire — un business choisi pour vous, avec l'argumentaire qui explique pourquoi celui-là, et le plan pour démarrer en 30 jours.",
     },
     {
       q: "Ça marche dans mon pays ?",
@@ -148,9 +148,29 @@ export const COPY = {
     },
     {
       q: "Pourquoi payer, alors qu'une IA gratuite peut me donner des idées ?",
-      r: "Parce qu'une liste d'idées ne vous a jamais fait avancer — et c'est tout ce qu'un chatbot gratuit vous donne : des suggestions génériques, différentes à chaque conversation, sans engagement et sans suite. Ici, vous achetez une décision : votre conseiller croise réellement vos 50 réponses, s'engage par écrit sur UN business, vous explique pourquoi les autres pistes ont été écartées, et vous livre le plan des 30 premiers jours. Et il assume sa recommandation avec la garantie satisfait ou remboursé de 14 jours — essayez d'obtenir ça d'un chatbot.",
+      r: "Parce qu'une liste d'idées ne vous a jamais fait avancer — et c'est tout ce qu'un chatbot gratuit vous donne : des suggestions génériques, différentes à chaque conversation, sans engagement et sans suite. Ici, vous achetez une décision : votre conseiller croise réellement vos 50 réponses, s'engage par écrit sur UN business, vous explique pourquoi les autres pistes ont été écartées, et vous livre le plan des 30 premiers jours. Essayez d'obtenir ça d'un chatbot.",
     },
   ] as { q: string; r: string }[],
+  audit: {
+    kicker: "Vous avez déjà lancé",
+    titre: "Votre business tourne. Et maintenant ?",
+    texte:
+      "Vous avez lancé. Vous travaillez. Mais quelque chose coince — les ventes stagnent, les marges fondent, ou vous sentez que vous passez à côté de quelque chose. L'Audit de croissance analyse votre business en entier et vous dit exactement quoi corriger, dans quel ordre.",
+    inclus: [
+      "Offre & message — est-ce que ce que vous vendez est clair, pour qui, et pourquoi vous",
+      "Pricing — sous-tarifé, sur-tarifé, structure à revoir",
+      "Acquisition — ce qui fonctionne vraiment vs ce qui coûte du temps sans résultat",
+      "Conversion — pourquoi les gens regardent mais n'achètent pas",
+      "Fidélisation — est-ce que vous re-vendez à vos clients existants",
+      "Coûts cachés — ce qui ronge votre marge sans que vous le voyez",
+      "3 quick wins — 3 actions concrètes à faire dans les 30 prochains jours",
+      "Votre priorité sur 90 jours — UN axe principal, avec les étapes",
+    ],
+    montant: "299",
+    cta: "Commander mon audit — 299 CHF",
+    reassurance: "Livré en 48 h. Questionnaire envoyé après commande.",
+    repere: "Une heure avec un consultant en stratégie coûte 300 à 500 CHF. L'audit complet — analyse, plan correctif, priorités 90 jours — coûte 299. Une fois.",
+  },
   footer: {
     disclaimer:
       "Ton Business Sur Mesure est un service d'orientation entrepreneuriale. Il ne constitue pas un conseil financier, juridique ou fiscal, et aucun revenu n'est garanti : les résultats dépendent de votre travail et de votre contexte.",
