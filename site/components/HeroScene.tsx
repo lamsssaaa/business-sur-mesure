@@ -242,13 +242,17 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
     const p = Math.min(Math.max(progress.current ?? 0, 0), 1);
     const t = state.clock.elapsedTime;
 
-    // Phrase demandée par le scroll…
+    // Phrase demandée par le scroll… Toutes les phrases sortent dans les
+    // premiers 85 % du parcours : la fin du héro sert à LIRE le bloc complet,
+    // pas à attendre les retardataires (la page descendait avant la fin).
     const nb = COPY.hero.sequence.length;
-    const segCible = Math.min(nb - 1, Math.floor(p * nb));
+    const segCible = Math.min(nb - 1, Math.floor((p / 0.85) * nb));
 
     // …mais la phrase AFFICHÉE n'avance que d'un pas à la fois, jamais avant
     // TENUE secondes : chaque phrase est vue, quel que soit le rythme du scroll.
-    const TENUE = 1.1;
+    // 0.5 s : assez pour voir chaque phrase se poser, assez court pour que la
+    // séquence rattrape toujours le scroll avant la sortie du héro
+    const TENUE = 0.5;
     const v = vitesses.current!;
 
     // arr déclaré ici pour être accessible dans le bloc segment (téléportation)

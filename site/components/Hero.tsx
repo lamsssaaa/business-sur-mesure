@@ -90,7 +90,7 @@ export default function Hero() {
     // avec la 3D après hydratation (le visiteur est encore en haut de page).
     <section
       ref={sectionRef}
-      className={`relative bg-[#072a1f] text-paper md:h-[400vh] ${use3D ? "h-[400vh]" : ""}`}
+      className={`relative bg-[#072a1f] text-paper md:h-[500vh] ${use3D ? "h-[500vh]" : ""}`}
     >
       <div
         className={`relative flex min-h-[100svh] items-center justify-center overflow-hidden md:sticky md:top-0 md:h-screen ${
