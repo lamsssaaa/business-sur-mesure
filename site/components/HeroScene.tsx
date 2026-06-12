@@ -6,10 +6,10 @@ import * as THREE from "three";
 import { COPY } from "@/lib/copy";
 
 /**
- * Héro v4 — « les particules forment le message ».
- * Un nuage de ~16 000 particules se reforme, au scroll, en chacune des phrases
- * de COPY.hero.sequence (échantillonnées depuis un canvas 2D), avec une
- * dispersion entre chaque phrase. La dernière reste à l'écran.
+ * Héro v5 — « les phrases s'accumulent » (demande Farouk : une phrase formée
+ * ne disparaît JAMAIS). Chaque phrase de COPY.hero.sequence possède sa propre
+ * tranche de particules : au scroll, la phrase suivante se forme SOUS les
+ * précédentes, qui restent affichées. La dernière (en or) complète le tableau.
  * `progress` (0→1) est piloté par le scroll du héro, `pointer` par la souris.
  */
 
@@ -21,66 +21,132 @@ type SceneProps = {
 };
 
 // Moins de particules sur mobile : même effet, fluidité garantie
-const N = typeof window !== "undefined" && window.innerWidth < 768 ? 7000 : 16000;
-const LARGEUR_MONDE = 11; // largeur de la zone texte en unités three
+const N = typeof window !== "undefined" && window.innerWidth < 768 ? 9000 : 16000;
+const LARGEUR_MONDE = 11; // largeur max de la zone texte en unités three
 
-/** Rend chaque phrase sur un canvas offscreen et échantillonne ses pixels opaques. */
-function echantillonner(phrases: string[], largeurMonde: number): Float32Array[] {
+/** Découpe une phrase en lignes qui tiennent dans maxW pixels (police déjà réglée). */
+function decouperEnLignes(ctx: CanvasRenderingContext2D, phrase: string, maxW: number): string[] {
+  const mots = phrase.split(" ");
+  const lignes: string[] = [];
+  let courante = "";
+  for (const mot of mots) {
+    const essai = courante ? `${courante} ${mot}` : mot;
+    if (ctx.measureText(essai).width > maxW && courante) {
+      lignes.push(courante);
+      courante = mot;
+    } else {
+      courante = essai;
+    }
+  }
+  if (courante) lignes.push(courante);
+  return lignes;
+}
+
+/**
+ * Échantillonne TOUTES les phrases, empilées verticalement, et répartit les N
+ * particules en tranches contiguës (une par phrase, proportionnelle à son encre).
+ * La taille de police est commune : la plus grande pour laquelle le bloc complet
+ * (avec retours à la ligne) tient dans la bande verticale disponible.
+ */
+function construireCibles(
+  phrases: string[],
+  largeurMonde: number,
+  bandeMonde: number
+): { cibles: Float32Array; tranches: { debut: number; fin: number }[] } {
+  const tranches = phrases.map(() => ({ debut: 0, fin: 0 }));
+  const cibles = new Float32Array(N * 3);
   const c = document.createElement("canvas");
   c.width = 1400;
-  c.height = 320;
+  c.height = 760;
   const ctx = c.getContext("2d", { willReadFrequently: true });
-  if (!ctx) return phrases.map(() => new Float32Array(N * 3));
+  if (!ctx) return { cibles, tranches };
 
   // Fraunces si elle est chargée (next/font expose la famille via la CSS var)
   const famille =
     getComputedStyle(document.documentElement).getPropertyValue("--font-fraunces").trim() ||
     "serif";
+  const ppu = c.width / largeurMonde; // pixels canvas par unité monde
+  const maxW = c.width - 100;
 
-  return phrases.map((phrase) => {
-    ctx.clearRect(0, 0, c.width, c.height);
-    ctx.fillStyle = "#fff";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    // Taille adaptée à la largeur — AJUSTEMENT ITÉRATIF obligatoire : Fraunces a un
-    // axe optique (opsz), ses métriques ne se réduisent pas proportionnellement à la
-    // taille. Une seule passe laissait le texte déborder du canvas (phrases coupées).
-    let taille = 190;
+  // Hauteur monde du bloc complet pour une taille de police donnée.
+  // ⚠️ opsz de Fraunces : métriques non proportionnelles → toujours re-mesurer.
+  const hauteurBloc = (taille: number): { h: number; parPhrase: string[][] } => {
     ctx.font = `600 ${taille}px ${famille}`;
-    for (let essai = 0; essai < 4; essai++) {
-      const mesure = ctx.measureText(phrase).width;
-      if (mesure <= c.width - 120) break;
-      taille = Math.floor((taille * (c.width - 120)) / mesure);
-      ctx.font = `600 ${taille}px ${famille}`;
-    }
-    ctx.fillText(phrase, c.width / 2, c.height / 2);
+    const parPhrase = phrases.map((p) => decouperEnLignes(ctx, p, maxW));
+    const interligne = (taille * 1.32) / ppu;
+    const ecartBloc = (taille * 0.52) / ppu;
+    const totalLignes = parPhrase.reduce((a, l) => a + l.length, 0);
+    return { h: totalLignes * interligne + (phrases.length - 1) * ecartBloc, parPhrase };
+  };
 
+  // Taille commune par dichotomie : le bloc entier doit tenir dans la bande
+  let bas = 36;
+  let haut = 150;
+  for (let i = 0; i < 8; i++) {
+    const milieu = Math.floor((bas + haut) / 2);
+    if (hauteurBloc(milieu).h <= bandeMonde) bas = milieu;
+    else haut = milieu;
+  }
+  const taille = bas;
+  const { h: hautTotal, parPhrase } = hauteurBloc(taille);
+  const interligne = (taille * 1.32) / ppu;
+  const ecartBloc = (taille * 0.52) / ppu;
+
+  // Échantillonner chaque phrase (avec ses retours à la ligne) à sa place dans la pile
+  ctx.font = `600 ${taille}px ${famille}`;
+  ctx.fillStyle = "#fff";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  let yCurseur = hautTotal / 2; // haut du bloc, centré sur 0
+  const pointsParPhrase: number[][] = [];
+  for (const lignes of parPhrase) {
+    ctx.clearRect(0, 0, c.width, c.height);
+    const hPx = lignes.length * taille * 1.32;
+    lignes.forEach((ligne, j) => {
+      ctx.fillText(ligne, c.width / 2, c.height / 2 - hPx / 2 + (j + 0.5) * taille * 1.32);
+    });
     const data = ctx.getImageData(0, 0, c.width, c.height).data;
     const points: number[] = [];
     const pas = 3;
+    const centreY = yCurseur - (lignes.length * interligne) / 2;
     for (let y = 0; y < c.height; y += pas) {
       for (let x = 0; x < c.width; x += pas) {
         if (data[(y * c.width + x) * 4 + 3] > 140) {
           points.push(
             ((x - c.width / 2) / c.width) * largeurMonde,
-            (-(y - c.height / 2) / c.width) * largeurMonde,
+            (-(y - c.height / 2) / c.width) * largeurMonde + centreY,
             0
           );
         }
       }
     }
-    // Distribue les N particules sur les points du texte (modulo + bruit léger)
-    const cibles = new Float32Array(N * 3);
-    const nb = points.length / 3;
-    for (let i = 0; i < N; i++) {
-      if (nb === 0) break;
-      const j = i % nb;
-      cibles[i * 3] = points[j * 3] + (Math.random() - 0.5) * 0.02;
-      cibles[i * 3 + 1] = points[j * 3 + 1] + (Math.random() - 0.5) * 0.02;
-      cibles[i * 3 + 2] = (Math.random() - 0.5) * 0.12;
+    pointsParPhrase.push(points);
+    yCurseur -= lignes.length * interligne + ecartBloc;
+  }
+
+  // Répartir les N particules proportionnellement à l'encre de chaque phrase
+  const totaux = pointsParPhrase.map((p) => p.length / 3);
+  const total = totaux.reduce((a, b) => a + b, 0) || 1;
+  let debut = 0;
+  pointsParPhrase.forEach((points, k) => {
+    const nb = totaux[k];
+    let compte =
+      k === phrases.length - 1 ? N - debut : Math.round((N * nb) / total);
+    compte = Math.max(0, Math.min(compte, N - debut));
+    for (let i = 0; i < compte; i++) {
+      const gi = debut + i;
+      // Enjambée sur TOUS les points (jamais i % nb : si la tranche a moins de
+      // particules que la phrase n'a de points, seul le HAUT serait couvert —
+      // les 2es lignes disparaissaient sur mobile)
+      const j = compte < nb ? Math.floor((i * nb) / compte) % nb : i % Math.max(nb, 1);
+      cibles[gi * 3] = points[j * 3] + (Math.random() - 0.5) * 0.02;
+      cibles[gi * 3 + 1] = points[j * 3 + 1] + (Math.random() - 0.5) * 0.02;
+      cibles[gi * 3 + 2] = (Math.random() - 0.5) * 0.12;
     }
-    return cibles;
+    tranches[k] = { debut, fin: debut + compte };
+    debut += compte;
   });
+  return { cibles, tranches };
 }
 
 /**
@@ -113,11 +179,11 @@ function GemmeLogo() {
     const gr = g.current;
     if (!gr) return;
     gr.rotation.y = t * 0.45; // rotation joaillière, lente
-    gr.position.y = 2.72 + Math.sin(t * 0.9) * 0.07; // flottement
+    gr.position.y = 3.05 + Math.sin(t * 0.9) * 0.07; // flottement
   });
 
   return (
-    <group ref={g} position={[0, 2.72, 0]}>
+    <group ref={g} position={[0, 3.05, 0]}>
       <mesh geometry={geoCouronne} material={matPierre} position={[0, 0.1, 0]} />
       <mesh geometry={geoPavillon} material={matPierre} position={[0, -0.25, 0]} />
       <lineSegments geometry={aretesC} material={matOr} position={[0, 0.1, 0]} />
@@ -134,25 +200,24 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
   // JAMAIS sauter une phrase, la séquence se joue toujours en entier.
   const segVisuel = useRef(0);
   const dernierPas = useRef(0);
-  // Largeur du monde visible à z=0 : les phrases sont échantillonnées pour
-  // toujours tenir dans ~90 % de l'écran, quel que soit le ratio. L'échelle est
-  // intégrée AUX DONNÉES (cibles + nuage), recalculées au resize.
+  // Largeur du monde visible à z=0 : le bloc est échantillonné pour toujours
+  // tenir dans ~90 % de l'écran. L'échelle est intégrée AUX DONNÉES
+  // (cibles + nuage), recalculées au resize.
   const viewport = useThree((s) => s.viewport);
   const largeurCible = Math.min(LARGEUR_MONDE, viewport.width * 0.9);
+  // Bande verticale réservée au bloc de phrases (le bas reste au CTA)
+  const bandeMonde = viewport.height * 0.52;
   const vitesses = useRef<Float32Array | null>(null);
   if (!vitesses.current) vitesses.current = new Float32Array(N * 3);
 
-  const { positions, couleurs, cibles } = useMemo(() => {
-    const cibles = echantillonner(COPY.hero.sequence, largeurCible);
-    // Mise en scène : chaque phrase se forme un peu plus bas que la précédente —
-    // la descente du regard accompagne le scroll. La FINALE remonte se poser
-    // au-dessus du bloc sous-titre + bouton (sinon elles se chevauchent).
-    const derniere = cibles.length - 1;
-    cibles.forEach((c, k) => {
-      const decalage = k === derniere ? 0.32 : k * 0.3;
-      for (let j = 1; j < c.length; j += 3) c[j] -= decalage;
-    });
-    // État initial : nuage ample, légèrement aplati, proportionnel à l'écran
+  const { positions, couleurs, cibles, nuage, tranches } = useMemo(() => {
+    const { cibles, tranches } = construireCibles(
+      COPY.hero.sequence,
+      largeurCible,
+      bandeMonde
+    );
+    // État initial : nuage ample, légèrement aplati, proportionnel à l'écran.
+    // Sert aussi de cible aux phrases pas encore formées.
     const ampleur = largeurCible / LARGEUR_MONDE;
     const nuage = new Float32Array(N * 3);
     for (let i = 0; i < N; i++) {
@@ -164,20 +229,24 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
       nuage[i * 3 + 2] = r * Math.cos(phi) * 0.5 - 1;
     }
     const positions = new Float32Array(nuage);
-    // Papier lumineux pour la masse, émeraude clair et or pour les accents
+    // Papier lumineux pour la masse, émeraude clair pour les accents…
     const couleurs = new Float32Array(N * 3);
     const papier = new THREE.Color("#f2efe7");
     const or = new THREE.Color("#d8a948");
+    const orClair = new THREE.Color("#e8c87a");
     const emeraude = new THREE.Color("#7fc3a8");
+    const derniere = tranches[tranches.length - 1];
     for (let i = 0; i < N; i++) {
       const t = Math.random();
-      const c = t < 0.12 ? or : t < 0.3 ? emeraude : papier;
+      // …et la phrase FINALE entièrement en or (c'est elle qui reste avec le CTA)
+      const enOr = i >= derniere.debut && i < derniere.fin;
+      const c = enOr ? (t < 0.55 ? or : orClair) : t < 0.06 ? or : t < 0.22 ? emeraude : papier;
       couleurs[i * 3] = c.r;
       couleurs[i * 3 + 1] = c.g;
       couleurs[i * 3 + 2] = c.b;
     }
-    return { positions, couleurs, cibles };
-  }, [largeurCible]);
+    return { positions, couleurs, cibles, nuage, tranches };
+  }, [largeurCible, bandeMonde]);
 
   useFrame((state) => {
     const pts = ref.current;
@@ -194,21 +263,29 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
     const TENUE = 1.1;
     const v = vitesses.current!;
     if (segVisuel.current !== segCible && t - dernierPas.current > TENUE) {
-      segVisuel.current += Math.sign(segCible - segVisuel.current);
+      const avant = segVisuel.current;
+      segVisuel.current += Math.sign(segCible - avant);
       dernierPas.current = t;
       onSegment?.(segVisuel.current);
-      // Impulsion de dispersion au changement de phrase
-      for (let i = 0; i < N * 3; i++) v[i] = (Math.random() - 0.5) * 0.22;
+      // Impulsion de dispersion SEULEMENT sur la tranche qui change d'état
+      // (celle qui se forme en avançant, celle qui se dissout en reculant) :
+      // les phrases déjà posées ne bougent pas.
+      const ch = tranches[Math.max(avant, segVisuel.current)];
+      for (let i = ch.debut * 3; i < ch.fin * 3; i++) v[i] = (Math.random() - 0.5) * 0.22;
     }
 
     const arr = (pts.geometry.attributes.position as THREE.BufferAttribute)
       .array as Float32Array;
-    const cible = cibles[segVisuel.current];
-    // Ressort amorti vers la cible + inertie de l'impulsion
-    // (0.06/0.84 : formation un peu plus rapide, demande Farouk)
-    for (let i = 0; i < N * 3; i++) {
-      v[i] = v[i] * 0.84 + (cible[i] - arr[i]) * 0.06;
-      arr[i] += v[i];
+    // Chaque tranche vise sa phrase si elle est atteinte, sinon le nuage —
+    // ressort amorti vers la cible + inertie de l'impulsion
+    const seg = segVisuel.current;
+    for (let k = 0; k < tranches.length; k++) {
+      const src = k <= seg ? cibles : nuage;
+      const { debut, fin } = tranches[k];
+      for (let i = debut * 3; i < fin * 3; i++) {
+        v[i] = v[i] * 0.84 + (src[i] - arr[i]) * 0.06;
+        arr[i] += v[i];
+      }
     }
     pts.geometry.attributes.position.needsUpdate = true;
 
@@ -221,9 +298,9 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
   });
 
   return (
-    // Légèrement au-dessus du centre : le bloc sous-titre + CTA vit dans le tiers bas
-    <group ref={groupe} position={[0, 1.1, 0]}>
-      <points ref={ref} key={largeurCible}>
+    // Légèrement au-dessus du centre : le bloc CTA vit dans le bas de l'écran
+    <group ref={groupe} position={[0, 0.45, 0]}>
+      <points ref={ref} key={`${largeurCible}-${bandeMonde}`}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
           <bufferAttribute attach="attributes-color" args={[couleurs, 3]} />
