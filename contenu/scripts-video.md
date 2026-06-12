@@ -1,4 +1,4 @@
-# Scripts vidéo — « Ton Business Sur Mesure »
+# Scripts vidéo — « 53 Questions Sur Mesure »
 
 3 scripts voix off (30-45 s) pour TikTok / YouTube Shorts / Reels. Aucun visage : voix off + captures écran, texte à l'écran et B-roll simple réalisable seul.
 

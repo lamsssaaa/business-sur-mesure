@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden border-t border-line">
       <div className="mx-auto max-w-6xl px-6 pb-10 pt-20 sm:pt-28">
         <p className="font-display text-[clamp(2.4rem,8vw,7rem)] font-semibold leading-[0.95] tracking-tight">
-          Ton Business
+          53 Questions
           <br />
           <span className="italic text-accent">Sur Mesure</span>
         </p>

@@ -1,6 +1,6 @@
 # MINI-TEST GRATUIT — « Quel entrepreneur es-tu ? »
 
-*L'aimant du tunnel « Ton Business Sur Mesure » — à recréer dans Tally.*
+*L'aimant du tunnel « 53 Questions Sur Mesure » — à recréer dans Tally.*
 
 **Accroche d'intro (page 1 du formulaire) :**
 

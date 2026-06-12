@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { CONTACT_EMAIL } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Conditions — Ton Business Sur Mesure",
+  title: "Conditions — 53 Questions Sur Mesure",
   description: "Prix unique 49.90 CHF, livraison en 48 h. Les conditions complètes du service, en clair.",
 };
 
@@ -14,8 +14,8 @@ export default function Conditions() {
         <h1 className="text-3xl font-bold">Conditions du service</h1>
         <div className="mt-6 space-y-4 text-muted">
           <p>
-            <strong className="text-ink">Le service.</strong> « Ton Business Sur Mesure » est un service
-            d&apos;orientation entrepreneuriale : à partir de vos réponses à un questionnaire de 50 questions, vous
+            <strong className="text-ink">Le service.</strong> « 53 Questions Sur Mesure » est un service
+            d&apos;orientation entrepreneuriale : à partir de vos réponses à un questionnaire de 53 questions, vous
             recevez un rapport personnalisé (PDF, 12-18 pages) recommandant UN business adapté à votre profil, avec
             un plan d&apos;action sur 30 jours, un budget de démarrage et des conseils concrets.
           </p>

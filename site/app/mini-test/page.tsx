@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Votre rapport sur mesure",
   description:
-    "Le mini-test a été remplacé : commandez directement votre rapport personnalisé — LE business à lancer selon vos 50 réponses, livré en 48 h.",
+    "Le mini-test a été remplacé : commandez directement votre rapport personnalisé — LE business à lancer selon vos 53 réponses, livré en 48 h.",
   robots: { index: false },
 };
 
@@ -19,7 +19,7 @@ export default function MiniTest() {
         <h1 className="text-3xl font-bold">Cette page a changé</h1>
         <p className="mt-4 text-muted">
           Le mini-test a pris sa retraite : on va à l&apos;essentiel. Votre rapport sur mesure —
-          LE business à lancer selon vos 50 réponses — se commande directement.
+          LE business à lancer selon vos 53 réponses — se commande directement.
         </p>
         <p className="mt-8">
           <Link href="/#prix" className="font-semibold text-accent underline">

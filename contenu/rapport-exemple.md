@@ -2,7 +2,7 @@
 
 ---
 
-# Ton Business Sur Mesure — Karim
+# 53 Questions Sur Mesure — Karim
 
 ### LE business à lancer, et comment, en 30 jours.
 
@@ -266,4 +266,4 @@ Si ce rapport ne t'a pas apporté la clarté promise, dis-le-nous avant le 24 ju
 
 *Ce rapport a été produit à partir de tes réponses, analysées avec des outils professionnels puis construites et validées personnellement par ton conseiller. Tes données servent uniquement à produire ce rapport ; elles ne sont jamais revendues et sont supprimées sur simple demande. Orientation entrepreneuriale — pas un conseil financier ou juridique. Aucun revenu garanti. Et la garantie satisfait ou remboursé de 14 jours s'applique jusqu'au 24 juin 2026 : un e-mail à ahmed.salam@hotmail.ch suffit.*
 
-**Ton Business Sur Mesure** — Rapport n° EXEMPLE-001 — 10 juin 2026
+**53 Questions Sur Mesure** — Rapport n° EXEMPLE-001 — 10 juin 2026

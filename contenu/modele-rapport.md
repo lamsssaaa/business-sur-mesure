@@ -1,4 +1,4 @@
-# MODÈLE DE RAPPORT — « Ton Business Sur Mesure »
+# MODÈLE DE RAPPORT — « 53 Questions Sur Mesure »
 
 > **Note d'utilisation (à supprimer avant export PDF)** : ce document est le squelette que Claude remplit puis que Farouk relit et valide pour chaque client. Les variables sont entre `{{double_accolades}}`. Les *instructions en italique encadrées par 🔧* indiquent quoi écrire, quelle longueur viser et quoi citer des réponses du client — elles doivent toutes être supprimées du PDF final. Cible totale : 12 à 18 pages PDF (environ 4 500 à 6 500 mots). Règle d'or : zéro promesse de revenu, zéro vocabulaire de gourou, tutoiement, français standard compréhensible en Suisse, France, Belgique et Québec.
 
@@ -6,7 +6,7 @@
 
 <!-- ===================== PAGE DE GARDE ===================== -->
 
-# Ton Business Sur Mesure — {{prenom}}
+# 53 Questions Sur Mesure — {{prenom}}
 
 ### LE business à lancer, et comment, en 30 jours.
 
@@ -313,7 +313,7 @@ Si ce rapport ne t'a pas apporté la clarté promise, dis-le-nous avant le {{dat
 
 *Ce rapport a été produit à partir de tes réponses, analysées avec l'IA puis relues et validées par un humain. Tes données servent uniquement à produire ce rapport ; elles ne sont jamais revendues et sont supprimées sur simple demande. Orientation entrepreneuriale — pas un conseil financier ou juridique. Aucun revenu garanti. Et la garantie satisfait ou remboursé de 14 jours s'applique jusqu'au {{date_fin_garantie}} : un e-mail à {{email_contact}} suffit.*
 
-**Ton Business Sur Mesure** — Rapport n° {{numero_rapport}} — {{date}}
+**53 Questions Sur Mesure** — Rapport n° {{numero_rapport}} — {{date}}
 
 ---
 

@@ -212,7 +212,7 @@ export default function HomeBody() {
       </section>
 
       {/* EST-CE FAIT POUR VOUS ? — l'objection finale avant le prix : oui, qui
-          que vous soyez, et la preuve = le travail mis dans les 50 questions */}
+          que vous soyez, et la preuve = le travail mis dans les 53 questions */}
       <section id="pour-vous">
         <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
           <p className="kicker">{COPY.pourVous.kicker}</p>

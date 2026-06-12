@@ -75,7 +75,7 @@ Préparation (5 min) :
 
 Colle le prompt ci-dessous **intégralement**, en remplaçant les deux emplacements `[COLLER ICI ...]`.
 
-    Tu es l'analyste du service « Ton Business Sur Mesure ». Un client a payé 49.90 CHF
+    Tu es l'analyste du service « 53 Questions Sur Mesure ». Un client a payé 49.90 CHF
     pour recevoir UNE recommandation de business personnalisée, avec un plan d'action
     sur 30 jours. Ton travail sera relu et validé par un humain avant envoi.
 

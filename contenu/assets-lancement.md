@@ -116,7 +116,7 @@ dans le service ou les messages ComeUp.
 
 ## 4. Présentation Forum Pragmatic Entrepreneurs / Discord
 
-> Bonjour à tous ! Farouk, de Genève. Je propose « Ton Business Sur Mesure » : un
+> Bonjour à tous ! Farouk, de Genève. Je propose « 53 Questions Sur Mesure » : un
 > questionnaire de 50 questions (expérience, compétences, budget, temps, contraintes) →
 > un rapport personnalisé qui recommande UN business adapté au profil, avec plan 30 jours,
 > budget de démarrage et premiers clients. Chaque rapport est analysé et validé

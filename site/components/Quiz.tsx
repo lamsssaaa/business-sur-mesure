@@ -216,7 +216,7 @@ export default function Quiz() {
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
             Ton aperçu gratuit s&apos;arrête ici
           </p>
-          <p className="mt-2 text-sm text-muted">Ton rapport complet (50 questions) ajoute :</p>
+          <p className="mt-2 text-sm text-muted">Ton rapport complet (53 questions) ajoute :</p>
           <ul className="mt-4 space-y-2.5">
             {[
               "LE business précis — un seul, nommé, choisi pour ta situation",
@@ -263,7 +263,7 @@ export default function Quiz() {
           {/* La preuve au moment du doute : voir un rapport réel avant de payer */}
           <div className="mt-6 rounded-2xl bg-accent-soft/70 p-5 text-center">
             <p className="text-sm text-muted">
-              Ton profil est un aperçu. Le rapport, lui, croise tes <b>50 réponses</b> — ta
+              Ton profil est un aperçu. Le rapport, lui, croise tes <b>53 réponses</b> — ta
               combinaison n&apos;existe qu&apos;une fois, ta recommandation non plus.
             </p>
             <a

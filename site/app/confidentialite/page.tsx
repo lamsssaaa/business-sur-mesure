@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { CONTACT_EMAIL } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Confidentialité — Ton Business Sur Mesure",
+  title: "Confidentialité — 53 Questions Sur Mesure",
   description: "Ce qu'on collecte, pourquoi, combien de temps — et vos droits (LPD/RGPD). Vos réponses servent uniquement à produire votre rapport.",
 };
 
@@ -15,7 +15,7 @@ export default function Confidentialite() {
         <div className="mt-6 space-y-4 text-muted">
           <p>
             <strong className="text-ink">Ce qu&apos;on collecte.</strong> Votre adresse email et vos réponses aux
-            formulaires (commande et questionnaire de 50 questions). Rien d&apos;autre — pas de cookies
+            formulaires (commande et questionnaire de 53 questions). Rien d&apos;autre — pas de cookies
             publicitaires, pas de traqueurs.
           </p>
           <p>

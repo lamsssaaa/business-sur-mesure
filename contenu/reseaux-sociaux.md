@@ -25,7 +25,7 @@
 2. `@business.surmesure`
 3. `@tonbusinesssurmesure`
 
-**Nom affiché :** `Ton Business Sur Mesure`
+**Nom affiché :** `53 Questions Sur Mesure`
 **Catégorie :** Service de conseil  ·  **Type :** compte professionnel
 
 **Bio (≤150 caractères) :**

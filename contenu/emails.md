@@ -1,4 +1,4 @@
-# Séquence email — Tunnel « Ton Business Sur Mesure »
+# Séquence email — Tunnel « 53 Questions Sur Mesure »
 
 Placeholders : `{{prenom}}`, `{{lien_questionnaire}}`
 

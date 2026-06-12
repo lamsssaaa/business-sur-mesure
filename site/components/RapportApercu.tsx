@@ -45,14 +45,14 @@ export default function RapportApercu() {
             <Reveal delay={0.1} y={48}><Page className="lg:-rotate-2">
               <p className="kicker">Rapport personnalisé</p>
               <p className="mt-6 font-display text-2xl font-semibold leading-snug">
-                Ton Business <span className="italic text-accent">Sur Mesure</span>
+                53 Questions <span className="italic text-accent">Sur Mesure</span>
               </p>
               <p className="mt-2 font-display text-lg text-muted">— Karim</p>
               <p className="mt-8 text-sm text-muted">
                 LE business à lancer, et comment, en 30 jours.
               </p>
               <p className="mt-10 border-t border-line pt-4 text-xs text-muted">
-                Basé sur ses 50 réponses · 17 pages · livré en 48 h
+                Basé sur ses 53 réponses · 17 pages · livré en 48 h
               </p>
             </Page></Reveal>
             {/* Sommaire */}

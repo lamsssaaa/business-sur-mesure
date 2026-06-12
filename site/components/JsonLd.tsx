@@ -17,14 +17,14 @@ export default function JsonLd() {
   const service = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Ton Business Sur Mesure",
+    name: "53 Questions Sur Mesure",
     serviceType: "Orientation entrepreneuriale personnalisée",
     description:
-      "50 questions sur votre expérience, vos compétences, votre budget et votre temps — un rapport personnalisé qui recommande LE business à lancer, avec un plan d'action sur 30 jours. Livré en 48 h.",
+      "53 questions sur votre expérience, vos compétences, votre budget et votre temps — un rapport personnalisé qui recommande LE business à lancer, avec un plan d'action sur 30 jours. Livré en 48 h.",
     url: `${SITE_URL}/`,
     areaServed: ["FR", "CH", "BE", "CA"],
     availableLanguage: "fr",
-    provider: { "@type": "Person", name: "Ton Business Sur Mesure", address: { "@type": "PostalAddress", addressLocality: "Genève", addressCountry: "CH" } },
+    provider: { "@type": "Person", name: "53 Questions Sur Mesure", address: { "@type": "PostalAddress", addressLocality: "Genève", addressCountry: "CH" } },
     offers: {
       "@type": "Offer",
       price: "49.90",

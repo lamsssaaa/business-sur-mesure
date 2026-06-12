@@ -4,8 +4,8 @@ import { CTA_CLASSES } from "@/components/CtaButton";
 import { LINKS, CONTACT_EMAIL } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Merci ! Dernière étape : vos 50 questions",
-  description: "Paiement reçu — répondez aux 50 questions pour recevoir votre rapport personnalisé sous 48 h.",
+  title: "Merci ! Dernière étape : vos 53 questions",
+  description: "Paiement reçu — répondez aux 53 questions pour recevoir votre rapport personnalisé sous 48 h.",
   robots: { index: false, follow: false },
 };
 
@@ -16,7 +16,7 @@ export default function Merci() {
       <div className="mx-auto max-w-2xl px-6 pb-16 pt-32 text-center">
         <h1 className="text-3xl font-bold">Merci, votre paiement est bien reçu ✅</h1>
         <p className="mt-4 text-lg text-muted">
-          Dernière étape : répondez aux 50 questions (20-30 minutes, au calme). Votre rapport personnalisé
+          Dernière étape : répondez aux 53 questions (20-30 minutes, au calme). Votre rapport personnalisé
           arrive par email <strong>sous 48 h</strong> après réception de vos réponses.
         </p>
         {questionnairePret ? (
@@ -26,14 +26,14 @@ export default function Merci() {
             rel="noopener noreferrer"
             className={`mt-8 ${CTA_CLASSES}`}
           >
-            Répondre aux 50 questions
+            Répondre aux 53 questions
           </a>
         ) : (
           <a
-            href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Mes 50 questions — Business Sur Mesure")}`}
+            href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Mes 53 questions — 53 Questions Sur Mesure")}`}
             className={`mt-8 ${CTA_CLASSES}`}
           >
-            Recevoir mes 50 questions par email
+            Recevoir mes 53 questions par email
           </a>
         )}
         <p className="mt-6 text-sm text-muted">

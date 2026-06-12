@@ -33,7 +33,7 @@ export default function SiteHeader() {
         }`}
       >
         <Link href="/" className="font-display text-lg font-semibold tracking-tight text-ink">
-          Ton Business <span className="italic text-accent">Sur Mesure</span>
+          53 Questions <span className="italic text-accent">Sur Mesure</span>
         </Link>
         <Link
           href="/#prix"

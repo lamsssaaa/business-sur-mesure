@@ -27,7 +27,7 @@
 ## 3. Stripe — le lien de paiement 49.90 CHF
 
 1. Sur dashboard.stripe.com : Produits → « Ajouter un produit » :
-   nom « Ton Business Sur Mesure — rapport personnalisé », prix unique 49.90 CHF.
+   nom « 53 Questions Sur Mesure — rapport personnalisé », prix unique 49.90 CHF.
 2. « Créer un lien de paiement » (Payment Link) avec ce produit.
 3. Dans les options du lien → « Page de confirmation » → rediriger vers une URL :
    `https://lamsssaaa.github.io/business-sur-mesure/merci/`
