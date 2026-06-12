@@ -28,6 +28,19 @@ export default function Hero() {
   const [masqueHint, setMasqueHint] = useState(false);
   const [segment, setSegment] = useState(0); // phrase en scène (nb = terminé) → décor + pile
   const nb = COPY.hero.sequence.length;
+  // La pile affichée suit `segment` avec retard au RECUL : la ligne qui sort
+  // joue d'abord son animation de descente (.degraver) avant d'être retirée —
+  // le scroll inverse rejoue les étapes du début, à l'envers.
+  const [pile, setPile] = useState(0);
+  useEffect(() => {
+    const cible = Math.min(segment, nb);
+    if (cible >= pile) {
+      setPile(cible);
+      return;
+    }
+    const t = setTimeout(() => setPile(cible), 650);
+    return () => clearTimeout(t);
+  }, [segment, pile, nb]);
 
   useEffect(() => {
     // 3D partout, mobile compris (demande Farouk) — seuls reduced-motion et
@@ -127,10 +140,12 @@ export default function Hero() {
             className="pointer-events-none absolute inset-x-0 top-[11vh] z-10 px-6 text-center"
             aria-hidden="true"
           >
-            {COPY.hero.sequence.slice(0, Math.min(segment, nb)).map((phrase) => (
+            {COPY.hero.sequence.slice(0, pile).map((phrase, i) => (
               <span
                 key={phrase}
-                className="graver block whitespace-pre-line font-display text-[clamp(1.35rem,4.5vw,2.5rem)] font-semibold leading-[1.15] text-paper drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
+                className={`${
+                  i < Math.min(segment, nb) ? "graver" : "degraver"
+                } block whitespace-pre-line font-display text-[clamp(1.35rem,4.5vw,2.5rem)] font-semibold leading-[1.15] text-paper drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]`}
               >
                 {phrase}
               </span>

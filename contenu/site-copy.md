@@ -11,7 +11,8 @@
 3. Seuls les déterminés réussiront.
 4. Rien ne tombe du ciel.
 5. Répondez à 50 questions.
-6. & ⏎ Changez votre vie professionnelle. (le « & » seul sur sa ligne — retour forcé)
+6. & (seul en scène — sa propre étape)
+7. Changez votre vie professionnelle.
 
 **Titre (H1, SEO + fallback sans 3D) :**
 À vous qui lisez ces lignes : répondez à 50 questions et changez votre vie professionnelle.

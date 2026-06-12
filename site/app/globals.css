@@ -100,6 +100,23 @@ p {
   }
 }
 
+/* Scroll inverse : la ligne se « dégrave » — elle redescend vers le centre
+   (où les particules la reforment), exactement l'étape du début à l'envers */
+.degraver {
+  animation: degraver-out 0.65s cubic-bezier(0.55, 0, 0.55, 0.2) both;
+}
+
+@keyframes degraver-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30vh) scale(1.05);
+  }
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;

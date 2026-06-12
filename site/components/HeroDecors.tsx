@@ -33,7 +33,9 @@ function choisirQualite(): Qualite {
   return window.matchMedia("(min-width: 768px)").matches ? "hd" : "low";
 }
 
-export default function HeroDecors({ segment }: { segment: number }) {
+export default function HeroDecors({ segment: segmentBrut }: { segment: number }) {
+  // La séquence peut compter plus de phrases que de décors : on borne
+  const segment = Math.min(segmentBrut, DECORS.length - 1);
   const [qualite, setQualite] = useState<Qualite>("off"); // off avant hydratation : zéro téléchargement inutile
   const refs = useRef<(HTMLVideoElement | null)[]>([]);
 
