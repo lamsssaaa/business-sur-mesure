@@ -6,7 +6,6 @@ import RevealTitle from "@/components/RevealTitle";
 import RapportApercu from "@/components/RapportApercu";
 import DrawnCheck from "@/components/DrawnCheck";
 import Faq from "@/components/Faq";
-import { Gem } from "@/components/Gem";
 import VideoFond from "@/components/VideoFond";
 import { COPY } from "@/lib/copy";
 import { TEMOIGNAGES, LIEN_COMMANDE, LIEN_AUDIT } from "@/lib/config";
@@ -186,11 +185,6 @@ export default function HomeBody() {
 
       {/* TON CONSEILLER */}
       <section className="relative overflow-hidden border-y border-line bg-white/50">
-        <Gem
-          size={420}
-          variant="pale"
-          className="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 opacity-50"
-        />
         <div className="relative mx-auto max-w-6xl px-6 py-28 sm:py-36">
           <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
             <div className="max-w-3xl">
@@ -262,11 +256,6 @@ export default function HomeBody() {
       {/* PRIX — la scène sombre : UNE décision, UN prix */}
       <section id="prix" className="relative overflow-hidden bg-accent-deep text-paper">
         <div className="prix-lumiere" aria-hidden="true" />
-        <Gem
-          size={560}
-          variant="plein"
-          className="pointer-events-none absolute -bottom-40 -right-32 opacity-[0.18]"
-        />
         <div className="relative mx-auto max-w-6xl px-6 py-32 sm:py-44">
           <Reveal>
             <p className="font-display text-2xl italic text-paper/85 sm:text-3xl">{COPY.prix.titre}</p>

@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import CtaButton from "@/components/CtaButton";
 import HeroDecors from "@/components/HeroDecors";
 import { COPY } from "@/lib/copy";
-import { Gem } from "@/components/Gem";
 
 const HeroScene = dynamic(() => import("@/components/HeroScene"), {
   ssr: false,
@@ -105,16 +104,6 @@ export default function Hero() {
           {/* Voile neutre : le texte de particules reste lisible sur tout paysage */}
           <div className="absolute inset-0 bg-black/55" />
         </div>
-        {/* Atmosphère : la lumière de la pierre dans le noir */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(60rem 38rem at 50% 42%, rgb(14 107 79 / 0.35), transparent 70%), radial-gradient(34rem 22rem at 72% 70%, rgb(184 138 46 / 0.10), transparent 65%)",
-          }}
-        />
-
         {use3D && enVue && (
           <div className="absolute inset-0" aria-hidden="true">
             <HeroScene
@@ -171,14 +160,6 @@ export default function Hero() {
           >
             <CtaButton href="#prix">{COPY.hero.cta}</CtaButton>
             <p className="mt-4 text-sm text-paper/60">{COPY.hero.reassurance}</p>
-          </div>
-        )}
-
-        {/* Cartouche de marque : SVG plat seulement sans 3D (sinon la gemme
-            taillée 3D vit dans la scène, au même endroit) */}
-        {!use3D && (
-          <div className="pointer-events-none absolute left-1/2 top-24 -translate-x-1/2">
-            <Gem size={42} variant="plein" className="mx-auto opacity-90" />
           </div>
         )}
 

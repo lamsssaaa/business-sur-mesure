@@ -1,21 +1,17 @@
 import { Link } from "next-view-transitions";
 import { COPY } from "@/lib/copy";
 import { CONTACT_EMAIL } from "@/lib/config";
-import { Gem } from "@/components/Gem";
 
 /* Footer-colophon : la scène finale répond au héro — la décision est posée. */
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line">
       <div className="mx-auto max-w-6xl px-6 pb-10 pt-20 sm:pt-28">
-        <div className="flex items-end justify-between gap-6">
-          <p className="font-display text-[clamp(2.4rem,8vw,7rem)] font-semibold leading-[0.95] tracking-tight">
-            Ton Business
-            <br />
-            <span className="italic text-accent">Sur Mesure</span>
-          </p>
-          <Gem size={88} variant="plein" className="mb-2 shrink-0 sm:mb-4" />
-        </div>
+        <p className="font-display text-[clamp(2.4rem,8vw,7rem)] font-semibold leading-[0.95] tracking-tight">
+          Ton Business
+          <br />
+          <span className="italic text-accent">Sur Mesure</span>
+        </p>
         <p className="mt-6 font-display text-lg italic text-muted">Genève, Suisse</p>
         <div className="mt-14 space-y-4 border-t border-line pt-6 text-sm text-muted">
           <p className="max-w-3xl">{COPY.footer.disclaimer}</p>
