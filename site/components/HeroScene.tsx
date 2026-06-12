@@ -246,6 +246,13 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
       nuage[i * 3 + 2] = r * Math.cos(phi) * 0.5 - 1;
     }
     const positions = new Float32Array(nuage);
+    // Phrase 0 : part du centre (Y≈0) comme les phrases suivantes → effet "remonte"
+    const ch0 = tranches[0];
+    for (let i = ch0.debut; i < ch0.fin; i++) {
+      positions[i * 3]     = cibles[i * 3]     + (Math.random() - 0.5) * 0.2;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.3;
+      positions[i * 3 + 2] = cibles[i * 3 + 2] + (Math.random() - 0.5) * 0.1;
+    }
     // Blanc papier UNIFORME (légère variation de luminance seulement) : des
     // accents colorés DANS les lettres les rendaient sales — lisibilité d'abord
     const couleurs = new Float32Array(N * 3);
@@ -273,20 +280,35 @@ function Particules({ progress, pointer, onSegment }: SceneProps) {
     // TENUE secondes : chaque phrase est vue, quel que soit le rythme du scroll.
     const TENUE = 1.1;
     const v = vitesses.current!;
+
+    // arr déclaré ici pour être accessible dans le bloc segment (téléportation)
+    const arr = (pts.geometry.attributes.position as THREE.BufferAttribute)
+      .array as Float32Array;
+
     if (segVisuel.current !== segCible && t - dernierPas.current > TENUE) {
       const avant = segVisuel.current;
       segVisuel.current += Math.sign(segCible - avant);
       dernierPas.current = t;
       onSegment?.(segVisuel.current);
-      // Impulsion de dispersion SEULEMENT sur la tranche qui change d'état
-      // (celle qui se forme en avançant, celle qui se dissout en reculant) :
-      // les phrases déjà posées ne bougent pas.
-      const ch = tranches[Math.max(avant, segVisuel.current)];
-      for (let i = ch.debut * 3; i < ch.fin * 3; i++) v[i] = (Math.random() - 0.5) * 0.22;
-    }
 
-    const arr = (pts.geometry.attributes.position as THREE.BufferAttribute)
-      .array as Float32Array;
+      const nouvSeg = segVisuel.current;
+      if (nouvSeg > avant) {
+        // Nouvelle phrase → téléporter ses particules au centre de l'écran (Y≈0)
+        // Le ressort les fera monter vers leur position finale dans la pile.
+        const ch = tranches[nouvSeg];
+        for (let i = ch.debut; i < ch.fin; i++) {
+          const i3 = i * 3;
+          arr[i3]     = cibles[i3]     + (Math.random() - 0.5) * 0.2;
+          arr[i3 + 1] = (Math.random() - 0.5) * 0.3;
+          arr[i3 + 2] = cibles[i3 + 2] + (Math.random() - 0.5) * 0.1;
+          v[i3] = v[i3 + 1] = v[i3 + 2] = 0;
+        }
+      } else {
+        // Scroll arrière : impulsion de dispersion sur la tranche qui perd sa forme
+        const ch = tranches[avant];
+        for (let i = ch.debut * 3; i < ch.fin * 3; i++) v[i] = (Math.random() - 0.5) * 0.22;
+      }
+    }
     // Chaque tranche vise sa phrase si elle est atteinte, sinon le nuage —
     // ressort amorti vers la cible + inertie de l'impulsion + oscillation
     // permanente (les points « respirent » autour des lettres, le nuage
