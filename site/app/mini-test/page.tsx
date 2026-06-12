@@ -23,7 +23,7 @@ export default function MiniTest() {
         </p>
         <p className="mt-8">
           <Link href="/#prix" className="font-semibold text-accent underline">
-            Voir l&apos;offre (49.90 CHF, garantie 14 jours) →
+            Voir l&apos;offre (49.90 CHF) →
           </Link>
         </p>
         <p className="mt-3 text-sm text-muted">Redirection automatique dans quelques secondes…</p>

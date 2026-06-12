@@ -4,7 +4,7 @@ import { CONTACT_EMAIL } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Conditions — Ton Business Sur Mesure",
-  description: "Prix unique 49.90 CHF, livraison en 48 h, garantie satisfait ou remboursé 14 jours. Les conditions complètes du service, en clair.",
+  description: "Prix unique 49.90 CHF, livraison en 48 h. Les conditions complètes du service, en clair.",
 };
 
 export default function Conditions() {
@@ -26,11 +26,6 @@ export default function Conditions() {
           <p>
             <strong className="text-ink">Délai de livraison.</strong> 48 h au plus tard après réception de vos
             réponses complètes au questionnaire.
-          </p>
-          <p>
-            <strong className="text-ink">Garantie.</strong> Satisfait ou remboursé pendant 14 jours après la
-            livraison du rapport : un email suffit, sans justification. Si vous ne remplissez pas le questionnaire
-            dans les 14 jours malgré nos rappels, vous êtes remboursé automatiquement.
           </p>
           <p>
             <strong className="text-ink">Ce que le service n&apos;est pas.</strong> Ce rapport est une orientation

@@ -38,7 +38,6 @@ export default function Merci() {
         )}
         <p className="mt-6 text-sm text-muted">
           Un souci, une question ? Écrivez à <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
-          Garantie satisfait ou remboursé 14 jours.
         </p>
       </div>
       <Footer />

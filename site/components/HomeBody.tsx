@@ -236,11 +236,6 @@ export default function HomeBody() {
                 CHF
               </span>
             </p>
-            {/* La garantie collée au prix : c'est là qu'elle lève l'hésitation */}
-            <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-gold/50 px-5 py-2.5 text-sm font-medium text-paper/90">
-              <span aria-hidden="true" className="text-gold">✓</span>
-              Satisfait ou remboursé — 14 jours, sans justification
-            </p>
             {/* Ancrage honnête : des références réelles, pas de faux prix barré */}
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-paper/55">{COPY.prix.repere}</p>
           </Reveal>

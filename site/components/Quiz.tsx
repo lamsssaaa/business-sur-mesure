@@ -257,8 +257,8 @@ export default function Quiz() {
           )}
           <p className="text-center text-sm text-muted">
             {paiementPret
-              ? "Satisfait ou remboursé 14 jours · Rapport livré en 48 h · Paiement sécurisé Stripe"
-              : "Tu reçois ton lien de paiement par email (réponse en quelques heures) · Satisfait ou remboursé 14 jours"}
+              ? "Rapport livré en 48 h · Paiement sécurisé Stripe"
+              : "Vous recevez votre lien de paiement par email (réponse en quelques heures)"}
           </p>
           {/* La preuve au moment du doute : voir un rapport réel avant de payer */}
           <div className="mt-6 rounded-2xl bg-accent-soft/70 p-5 text-center">
