@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf9f6; --ink:#16181d; --muted:#5c6168;
+    --accent:#0e6b4f; --accent-soft:#e7f2ee; --gold:#b88a2e; --line:#e5e2db;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    background:
+      radial-gradient(46rem 40rem at 88% 12%, rgba(14,107,79,.10), transparent 60%),
+      radial-gradient(30rem 30rem at 8% 96%, rgba(184,138,46,.08), transparent 65%),
+      var(--paper);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    color:var(--ink);
+    position:relative;
+  }
+  /* Hexagones décoratifs très discrets (identité, pas un logo) */
+  .hex{position:absolute;border:2px solid;transform:rotate(0deg);opacity:.16}
+  .hex svg{display:block}
+  .deco{position:absolute;right:64px;top:0;bottom:0;width:430px;pointer-events:none}
+  .deco .h{position:absolute}
+  .wrap{position:absolute;inset:0;padding:74px 80px;display:flex;flex-direction:column;justify-content:center}
+  .brand{font-family:'Fraunces',serif;font-size:30px;font-weight:600;letter-spacing:-.01em;margin-bottom:30px}
+  .brand .sm{font-style:italic;color:var(--accent)}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:74px;line-height:1.04;letter-spacing:-.02em;max-width:830px}
+  h1 .accent{font-style:italic;color:var(--accent)}
+  .sub{margin-top:26px;max-width:770px;font-size:25px;line-height:1.5;color:var(--muted)}
+  .sub .arrow{color:var(--accent);font-weight:700}
+  .chip{margin-top:38px;display:inline-flex;align-items:center;gap:12px;align-self:flex-start;
+    background:var(--accent);color:var(--paper);font-weight:700;font-size:24px;
+    padding:16px 30px;border-radius:999px;letter-spacing:.01em}
+  .chip .dot{color:var(--gold)}
+</style></head>
+<body>
+  <!-- volutes hexagonales discrètes à droite -->
+  <div class="deco" aria-hidden="true">
+    <svg width="430" height="630" viewBox="0 0 430 630" fill="none">
+      <g stroke="#0e6b4f" stroke-width="2" opacity="0.18">
+        <polygon points="300,150 360,185 360,255 300,290 240,255 240,185"/>
+        <polygon points="170,330 210,353 210,399 170,422 130,399 130,353"/>
+      </g>
+      <g stroke="#b88a2e" stroke-width="2" opacity="0.22">
+        <polygon points="330,400 392,436 392,508 330,544 268,508 268,436"/>
+      </g>
+      <g fill="#0e6b4f" opacity="0.06">
+        <polygon points="300,150 360,185 360,255 300,290 240,255 240,185"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="brand">53 Questions <span class="sm">Sur Mesure</span></div>
+    <h1>Arrêtez de chercher une idée.<br>Trouvez <span class="accent">VOTRE business.</span></h1>
+    <p class="sub">53 questions sur votre profil <span class="arrow">→</span> LE business à lancer, et le plan des 30 premiers jours. Rapport personnalisé, livré en 48 h.</p>
+    <div class="chip">Votre rapport sur mesure <span class="dot">·</span> 49.90 CHF</div>
+  </div>
+</body></html>
