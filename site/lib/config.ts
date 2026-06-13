@@ -3,6 +3,8 @@ export const LINKS = {
   questionnaire: "https://tally.so/r/NpOlEj",
   // Stripe Payment Link 49.90 CHF — voir contenu/guide-branchement.md
   paiement: "https://buy.stripe.com/A_REMPLACER",
+  // Stripe Payment Link 299 CHF (Audit de croissance) — voir contenu/guide-branchement.md
+  paiementAudit: "https://buy.stripe.com/A_REMPLACER_AUDIT",
   // Formulaire Tally de commande (email) — utilisé tant que Stripe n'est pas branché
   profilParEmail: "https://tally.so/r/Ek6jxA",
 };
@@ -22,9 +24,9 @@ export const CONTACT_EMAIL = "questions.53@outlook.com";
 
 // Lien de commande pour l'Audit de croissance 299 CHF
 // Même logique que LIEN_COMMANDE : Stripe si branché, sinon formulaire Tally de commande.
-export const LIEN_AUDIT = LINKS.profilParEmail.includes("A_REMPLACER")
+export const LIEN_AUDIT = LINKS.paiementAudit.includes("A_REMPLACER")
   ? `${LINKS.profilParEmail}?intent=audit`
-  : "https://buy.stripe.com/A_REMPLACER_AUDIT";
+  : LINKS.paiementAudit;
 
 // Rempli après les 3 rapports offerts (prénom + autorisation obtenue). Tant que vide,
 // la section témoignages n'apparaît pas — on n'invente JAMAIS de témoignage.

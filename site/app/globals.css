@@ -60,24 +60,12 @@ p {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Halo d'ambiance derrière le héro */
-.hero-aura {
-  background:
-    radial-gradient(38rem 38rem at 70% 18%, rgb(14 107 79 / 0.1), transparent 60%),
-    radial-gradient(28rem 28rem at 12% 70%, rgb(184 138 46 / 0.08), transparent 65%),
-    radial-gradient(50rem 30rem at 50% 110%, rgb(231 242 238 / 0.9), transparent 70%);
-}
-
 /* Entrée du héro en pur CSS : visible sans JS, animée dès le premier rendu,
    désactivée (donc visible immédiatement) en reduced-motion */
 @media (prefers-reduced-motion: no-preference) {
   .rise {
     opacity: 0;
     animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-  .rise-soft {
-    opacity: 0;
-    animation: rise-soft-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }
 
@@ -128,17 +116,6 @@ p {
   }
 }
 
-@keyframes rise-soft-in {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Focus visible harmonisé sur tout le site */
 a:focus-visible,
 button:focus-visible,
@@ -146,30 +123,6 @@ summary:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: 4px;
-}
-
-/* Blobs du fallback héro (mobile / reduced-motion / sans WebGL) */
-@media (prefers-reduced-motion: no-preference) {
-  .blob {
-    animation: derive 14s ease-in-out infinite alternate;
-  }
-  .blob:nth-child(2n) {
-    animation-duration: 18s;
-    animation-delay: -6s;
-  }
-  .blob:nth-child(3n) {
-    animation-duration: 22s;
-    animation-delay: -11s;
-  }
-}
-
-@keyframes derive {
-  from {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-  }
-  to {
-    transform: translate3d(2.5rem, -1.75rem, 0) rotate(10deg) scale(1.06);
-  }
 }
 
 /* FAQ : rotation du marqueur + et ouverture animée en pur CSS */
@@ -290,7 +243,6 @@ html {
   inset: -20%;
   pointer-events: none;
   background: radial-gradient(42rem 30rem at 30% 40%, rgb(184 138 46 / 0.13), transparent 65%);
-  will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
   .prix-lumiere {

@@ -199,6 +199,7 @@ export default function Hero() {
             Apparaît à la fin de la séquence. */}
         {use3D && (
           <div
+            inert={!finale}
             className={`absolute inset-x-0 bottom-[15vh] z-10 mx-auto max-w-2xl px-6 text-center transition-all duration-700 md:bottom-[4vh] ${
               finale ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
             }`}

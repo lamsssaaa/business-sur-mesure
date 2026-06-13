@@ -11,7 +11,7 @@ export default function Conditions() {
   return (
     <main>
       <div className="mx-auto max-w-2xl px-6 pb-16 pt-32">
-        <h1 className="text-3xl font-bold">Conditions du service</h1>
+        <h1 className="text-3xl font-semibold">Conditions du service</h1>
         <div className="mt-6 space-y-4 text-muted">
           <p>
             <strong className="text-ink">Le service.</strong> « 53 Questions Sur Mesure » est un service

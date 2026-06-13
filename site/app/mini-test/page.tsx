@@ -16,7 +16,7 @@ export default function MiniTest() {
     <main>
       <meta httpEquiv="refresh" content="4;url=/business-sur-mesure/#prix" />
       <div className="mx-auto max-w-2xl px-6 pb-16 pt-32 text-center sm:pt-40">
-        <h1 className="text-3xl font-bold">Cette page a changé</h1>
+        <h1 className="text-3xl font-semibold">Cette page a changé</h1>
         <p className="mt-4 text-muted">
           Le mini-test a pris sa retraite : on va à l&apos;essentiel. Votre rapport sur mesure —
           LE business à lancer selon vos 53 réponses — se commande directement.

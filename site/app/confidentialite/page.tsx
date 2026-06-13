@@ -11,7 +11,7 @@ export default function Confidentialite() {
   return (
     <main>
       <div className="mx-auto max-w-2xl px-6 pb-16 pt-32">
-        <h1 className="text-3xl font-bold">Confidentialité</h1>
+        <h1 className="text-3xl font-semibold">Confidentialité</h1>
         <div className="mt-6 space-y-4 text-muted">
           <p>
             <strong className="text-ink">Ce qu&apos;on collecte.</strong> Votre adresse email et vos réponses aux

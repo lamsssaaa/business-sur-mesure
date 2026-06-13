@@ -5,9 +5,9 @@ export function Check({ className = "", or = false }: { className?: string; or?:
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
-      className={className}
+      className={`${or ? "text-gold" : "text-accent"} ${className}`.trim()}
       fill="none"
-      stroke={or ? "#b88a2e" : "#0e6b4f"}
+      stroke="currentColor"
       strokeWidth="2.6"
       strokeLinecap="round"
       strokeLinejoin="round"

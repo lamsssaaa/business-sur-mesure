@@ -14,7 +14,7 @@ export default function Merci() {
   return (
     <main>
       <div className="mx-auto max-w-2xl px-6 pb-16 pt-32 text-center">
-        <h1 className="text-3xl font-bold">Merci, votre paiement est bien reçu ✅</h1>
+        <h1 className="text-3xl font-semibold">Merci, votre paiement est bien reçu <span aria-hidden="true">✅</span></h1>
         <p className="mt-4 text-lg text-muted">
           Dernière étape : répondez aux 53 questions (20-30 minutes, au calme). Votre rapport personnalisé
           arrive par email <strong>sous 48 h</strong> après réception de vos réponses.
@@ -27,6 +27,7 @@ export default function Merci() {
             className={`mt-8 ${CTA_CLASSES}`}
           >
             Répondre aux 53 questions
+            <span className="sr-only"> (s&apos;ouvre dans une nouvelle fenêtre)</span>
           </a>
         ) : (
           <a

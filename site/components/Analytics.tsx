@@ -5,7 +5,7 @@ import { GOATCOUNTER_CODE } from "@/lib/config";
  *  1. Crée un compte gratuit sur goatcounter.com (2 min), choisis un code (ex. « bsm »)
  *  2. Mets ce code dans GOATCOUNTER_CODE (site/lib/config.ts) → push
  *  Les clics clés sont déjà instrumentés via data-goatcounter-click :
- *  quiz-demarre · clic-achat · clic-achat-prelancement · pdf-exemple
+ *  clic-achat · pdf-exemple
  *  (Option durcissement à l'activation : épingler la version gc.zgo.at/count.v4.js + integrity sha384.) */
 export default function Analytics() {
   if (!GOATCOUNTER_CODE) return null;

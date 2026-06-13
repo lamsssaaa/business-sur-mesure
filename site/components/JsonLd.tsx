@@ -24,7 +24,7 @@ export default function JsonLd() {
     url: `${SITE_URL}/`,
     areaServed: ["FR", "CH", "BE", "CA"],
     availableLanguage: "fr",
-    provider: { "@type": "Person", name: "53 Questions Sur Mesure", address: { "@type": "PostalAddress", addressLocality: "Genève", addressCountry: "CH" } },
+    provider: { "@type": "Organization", name: "53 Questions Sur Mesure", address: { "@type": "PostalAddress", addressLocality: "Genève", addressCountry: "CH" } },
     offers: {
       "@type": "Offer",
       price: "49.90",

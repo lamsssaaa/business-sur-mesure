@@ -39,6 +39,7 @@ export default function MobileCta() {
 
   return (
     <div
+      inert={!visible}
       className={`fixed inset-x-0 bottom-0 z-50 px-4 pb-[max(env(safe-area-inset-bottom),1rem)] transition-all duration-300 sm:hidden ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-full opacity-0"
       }`}

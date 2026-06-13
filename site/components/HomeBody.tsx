@@ -19,11 +19,7 @@ export default function HomeBody() {
           <div className="mt-20">
             {COPY.etapes.map((e, i) => (
               <Reveal key={e.titre} delay={0.05}>
-                <div
-                  className={`relative border-t border-line py-14 sm:py-20 ${
-                    i === 0 ? "" : ""
-                  }`}
-                >
+                <div className="relative border-t border-line py-14 sm:py-20">
                   <span
                     aria-hidden="true"
                     className="pointer-events-none absolute -top-6 select-none font-display text-[clamp(7rem,18vw,15rem)] font-semibold leading-none text-accent/[0.07] sm:-top-10"
@@ -31,9 +27,7 @@ export default function HomeBody() {
                   >
                     0{i + 1}
                   </span>
-                  <div
-                    className={`relative grid gap-4 sm:grid-cols-12 ${""}`}
-                  >
+                  <div className="relative grid gap-4 sm:grid-cols-12">
                     <h3
                       className={`text-3xl font-semibold sm:text-4xl ${
                         i === 0 ? "sm:col-span-5 sm:col-start-1" : i === 1 ? "sm:col-span-5 sm:col-start-2" : "sm:col-span-5 sm:col-start-3"
@@ -41,11 +35,7 @@ export default function HomeBody() {
                     >
                       {e.titre}
                     </h3>
-                    <p
-                      className={`max-w-xl text-lg leading-relaxed text-muted ${
-                        i === 0 ? "sm:col-span-6 sm:col-start-7" : i === 1 ? "sm:col-span-6 sm:col-start-7" : "sm:col-span-6 sm:col-start-7"
-                      }`}
-                    >
+                    <p className="max-w-xl text-lg leading-relaxed text-muted sm:col-span-6 sm:col-start-7">
                       {e.texte}
                     </p>
                   </div>
@@ -155,7 +145,7 @@ export default function HomeBody() {
         <div className="prix-lumiere" aria-hidden="true" />
         <div className="relative mx-auto max-w-6xl px-6 py-32 sm:py-44">
           <Reveal>
-            <p className="font-display text-2xl italic text-paper/85 sm:text-3xl">{COPY.prix.titre}</p>
+            <h2 className="font-display text-2xl italic text-paper/85 sm:text-3xl">{COPY.prix.titre}</h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="tabular mt-6 font-display text-[clamp(4.5rem,13vw,12rem)] font-light leading-[0.9]">
@@ -165,7 +155,7 @@ export default function HomeBody() {
               </span>
             </p>
             {/* Ancrage honnête : des références réelles, pas de faux prix barré */}
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-paper/55">{COPY.prix.repere}</p>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-paper/70">{COPY.prix.repere}</p>
           </Reveal>
           <div className="mt-14 grid gap-x-16 gap-y-5 sm:grid-cols-2">
             {COPY.prix.inclus.map((item, i) => (
@@ -185,7 +175,7 @@ export default function HomeBody() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-goatcounter-click="clic-achat"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper px-8 py-4 text-base font-semibold text-accent-deep shadow-lift transition duration-300 hover:-translate-y-0.5 hover:bg-white sm:px-9 sm:text-lg"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper px-8 py-4 text-base font-semibold text-accent-deep shadow-lift transition duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper sm:px-9 sm:text-lg"
               >
                 {COPY.prix.cta}
                 <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
@@ -202,7 +192,7 @@ export default function HomeBody() {
       {/* FAQ — index éditorial */}
       <section id="faq">
         <div className="mx-auto max-w-4xl px-6 pb-32 pt-28 sm:pb-40 sm:pt-36">
-          <p className="kicker">Avant de te lancer</p>
+          <p className="kicker">Avant de vous lancer</p>
           <RevealTitle texte={COPY.faqTitre} pivot="fréquentes" className="mt-4 text-4xl font-semibold sm:text-6xl" />
           <Reveal delay={0.1}>
             <div className="mt-14">
