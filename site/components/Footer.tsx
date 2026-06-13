@@ -6,7 +6,7 @@ import { CONTACT_EMAIL } from "@/lib/config";
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line">
-      <div className="mx-auto max-w-6xl px-6 pb-10 pt-20 sm:pt-28">
+      <div className="mx-auto max-w-6xl px-6 pb-28 pt-20 sm:pb-10 sm:pt-28">
         <p className="font-display text-[clamp(2.4rem,8vw,7rem)] font-semibold leading-[0.95] tracking-tight">
           53 Questions
           <br />
