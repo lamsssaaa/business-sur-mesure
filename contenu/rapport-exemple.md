@@ -19,7 +19,7 @@
 >
 > Ce rapport est une **orientation entrepreneuriale**, construite à partir de vos réponses. Ce n'est **pas un conseil financier, juridique ou fiscal**. Aucun revenu n'est garanti : le résultat dépendra de votre exécution, de votre marché et de facteurs que personne ne contrôle.
 >
-> Ce qu'on vous garantit, c'est autre chose : une recommandation argumentée, un plan d'action concret, et la **garantie satisfait ou remboursé de 14 jours**. Si ce rapport ne vous apporte pas la clarté promise, écrivez-nous à questions.53@outlook.com et on vous rembourse les 49.90 CHF, sans discussion.
+> Ce qu'on vous apporte, c'est autre chose : une recommandation argumentée, un plan d'action concret, et un conseiller joignable — avant comme après la livraison. Une question, un doute sur la recommandation ? Écrivez-nous à questions.53@outlook.com : on répond sous 48 h, en vrai français, par un vrai humain.
 >
 > Vos réponses au questionnaire servent uniquement à produire ce rapport. Elles ne sont jamais revendues et sont supprimées sur simple demande.
 
@@ -261,9 +261,9 @@ Quand c'est fait, vous aurez officiellement commencé. Pas « réfléchi à comm
 **Une question sur votre rapport ?**
 Écrivez-nous à **questions.53@outlook.com** — on répond sous 48 h, en vrai français, par un vrai humain.
 
-**Garantie satisfait ou remboursé — 14 jours.**
-Si ce rapport ne vous a pas apporté la clarté promise, dites-le-nous avant le 24 juin 2026 et on vous rembourse les 49.90 CHF. Sans formulaire compliqué, sans question piège.
+**Un paiement, tout compris.**
+Pas d'abonnement, pas d'upsell, pas de « formation premium » cachée derrière. Vous payez une fois, vous recevez tout : le rapport complet, et votre conseiller joignable par email — avant comme après.
 
-*Ce rapport a été produit à partir de vos réponses, analysées avec des outils professionnels puis construites et validées personnellement par votre conseiller. Vos données servent uniquement à produire ce rapport ; elles ne sont jamais revendues et sont supprimées sur simple demande. Orientation entrepreneuriale — pas un conseil financier ou juridique. Aucun revenu garanti. Et la garantie satisfait ou remboursé de 14 jours s'applique jusqu'au 24 juin 2026 : un e-mail à questions.53@outlook.com suffit.*
+*Ce rapport a été produit à partir de vos réponses, analysées avec des outils professionnels puis construites et validées personnellement par votre conseiller. Vos données servent uniquement à produire ce rapport ; elles ne sont jamais revendues et sont supprimées sur simple demande. Orientation entrepreneuriale — pas un conseil financier ou juridique. Aucun revenu garanti. Une question sur votre rapport ? Un e-mail à questions.53@outlook.com suffit.*
 
 **53 Questions Sur Mesure** — Rapport n° EXEMPLE-001 — 10 juin 2026
