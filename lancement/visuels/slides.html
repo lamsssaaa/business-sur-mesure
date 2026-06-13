@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<!-- Visuels réseaux « 53 Questions Sur Mesure » — rendus en PNG par Chrome headless
+     (tools/rendre-visuels.sh). Un hash #id par slide. Palette/typo = le site. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f6;
+    --ink: #20251f;
+    --emeraude: #0e6b4f;
+    --profond: #072a1f;
+    --or: #b88a2e;
+    --muted: #6b7268;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Hanken Grotesk", sans-serif; }
+  .slide {
+    width: 1080px; height: 1350px;
+    display: none;
+    flex-direction: column;
+    padding: 96px 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide:target { display: flex; }
+  .carre { width: 1080px; height: 1080px; }
+
+  .fond-papier { background: var(--paper); color: var(--ink); }
+  .fond-profond { background: var(--profond); color: var(--paper); }
+  .fond-emeraude { background: var(--emeraude); color: var(--paper); }
+
+  .kicker {
+    font-size: 30px; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--or); margin-bottom: 48px;
+  }
+  .display {
+    font-family: "Fraunces", serif; font-weight: 600;
+    font-size: 96px; line-height: 1.08; letter-spacing: -0.01em;
+  }
+  .display .it { font-style: italic; }
+  .display .acc { color: var(--emeraude); }
+  .fond-profond .display .acc, .fond-emeraude .display .acc { color: #d8ecdf; font-style: italic; }
+  .corps {
+    font-size: 44px; line-height: 1.45; margin-top: 56px; max-width: 850px;
+  }
+  .fond-papier .corps { color: rgb(32 37 31 / 0.82); }
+  .fond-profond .corps { color: rgb(250 249 246 / 0.85); }
+
+  .pied {
+    position: absolute; bottom: 72px; left: 88px; right: 88px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 28px; letter-spacing: 0.02em;
+  }
+  .pied .marque { font-family: "Fraunces", serif; font-weight: 600; font-size: 32px; }
+  .pied .marque .sm { font-style: italic; color: var(--or); }
+  .fond-papier .pied { color: rgb(32 37 31 / 0.55); }
+  .fond-profond .pied { color: rgb(250 249 246 / 0.55); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .fleche { font-size: 56px; margin-top: auto; padding-bottom: 110px; }
+  .spacer { flex: 1; }
+
+  /* ============ photo de profil : monogramme 53 ============ */
+  #profil {
+    align-items: center; justify-content: center; text-align: center;
+    padding: 0;
+  }
+  #profil .gros53 {
+    font-family: "Fraunces", serif; font-weight: 700; font-size: 460px;
+    line-height: 1; color: var(--paper); letter-spacing: -0.04em;
+  }
+  #profil .sousmarque {
+    font-family: "Fraunces", serif; font-style: italic; font-weight: 500;
+    font-size: 86px; color: var(--or); margin-top: 8px;
+  }
+
+  /* slide 1 : hook plein cadre */
+  #c1s1 .display { font-size: 124px; }
+  #c1s1 .stop {
+    display: inline-block; margin-top: 64px; padding: 18px 44px;
+    border: 3px solid var(--or); border-radius: 999px;
+    color: var(--or); font-size: 36px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; font-family: "Hanken Grotesk", sans-serif;
+  }
+
+  /* slide 4 : le pivot 53 → 1 */
+  .pivot {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 150px;
+    margin-top: 72px; line-height: 1.1;
+  }
+  .pivot .or { color: var(--or); }
+
+  /* slide 6 : CTA */
+  #c1s6 { align-items: center; text-align: center; justify-content: center; }
+  #c1s6 .marqueGeante {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 110px; line-height: 1.05;
+  }
+  #c1s6 .marqueGeante .sm { font-style: italic; color: #d8ecdf; }
+  #c1s6 .cta {
+    margin-top: 88px; background: var(--paper); color: var(--profond);
+    border-radius: 999px; padding: 34px 64px; font-size: 42px; font-weight: 700;
+  }
+  #c1s6 .disclaimer {
+    position: absolute; bottom: 56px; left: 88px; right: 88px;
+    font-size: 24px; color: rgb(250 249 246 / 0.45);
+  }
+</style>
+</head>
+<body>
+
+<!-- PHOTO DE PROFIL (rendue en 1080, IG/TikTok la réduisent) -->
+<section class="slide carre fond-emeraude" id="profil">
+  <div class="gros53">53</div>
+  <div class="sousmarque">Sur Mesure</div>
+</section>
+
+<!-- ============ CARROUSEL 1 — « Arrêtez de chercher une idée » ============ -->
+
+<section class="slide fond-profond" id="c1s1">
+  <p class="kicker">Le manifeste</p>
+  <h1 class="display">Arrêtez de chercher<br><span class="it acc">une idée</span><br>de business.</h1>
+  <div class="stop">Sérieusement. Arrêtez.</div>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">1 / 6</span></div>
+</section>
+
+<section class="slide fond-papier" id="c1s2">
+  <p class="kicker">Le vrai problème</p>
+  <h1 class="display">Votre problème, ce n'est pas<br>le manque d'idées.<br><span class="it acc">C'est l'inverse.</span></h1>
+  <p class="corps">Vous en avez trop. Et trop d'idées, c'est zéro décision : vous comparez, vous doutez, vous reportez à lundi.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">2 / 6</span></div>
+</section>
+
+<section class="slide fond-papier" id="c1s3">
+  <p class="kicker">Les listes</p>
+  <h1 class="display">« Top 10 idées<br>de business 2026 »</h1>
+  <p class="corps">Vous en avez déjà lu des dizaines. Et après ? Rien. Une liste de plus ne vous fera pas avancer — ce qui vous manque, ce n'est pas une idée. C'est une <strong>décision</strong>.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">3 / 6</span></div>
+</section>
+
+<section class="slide fond-profond" id="c1s4">
+  <p class="kicker">Nous faisons l'inverse</p>
+  <h1 class="display">Vous répondez<br>aux 53 questions.</h1>
+  <div class="pivot">53 questions<br><span class="or">→ UN business.</span></div>
+  <p class="corps">Votre expérience, vos compétences, votre budget, votre temps. Un seul business en sort : le vôtre.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">4 / 6</span></div>
+</section>
+
+<section class="slide fond-papier" id="c1s5">
+  <p class="kicker">Ce que vous recevez</p>
+  <h1 class="display">Une décision claire,<br><span class="it acc">argumentée,</span><br>taillée pour vous.</h1>
+  <p class="corps">LE business à lancer, pourquoi celui-là et pas les autres, votre plan des 30 premiers jours, votre budget réel. Rapport personnalisé, livré en 48 h.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">5 / 6</span></div>
+</section>
+
+<section class="slide fond-profond" id="c1s6">
+  <h1 class="marqueGeante">53 Questions<br><span class="sm">Sur Mesure</span></h1>
+  <div class="cta">Le site est en lien dans la bio ↗</div>
+  <p class="disclaimer">Orientation entrepreneuriale — pas un conseil financier ou juridique, aucun revenu garanti.</p>
+</section>
+
+</body>
+</html>

@@ -4,16 +4,9 @@ import Reveal from "@/components/Reveal";
 import { COPY } from "@/lib/copy";
 
 /* Trois « pages » du rapport-exemple (contenu réel de contenu/rapport-exemple.md),
-   empilées comme des feuilles posées sur la table. */
-
-const SOMMAIRE = [
-  "VOTRE business : c'est quoi, pourquoi vous, et ce qu'on a écarté",
-  "Votre plan des 30 premiers jours — semaine par semaine",
-  "Votre budget de démarrage — poste par poste",
-  "Vos 3 premiers clients — où ils sont, message prêt à copier",
-  "Les pièges de ce secteur — et comment les éviter",
-  "Votre toute première action demain matin",
-];
+   empilées comme des feuilles posées sur la table. Chacune prouve une chose :
+   1) un vrai rapport personnalisé, 2) LE business recommandé (concret, désirable),
+   3) la preuve que chaque ligne sort de SES réponses. */
 
 function Page({
   children,
@@ -41,56 +34,58 @@ export default function RapportApercu() {
           <p className="mt-5 max-w-2xl text-lg text-muted">{COPY.apercu.intro}</p>
         </Reveal>
         <div className="mt-14 flex flex-col items-center gap-6 lg:flex-row lg:items-stretch lg:justify-center">
-            {/* Page de garde */}
-            <Reveal delay={0.1} y={48}><Page className="lg:-rotate-2">
-              <p className="kicker">Rapport personnalisé</p>
-              <p className="mt-6 font-display text-2xl font-semibold leading-snug">
-                53 Questions <span className="italic text-accent">Sur Mesure</span>
-              </p>
-              <p className="mt-2 font-display text-lg text-muted">— Karim</p>
-              <p className="mt-8 text-sm text-muted">
-                LE business à lancer, et comment, en 30 jours.
-              </p>
-              <p className="mt-10 border-t border-line pt-4 text-xs text-muted">
-                Basé sur ses 53 réponses · 17 pages · livré en 48 h
-              </p>
-            </Page></Reveal>
-            {/* Sommaire */}
-            <Reveal delay={0.22} y={48}><Page className="lg:translate-y-3">
-              <p className="font-display text-lg font-semibold">Sommaire</p>
-              <ol className="mt-4 space-y-2.5">
-                {SOMMAIRE.map((item, i) => (
-                  <li key={item} className="flex gap-2.5 text-sm leading-snug text-muted">
-                    <span className="font-display font-semibold text-accent">{i + 1}.</span>
-                    {item}
-                  </li>
-                ))}
-              </ol>
-            </Page></Reveal>
-            {/* Extrait « Pourquoi VOUS » */}
-            <Reveal delay={0.34} y={48}><Page className="lg:rotate-2">
-              <p className="font-display text-lg font-semibold">
-                1.2 — Pourquoi <span className="italic text-accent">VOUS</span>
-              </p>
-              <blockquote className="mt-4 rounded-lg bg-accent-soft p-3 text-sm italic leading-snug">
-                « J'ai réorganisé toute la mise en place d'une cuisine de 40 couverts. »
-                <span className="mt-1 block text-xs not-italic text-muted">
-                  — sa réponse à la question 9
-                </span>
-              </blockquote>
-              <p className="mt-3 text-sm leading-snug text-muted">
-                C'est exactement la compétence cœur du métier recommandé : produire beaucoup,
-                vite, proprement…
-              </p>
-              <div aria-hidden="true" className="mt-3 space-y-2 blur-[3px] select-none">
-                <div className="h-2.5 rounded bg-line" />
-                <div className="h-2.5 w-5/6 rounded bg-line" />
-                <div className="h-2.5 w-4/6 rounded bg-line" />
-              </div>
-              <p className="mt-3 text-xs text-muted">
-                La suite est dans le rapport — chaque rapport est rédigé pour son destinataire.
-              </p>
-            </Page></Reveal>
+          {/* 1 — Page de garde : l'identité + la portée du rapport */}
+          <Reveal delay={0.1} y={48}><Page className="lg:-rotate-2">
+            <p className="kicker">Rapport personnalisé</p>
+            <p className="mt-6 font-display text-2xl font-semibold leading-snug">
+              53 Questions <span className="italic text-accent">Sur Mesure</span>
+            </p>
+            <p className="mt-2 font-display text-lg text-muted">— Karim, 34 ans · Lyon</p>
+            <p className="mt-8 text-sm leading-snug text-ink/80">
+              LE business à lancer, et comment, en 30 jours.
+            </p>
+            <p className="mt-10 border-t border-line pt-4 text-xs leading-relaxed text-muted">
+              17 pages · 6 parties · livré en 48 h
+              <br />
+              Construit à partir de ses 53 réponses.
+            </p>
+          </Page></Reveal>
+          {/* 2 — LE business recommandé : concret, réel, désirable */}
+          <Reveal delay={0.22} y={48}><Page className="lg:translate-y-3">
+            <p className="kicker">Partie 1 — Sa recommandation</p>
+            <p className="mt-5 font-display text-xl font-semibold leading-snug text-accent">
+              Cuisinier de batch cooking à domicile
+            </p>
+            <p className="mt-4 font-display text-base italic leading-snug">
+              « Il ne vend pas de la cuisine. Il vend une semaine de tranquillité. »
+            </p>
+            <p className="mt-4 text-sm leading-snug text-muted">
+              Un marché qui existe déjà, un démarrage à ~510 €, et son seul créneau libre — le
+              dimanche — qui se trouve être le jour le plus demandé du métier.
+            </p>
+          </Page></Reveal>
+          {/* 3 — Pourquoi lui : la preuve que chaque ligne sort de SES réponses */}
+          <Reveal delay={0.34} y={48}><Page className="lg:rotate-2">
+            <p className="kicker">Partie 1.2 — Pourquoi lui</p>
+            <blockquote className="mt-5 rounded-lg bg-accent-soft p-3 text-sm italic leading-snug">
+              « J'ai réorganisé toute la mise en place d'une cuisine de 40 couverts. »
+              <span className="mt-1 block text-xs not-italic text-muted">
+                — sa réponse à la question 9
+              </span>
+            </blockquote>
+            <p className="mt-3 text-sm leading-snug text-muted">
+              C'est exactement la compétence cœur du métier recommandé : produire beaucoup,
+              vite, proprement.
+            </p>
+            <div aria-hidden="true" className="mt-3 space-y-2 blur-[3px] select-none">
+              <div className="h-2.5 rounded bg-line" />
+              <div className="h-2.5 w-5/6 rounded bg-line" />
+              <div className="h-2.5 w-4/6 rounded bg-line" />
+            </div>
+            <p className="mt-3 text-xs leading-snug text-ink/70">
+              Chaque recommandation du rapport est rattachée à l'une de ses 53 réponses.
+            </p>
+          </Page></Reveal>
         </div>
         <Reveal delay={0.2}>
           <p className="mt-12 text-center">

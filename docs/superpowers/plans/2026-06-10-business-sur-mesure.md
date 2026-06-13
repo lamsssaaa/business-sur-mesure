@@ -215,7 +215,7 @@ export const LINKS = {
 
 // Adresse de contact affichée sur le site et dans les emails.
 // v1 : adresse perso ; à remplacer par une adresse dédiée dès que le domaine est acheté.
-export const CONTACT_EMAIL = "ahmed.salam@hotmail.ch";
+export const CONTACT_EMAIL = "questions.53@outlook.com";
 
 // Rempli après les 3 rapports offerts (prénom + autorisation obtenue). Tant que vide,
 // la section témoignages n'apparaît pas — on n'invente JAMAIS de témoignage.

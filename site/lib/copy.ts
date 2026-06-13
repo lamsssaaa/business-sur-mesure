@@ -21,37 +21,6 @@ export const COPY = {
     cta: "Répondez aux 53 questions et changez votre vie professionnelle",
     reassurance: "Livré en 48 h · Une fois, pas d'abonnement.",
   },
-  histoire: {
-    kicker: "L'histoire",
-    titre: "Pourquoi ce service existe",
-    chapitres: [
-      {
-        titre: "Le constat",
-        texte:
-          "J'ai passé des années à construire et lancer des projets en ligne, depuis Genève. Certains ont tenu, d'autres m'ont surtout appris une chose : le plus dur n'est pas de travailler dur. C'est de choisir QUOI lancer. J'ai connu les nuits à comparer dix idées, les tableaux d'avantages et d'inconvénients, les « je commence lundi » qui ne commencent jamais.",
-      },
-      {
-        titre: "Le déclic",
-        texte:
-          "Le déclic est venu le jour où j'ai arrêté de chercher « la bonne idée » pour me poser de vraies questions. Qu'est-ce que je sais faire, vraiment ? Combien je peux investir sans me mettre en danger ? Combien d'heures par semaine, une fois la vraie vie déduite ? Qu'est-ce que je refuse de faire, même si c'est rentable ? En répondant, la liste s'est réduite toute seule. Il en restait une.",
-      },
-      {
-        titre: "La méthode",
-        texte:
-          "J'en ai fait une méthode : 53 questions précises — celles qui changent la réponse. Expérience, compétences, budget, temps, limites. Pas pour produire une liste d'idées de plus : pour en éliminer neuf et argumenter celle qui reste. Je ne suis pas un grand cabinet, et ce n'est pas une formation à 2 000 CHF. Une personne, une méthode, un rapport.",
-      },
-      {
-        titre: "Vous",
-        texte:
-          "Maintenant, imaginez-la pour vous. Vous répondez aux 53 questions — 20 à 30 minutes, honnêtement. 48 heures plus tard, vous ouvrez un PDF qui parle de votre situation : LE business à lancer, pourquoi celui-là et pas les autres, votre plan des 30 premiers jours, avec votre budget. Plus de brouillard. Une direction.",
-      },
-      {
-        titre: "Ce que je ne vous promets pas",
-        texte:
-          "Je ne vous promets aucun revenu, aucun « six chiffres en six mois ». Personne d'honnête ne le peut — et c'est exactement pour ça que ce service existe. Je vous promets une décision claire, argumentée, taillée pour vous. Le reste dépendra de votre travail. Vous le saviez déjà : rien ne tombe du ciel.",
-      },
-    ],
-  },
   etapesTitre: "Comment ça marche",
   etapes: [
     {
@@ -84,18 +53,18 @@ export const COPY = {
   apercu: {
     titre: "À quoi ressemble votre rapport",
     intro:
-      "Voici un rapport-exemple — profil fictif anonymisé, mais analyse, plan et budget bien réels. Le vôtre suivra exactement cette structure, rédigé pour vous.",
+      "Un vrai rapport, sur un profil fictif. Vous y voyez LE business recommandé, l'argumentaire qui le relie à chacune de ses réponses, le plan des 30 jours et le budget — tout y est. Le vôtre suivra la même structure, mais chaque ligne sera écrite pour vous.",
     cta: "Feuilleter le rapport-exemple complet (PDF)",
   },
   unSeul: {
     titre: "Pourquoi un seul business, et pas une liste",
     texte:
-      "Vous avez déjà lu des listes de « 20 idées de business ». Et après ? Rien. Trop de choix, c'est zéro décision : vous comparez, vous doutez, vous reportez. Nous, on fait l'inverse. On analyse vos 53 réponses et on vous recommande UN business — un seul — choisi pour votre situation, votre budget et votre temps. Avec l'argumentaire complet et le plan pour démarrer en 30 jours. Parce que ce qui vous manque, ce n'est pas une idée de plus. C'est une décision claire. Et ce business, c'est le vôtre : avec 53 questions — dont une grande partie en réponses libres, avec vos propres mots — votre combinaison de réponses n'existe qu'une fois. Pour recevoir la même recommandation que vous, il faudrait répondre exactement comme vous aux 53 questions : même expérience, même budget, même temps, mêmes contraintes. Autant dire personne.",
+      "Vous avez déjà lu des listes de « 20 idées de business ». Et après ? Rien. Trop de choix, c'est zéro décision : on compare, on doute, on reporte. Ici, c'est l'inverse. On analyse vos 53 réponses et on vous recommande UN business — le vôtre — avec l'argumentaire complet et le plan pour démarrer en 30 jours. Ce qui vous manque, ce n'est pas une idée de plus. C'est une décision claire. Et comme une grande partie de vos réponses sont libres, avec vos propres mots, votre combinaison n'existe qu'une seule fois : personne ne recevra le même rapport que vous.",
   },
   qui: {
     titre: "Votre conseiller",
     texte:
-      "Derrière ce service, il y a une personne : un conseiller indépendant basé à Genève, qui construit et lance des projets en ligne depuis plusieurs années. Pas une agence, pas une équipe de vendeurs, pas de PDF automatique. Chaque dossier est traité personnellement : je croise vos 53 réponses — expérience, compétences, budget, temps — avec des outils d'analyse professionnels, je construis votre recommandation et je la valide ligne par ligne avant de vous l'envoyer. C'est ce travail de conseil que vous achetez.",
+      "Pas une agence, pas une équipe de vendeurs, pas de PDF automatique. Derrière ce service, il y a une personne : un conseiller indépendant basé à Genève, qui lance des projets en ligne depuis des années. Chaque dossier est traité à la main — je croise vos 53 réponses, je construis votre recommandation et je la valide ligne par ligne avant de vous l'envoyer.\n\nEt soyons clairs : je ne vous promets aucun revenu, aucun « six chiffres en six mois ». Personne d'honnête ne le peut. Je vous promets une décision claire, argumentée, taillée pour vous. Le reste dépendra de votre travail — rien ne tombe du ciel.",
   },
   pourVous: {
     kicker: "Avant de décider",
@@ -109,7 +78,7 @@ export const COPY = {
       "Vous avez déjà une idée — mais vous doutez, et vous repoussez depuis des mois.",
     ],
     travail:
-      "Si le rapport s'adapte à tous ces profils, ce n'est pas magique : c'est le résultat d'un travail énorme sur les questions elles-mêmes. Chacune des 53 a été écrite, testée, reformulée, déplacée — jusqu'à ce qu'elle fasse exactement son travail : extraire de VOTRE situation l'information qui change la recommandation. Une question trop vague ? Supprimée. Redondante ? Supprimée. Il en reste 53 — pas une de trop, pas une qui manque. C'est ce travail invisible qui fait qu'un boulanger de 45 ans et un étudiant de 22 ans reçoivent deux rapports qui n'ont rien en commun — et que les deux sont justes.",
+      "Si le rapport s'adapte à tous ces profils, ce n'est pas magique : chacune des 53 questions a été écrite et testée pour extraire de VOTRE situation l'information qui change la recommandation. C'est ce qui fait qu'un boulanger de 45 ans et un étudiant de 22 ans reçoivent deux rapports qui n'ont rien en commun — et que les deux sont justes.",
     exception:
       "Le seul profil pour qui ce service n'est pas fait : celui qui cherche un revenu sans rien faire. On vous donne la direction et le plan. La suite, c'est vous. Rien ne tombe du ciel.",
   },
@@ -150,18 +119,6 @@ export const COPY = {
     {
       q: "C'est livré en combien de temps ?",
       r: "Votre rapport PDF est livré sous 48 heures après l'envoi de vos 53 réponses complètes. Ce délai existe parce que chaque rapport est relu, vérifié et validé par un humain — ce n'est pas un document généré en un clic. Dans les rares cas où il faut un peu plus de temps, un email vous prévient avant l'échéance.",
-    },
-    {
-      q: "Que deviennent mes données ?",
-      r: "Vos réponses servent uniquement à produire votre rapport, rien d'autre. Elles ne sont jamais revendues, jamais partagées avec des tiers à des fins commerciales, jamais utilisées pour de la publicité. Sur simple demande par email, elles sont supprimées définitivement. C'est une règle non négociable.",
-    },
-    {
-      q: "Pourquoi un seul business et pas plusieurs ?",
-      r: "Parce que les listes d'idées ne font pas avancer : avec 20 options, on compare, on doute, et on ne lance rien. Ce que vous achetez ici, c'est une décision claire — un business choisi pour vous, avec l'argumentaire qui explique pourquoi celui-là, et le plan pour démarrer en 30 jours.",
-    },
-    {
-      q: "Ça marche dans mon pays ?",
-      r: "Oui : le service s'adresse à toute la francophonie — Suisse, France, Belgique, Québec et au-delà. Votre pays de résidence fait partie des 53 questions, et votre plan d'action tient compte de votre marché et de votre contexte local. Pour les démarches administratives précises (statut, immatriculation, taxes), le rapport vous indique par où commencer, mais vérifiez toujours les détails auprès des autorités compétentes de votre pays.",
     },
     {
       q: "Pourquoi payer, alors qu'une IA gratuite peut me donner des idées ?",

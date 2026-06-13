@@ -18,7 +18,7 @@ export const GOATCOUNTER_CODE = "";
 
 // Adresse de contact affichée sur le site et dans les emails.
 // v1 : adresse perso ; à remplacer par une adresse dédiée dès que le domaine est acheté.
-export const CONTACT_EMAIL = "ahmed.salam@hotmail.ch";
+export const CONTACT_EMAIL = "questions.53@outlook.com";
 
 // Lien de commande pour l'Audit de croissance 299 CHF
 // Même logique que LIEN_COMMANDE : Stripe si branché, sinon formulaire Tally de commande.

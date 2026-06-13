@@ -1,6 +1,6 @@
 # Réseaux sociaux — kit de lancement Instagram + TikTok
 
-*Prêt à coller. Règles non négociables : jamais de promesse de revenu, jamais « je me lance » (tu es un service établi : « je propose »), jamais l'IA comme argument de vente, jamais ton visage (voix off + écran + visuels).* 
+*Prêt à coller. Règles non négociables : **vouvoiement partout** (cohérent avec le site) ; jamais de promesse de revenu ; jamais « je me lance » (vous êtes un service établi : « je propose ») ; jamais l'IA comme argument de vente ; jamais de visage (**voix IA** + écran + visuels).* 
 
 ---
 
@@ -21,18 +21,18 @@
 ## 1. Instagram — setup (15 min)
 
 **Nom d'utilisateur (dans l'ordre de préférence, selon dispo) :**
-1. `@tonbusiness.surmesure`
-2. `@business.surmesure`
-3. `@tonbusinesssurmesure`
+1. `@53questions.surmesure`
+2. `@53questionssurmesure`
+3. `@business.surmesure`
 
 **Nom affiché :** `53 Questions Sur Mesure`
 **Catégorie :** Service de conseil  ·  **Type :** compte professionnel
 
 **Bio (≤150 caractères) :**
 ```
-On te dit LE business à lancer — un seul, d'après tes 50 réponses.
+On vous dit LE business à lancer — un seul, d'après vos 53 réponses.
 Rapport perso + plan 30 jours. Conseil humain, Genève 🇨🇭
-👇 Mini-test gratuit (2 min)
+👇 Votre rapport sur mesure · 49.90, en 48 h
 ```
 **Lien bio :** `https://lamsssaaa.github.io/business-sur-mesure/`
 
@@ -45,8 +45,8 @@ Rapport perso + plan 30 jours. Conseil humain, Genève 🇨🇭
 **Nom d'utilisateur :** mêmes options que IG (cohérence > tout).
 **Bio (≤80 caractères) :**
 ```
-LE business à lancer pour TOI. Pas une liste.
-Mini-test gratuit → lien sur mon Instagram
+LE business à lancer pour VOUS. Pas une liste.
+Rapport perso en 48 h → lien sur mon Instagram
 ```
 ⚠️ **Verrou TikTok :** le lien cliquable en bio n'apparaît qu'à **1 000 abonnés**. D'ici là : « lien sur mon Instagram » (cross-promo) + le nom du site prononcé en fin de vidéo. Ne mets JAMAIS l'URL en commentaire épinglé avec un autre compte — shadowban risqué.
 
@@ -58,15 +58,15 @@ Les **scripts 1-3 sont déjà écrits** dans `scripts-video.md` (problème → o
 
 ### SCRIPT 4 — « Vous donnez le même business à tout le monde ? » (l'objection n°1)
 **Durée :** 30-35 s · **Visuel :** écran du questionnaire qui défile, puis compteur de combinaisons qui explose (animation simple CapCut), fin sur la gemme.
-**Hook (0-3 s) :** « — Mais en vrai, tu donnes le même business à tout le monde, non ? »
-**Corps :** « Impossible, et voilà pourquoi. La recommandation sort de tes 50 réponses : ton expérience, ton budget, ton temps, tes contraintes. Et une grande partie, tu y réponds avec tes propres mots. Pour recevoir le même rapport que toi, il faudrait que quelqu'un réponde **exactement** comme toi aux 50 questions. Un boulanger de 45 ans avec 5 000 francs et un étudiant de 22 ans avec 500 : deux mondes, deux plans. Ta combinaison n'existe qu'une fois. »
-**CTA (3 dernières s) :** « Le mini-test est gratuit. 10 questions, 2 minutes. Lien en bio. »
+**Hook (0-3 s) :** « — Mais en vrai, vous donnez le même business à tout le monde, non ? »
+**Corps :** « Impossible, et voilà pourquoi. La recommandation sort de vos 53 réponses : votre expérience, votre budget, votre temps, vos contraintes. Et une grande partie, vous y répondez avec vos propres mots. Pour recevoir le même rapport que vous, il faudrait que quelqu'un réponde **exactement** comme vous aux 53 questions. Un boulanger de 45 ans avec 5 000 francs et un étudiant de 22 ans avec 500 : deux mondes, deux plans. Votre combinaison n'existe qu'une fois. »
+**CTA (3 dernières s) :** « Le rapport-exemple est en libre accès sur le site. Allez le voir, lien en bio. »
 
 ### SCRIPT 5 — « Je feuillette un rapport devant toi » (la preuve)
 **Durée :** 40-45 s · **Visuel :** enregistrement d'écran du PDF rapport-exemple (Karim, batch cooking) qu'on fait défiler lentement, zooms sur les titres de sections.
 **Hook :** « Voilà à quoi ressemblent 49 francs 90 de conseil. Page par page. »
-**Corps :** « Page 2 : ton profil — ce que tes réponses révèlent. Page 5 : LE business recommandé, et surtout *pourquoi celui-là* — avec les pistes écartées, et pourquoi. Page 9 : ton plan 30 jours, semaine par semaine, avec le budget réel. Page 14 : les pièges de CE business précis. C'est un rapport-exemple, profil fictif — le tien est construit sur tes 50 réponses à toi. »
-**CTA :** « Il est en libre accès sur le site, va le feuilleter. Lien en bio. »
+**Corps :** « Page 2 : votre profil — ce que vos réponses révèlent. Page 5 : LE business recommandé, et surtout *pourquoi celui-là* — avec les pistes écartées, et pourquoi. Page 9 : votre plan 30 jours, semaine par semaine, avec le budget réel. Page 14 : les pièges de CE business précis. C'est un rapport-exemple, profil fictif — le vôtre est construit sur vos 53 réponses à vous. »
+**CTA :** « Il est en libre accès sur le site, allez le feuilleter. Lien en bio. »
 
 **Cadence :** 3 vidéos/semaine TikTok (lun-mer-ven), repostées en **Reels** le lendemain. Même fichier, zéro travail en plus.
 
@@ -78,19 +78,19 @@ Mix : 4 Reels (= les TikToks) + 4 carrousels (Canva, fond papier + émeraude + o
 
 | # | Format | Contenu |
 |---|---|---|
-| 1 | Carrousel 6 slides | « Arrête de chercher une idée » → le manifeste du site, slide par slide |
+| 1 | Carrousel 6 slides | « Arrêtez de chercher une idée » → le manifeste du site, slide par slide |
 | 2 | Reel | Script 1 (le problème) |
 | 3 | Carrousel 5 slides | « Les 5 parties de ton rapport » (= section "Ce que tu reçois") |
 | 4 | Reel | Script 4 (l'objection « même business pour tous ? ») |
 | 5 | Post simple | La gemme + « Un business. Pas une liste. » (manifeste visuel) |
-| 6 | Carrousel 7 slides | « 7 questions qu'on te pose (et que personne ne t'a jamais posées) » — piochées dans le questionnaire (Q23, Q32, Q40…) |
+| 6 | Carrousel 7 slides | « 7 questions qu'on vous pose (et que personne ne vous a jamais posées) » — piochées dans le questionnaire (Q23, Q32, Q40…) |
 | 7 | Reel | Script 5 (je feuillette le rapport) |
-| 8 | Carrousel 4 slides | « Comment ça marche » (mini-test → 50 Q → 48 h → rapport) |
+| 8 | Carrousel 4 slides | « Comment ça marche » (commande → 53 Q → 48 h → rapport) |
 | 9 | Reel | Script 2 (ce que tu reçois pour 49.90) |
 
 **Hashtags (FR, 8-12 par post, varier) :** #entrepreneuriat #lancersonbusiness #ideedebusiness #reconversion #businessenligne #independant #suisseromande #geneve #quitterlesalariat #sidebusiness #francophonie #creationentreprise
 
-**Stories (5 min/jour) :** sondages (« T'as combien d'idées de business en tête là ? 0 / 1 / trop »), réponses aux questions, citation du rapport-exemple. Épingler en Highlights : « La méthode », « Le rapport », « FAQ ».
+**Stories (5 min/jour) :** sondages (« Vous avez combien d'idées de business en tête, là ? 0 / 1 / trop »), réponses aux questions, citation du rapport-exemple. Épingler en Highlights : « La méthode », « Le rapport », « FAQ ».
 
 ---
 
@@ -119,4 +119,4 @@ Mix : 4 Reels (= les TikToks) + 4 carrousels (Canva, fond papier + émeraude + o
 
 ---
 
-*Dernière mise à jour : 2026-06-11. Cohérent avec : `plan-lancement-7-jours.md`, `assets-lancement.md`, `scripts-video.md`, positionnement « conseiller » (jamais l'IA en avant, jamais de promesse de gain).*
+*Dernière mise à jour : 2026-06-13. Produit : 53 questions, vouvoiement, voix IA (invisible). Cohérent avec : `plan-lancement-7-jours.md`, `assets-lancement.md`, `scripts-video.md`, positionnement « conseiller » (jamais l'IA en avant, jamais de promesse de gain).*
