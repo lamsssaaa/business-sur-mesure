@@ -30,7 +30,7 @@ const heading = (t) =>
   blocks.push({ uuid: u(), type: "HEADING_2", groupUuid: u(), groupType: "HEADING_2", payload: { html: html(t) } });
 const question = (t) =>
   blocks.push({ uuid: u(), type: "TITLE", groupUuid: u(), groupType: "QUESTION", payload: { html: html(t) } });
-const textarea = (requis = true, placeholder = "Ta réponse…") =>
+const textarea = (requis = true, placeholder = "Votre réponse…") =>
   blocks.push({
     uuid: u(),
     type: "TEXTAREA",
@@ -78,7 +78,7 @@ const flushQuestion = () => {
     choices(optionsEnCours, multi);
     if (suiviEnCours) {
       question(suiviEnCours + " (facultatif)");
-      textarea(false, "Ta précision…");
+      textarea(false, "Votre précision…");
     }
   } else {
     question(questionEnCours);
@@ -101,13 +101,13 @@ for (; i < lines.length; i++) {
     if (enIntro && /^[A-G]\./.test(section[1])) {
       enIntro = false;
       // L'email de croisement Stripe vient AVANT la section A
-      question("Quel email as-tu utilisé pour payer ? (c'est la clé qui relie ta commande à tes réponses)");
+      question("Quel email avez-vous utilisé pour payer ? (c'est la clé qui relie votre commande à vos réponses)");
       blocks.push({
         uuid: u(),
         type: "INPUT_EMAIL",
         groupUuid: u(),
         groupType: "INPUT_EMAIL",
-        payload: { isRequired: true, placeholder: "ton@email.com" },
+        payload: { isRequired: true, placeholder: "vous@exemple.com" },
       });
     }
     heading(section[1]);
@@ -147,7 +147,7 @@ for (; i < lines.length; i++) {
 }
 flushQuestion();
 
-text("Merci ! Clique sur « Envoyer » — ton rapport personnalisé arrive par email sous 48 h.");
+text("Merci ! Cliquez sur « Envoyer » — votre rapport personnalisé arrive par email sous 48 h.");
 
 const creer = async (payload) => {
   const res = await fetch("https://api.tally.so/forms", {
@@ -170,7 +170,7 @@ const f1 = await creer({
   blocks,
   settings: { language: "fr", hasSelfEmailNotifications: true },
 });
-console.log(`50Q : https://tally.so/r/${f1.id} (${nbQuestions} questions, ${blocks.length} blocs)`);
+console.log(`53Q : https://tally.so/r/${f1.id} (${nbQuestions} questions, ${blocks.length} blocs)`);
 
 // --- Formulaire 2 : profil par email (mini-test) ---
 if (process.env.SKIP_EMAIL_FORM === "1") { process.exit(0); }
