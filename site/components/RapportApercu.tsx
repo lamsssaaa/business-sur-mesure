@@ -40,12 +40,12 @@ export default function RapportApercu() {
             <p className="mt-6 font-display text-2xl font-semibold leading-snug">
               53 Questions <span className="italic text-accent">Sur Mesure</span>
             </p>
-            <p className="mt-2 font-display text-lg text-muted">— Karim, 34 ans · Lyon</p>
+            <p className="mt-2 font-display text-lg text-muted">— Camille, 38 ans · Annecy</p>
             <p className="mt-8 text-sm leading-snug text-ink/80">
               LE business à lancer, et comment, en 30 jours.
             </p>
             <p className="mt-10 border-t border-line pt-4 text-xs leading-relaxed text-muted">
-              17 pages · 6 parties · livré en 48 h
+              12-18 pages · 6 parties · livré en 48 h
               <br />
               Construit à partir de ses 53 réponses.
             </p>
@@ -54,28 +54,28 @@ export default function RapportApercu() {
           <Reveal delay={0.22} y={48}><Page className="lg:translate-y-3">
             <p className="kicker">Partie 1 — Sa recommandation</p>
             <p className="mt-5 font-display text-xl font-semibold leading-snug text-accent">
-              Cuisinier de batch cooking à domicile
+              Gestion administrative et facturation pour artisans
             </p>
             <p className="mt-4 font-display text-base italic leading-snug">
-              « Il ne vend pas de la cuisine. Il vend une semaine de tranquillité. »
+              « Elle ne vend pas de l'administratif. Elle vend du temps et de la trésorerie. »
             </p>
             <p className="mt-4 text-sm leading-snug text-muted">
-              Un marché qui existe déjà, un démarrage à ~510 €, et son seul créneau libre — le
-              dimanche — qui se trouve être le jour le plus demandé du métier.
+              Un marché immense et mal servi, un démarrage à ~580 €, et des clients qui
+              paient chaque mois — pas une mission unique.
             </p>
           </Page></Reveal>
           {/* 3 — Pourquoi lui : la preuve que chaque ligne sort de SES réponses */}
           <Reveal delay={0.34} y={48}><Page className="lg:rotate-2">
-            <p className="kicker">Partie 1.2 — Pourquoi lui</p>
+            <p className="kicker">Partie 1.2 — Pourquoi elle</p>
             <blockquote className="mt-5 rounded-lg bg-accent-soft p-3 text-sm italic leading-snug">
-              « J'ai réorganisé toute la mise en place d'une cuisine de 40 couverts. »
+              « J'ai récupéré 14 000 € d'impayés en deux mois pour mon employeur. »
               <span className="mt-1 block text-xs not-italic text-muted">
                 — sa réponse à la question 9
               </span>
             </blockquote>
             <p className="mt-3 text-sm leading-snug text-muted">
-              C'est exactement la compétence cœur du métier recommandé : produire beaucoup,
-              vite, proprement.
+              C'est exactement la compétence cœur du métier recommandé : rigueur, relance,
+              trésorerie sauvée.
             </p>
             <div aria-hidden="true" className="mt-3 space-y-2 blur-[3px] select-none">
               <div className="h-2.5 rounded bg-line" />
