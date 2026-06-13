@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ViewTransitions } from "next-view-transitions";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
@@ -43,6 +43,10 @@ export const metadata: Metadata = {
       "53 questions sur votre profil → LE business à lancer, avec le plan des 30 premiers jours.",
     images: [`${SITE_URL}/og.jpg`],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#faf9f6",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
