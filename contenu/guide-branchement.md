@@ -6,10 +6,10 @@
 > Tant que les liens ne sont pas branchés, le bouton « 49.90 CHF » du mini-test
 > bascule automatiquement sur un email de contact (garde pré-lancement intégrée).
 
-## 1. Tally — le questionnaire 50 questions (post-achat)
+## 1. Tally — le questionnaire 53 questions (post-achat)
 
 1. Crée un compte gratuit sur tally.so (avec l'email de contact du service).
-2. « Create form » → recopie les 50 questions depuis `contenu/intake-50-questions.md`,
+2. « Create form » → recopie les 53 questions depuis `contenu/intake-53-questions.md`,
    section par section (A à G), avec l'en-tête d'introduction du fichier.
    Types de champs : texte long pour les questions ouvertes, choix multiple pour les
    questions à options (A/B/C/D...). Question email OBLIGATOIRE en premier
@@ -31,13 +31,13 @@
 2. « Créer un lien de paiement » (Payment Link) avec ce produit.
 3. Dans les options du lien → « Page de confirmation » → rediriger vers une URL :
    `https://lamsssaaa.github.io/business-sur-mesure/merci/`
-   (c'est CETTE redirection qui envoie le client vers les 50 questions après paiement).
+   (c'est CETTE redirection qui envoie le client vers les 53 questions après paiement).
 4. Copie l'URL du lien (format https://buy.stripe.com/XXXXXX).
 
 ## 4. Brancher les 3 URLs dans le site
 
 1. Ouvre `site/lib/config.ts` et remplace les 3 valeurs A_REMPLACER :
-   - `questionnaire` → URL du formulaire 50 questions (étape 1)
+   - `questionnaire` → URL du formulaire 53 questions (étape 1)
    - `paiement` → URL du Payment Link Stripe (étape 3)
    - `profilParEmail` → URL du mini-formulaire (étape 2)
 2. Commit + push → le déploiement se relance tout seul :
@@ -48,8 +48,8 @@
 - [ ] Mini-test complet sur le site en ligne → profil affiché → le bouton 49.90 CHF
       ouvre bien Stripe (plus le mailto de secours)
 - [ ] Paiement TEST réel de bout en bout (Stripe en mode test, carte 4242 4242 4242 4242) →
-      redirection vers /merci/ → le bouton « Répondre aux 50 questions » ouvre le bon Tally
-- [ ] Soumission test du questionnaire 50 questions → notification email reçue
+      redirection vers /merci/ → le bouton « Répondre aux 53 questions » ouvre le bon Tally
+- [ ] Soumission test du questionnaire 53 questions → notification email reçue
 - [ ] Stripe repassé en mode LIVE, lien de paiement re-testé (montant affiché : 49.90 CHF)
 - [ ] Remboursement test effectué dans Stripe (savoir le faire AVANT le premier vrai client)
 - [ ] `grep -rn "A_REMPLACER" site/lib/config.ts` → zéro résultat

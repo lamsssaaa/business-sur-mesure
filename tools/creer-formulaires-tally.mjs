@@ -1,4 +1,4 @@
-// Crée les formulaires Tally du tunnel par API, depuis contenu/intake-50-questions.md.
+// Crée les formulaires Tally du tunnel par API, depuis contenu/intake-53-questions.md.
 // Usage : TALLY_API_KEY=tly-xxx node tools/creer-formulaires-tally.mjs
 // La clé n'est JAMAIS écrite dans le repo.
 
@@ -11,7 +11,7 @@ if (!KEY) {
   process.exit(1);
 }
 
-const md = readFileSync(new URL("../contenu/intake-50-questions.md", import.meta.url), "utf8");
+const md = readFileSync(new URL("../contenu/intake-53-questions.md", import.meta.url), "utf8");
 
 // --- mini-conversion markdown → html inline (gras/italique uniquement) ---
 const html = (s) =>
@@ -60,7 +60,7 @@ blocks.push({
   type: "FORM_TITLE",
   groupUuid: u(),
   groupType: "TEXT",
-  payload: { title: "Ton Business Sur Mesure — Les 50 questions", html: "Ton Business Sur Mesure — Les 50 questions" },
+  payload: { title: "53 Questions Sur Mesure — Les 53 questions", html: "53 Questions Sur Mesure — Les 53 questions" },
 });
 
 // État du parseur
@@ -163,7 +163,7 @@ const creer = async (payload) => {
   return body;
 };
 
-// --- Formulaire 1 : les 50 questions ---
+// --- Formulaire 1 : les 53 questions ---
 const nbQuestions = blocks.filter((b) => b.groupType === "QUESTION").length;
 const f1 = await creer({
   status: "PUBLISHED",
@@ -180,7 +180,7 @@ const b2 = [
     type: "FORM_TITLE",
     groupUuid: u(),
     groupType: "TEXT",
-    payload: { title: "Ton profil entrepreneur — par email", html: "Ton profil entrepreneur — par email" },
+    payload: { title: "Votre profil entrepreneur — par email", html: "Votre profil entrepreneur — par email" },
   },
   {
     uuid: u(),
