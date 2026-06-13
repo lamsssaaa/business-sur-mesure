@@ -9,6 +9,7 @@
   --color-accent-deep: #0a4a37;
   --color-line: #e5e2db;
   --color-gold: #b88a2e;
+  --color-gold-text: #8a6516;
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-hanken), system-ui, sans-serif;
   --shadow-float: 0 1px 2px rgb(22 24 29 / 0.04), 0 8px 24px rgb(22 24 29 / 0.07),
@@ -188,7 +189,7 @@ details[open] .faq-plus {
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
 }
 
 /* Coche dessinée au scroll */
