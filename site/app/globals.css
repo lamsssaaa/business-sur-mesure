@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #faf9f6;
-  --color-ink: #16181d;
-  --color-muted: #5c6168;
-  --color-accent: #0e6b4f;
-  --color-accent-soft: #e7f2ee;
+  /* Thème immersif SOMBRE — le champ de particules (SceneFond) vit derrière tout le site.
+     paper reste clair (= texte clair sur sombre) ; ink/muted/line/soft basculent en sombre. */
+  --color-paper: #f4f1e8;
+  --color-ink: #e9efe9;
+  --color-muted: #94a99d;
+  --color-accent: #47bb91;
+  --color-accent-soft: #123f30;
   --color-accent-deep: #0a4a37;
-  --color-line: #e5e2db;
-  --color-gold: #b88a2e;
-  --color-gold-text: #8a6516;
+  --color-line: #2e4b3f;
+  --color-gold: #d4a753;
+  --color-gold-text: #d9b366;
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-hanken), system-ui, sans-serif;
   --shadow-float: 0 1px 2px rgb(22 24 29 / 0.04), 0 8px 24px rgb(22 24 29 / 0.07),
@@ -25,7 +27,8 @@
 }
 
 body {
-  background: var(--color-paper);
+  background: radial-gradient(125% 80% at 50% -10%, #0c3325, #061d15 68%);
+  background-attachment: fixed;
   color: var(--color-ink);
   font-family: var(--font-sans);
   overflow-x: clip;

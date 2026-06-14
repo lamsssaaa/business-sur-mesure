@@ -44,7 +44,7 @@ export default function MobileCta() {
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-full opacity-0"
       }`}
     >
-      <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-line bg-white/95 p-2 pl-5 shadow-lift backdrop-blur">
+      <div className="mx-auto flex max-w-md items-center gap-2 rounded-full border border-white/15 bg-[#0c2a20]/90 p-2 pl-5 shadow-lift backdrop-blur">
         <p className="min-w-0 flex-1 truncate text-sm font-medium">
           VOTRE business, taillé sur mesure
         </p>

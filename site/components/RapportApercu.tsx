@@ -17,7 +17,7 @@ function Page({
 }) {
   return (
     <div
-      className={`w-72 shrink-0 rounded-xl border border-line bg-white p-6 shadow-float transition duration-500 hover:-translate-y-2 hover:rotate-0 hover:shadow-lift sm:w-80 ${className}`}
+      className={`w-72 shrink-0 rounded-xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md shadow-float transition duration-500 hover:-translate-y-2 hover:rotate-0 hover:bg-white/[0.07] sm:w-80 ${className}`}
     >
       {children}
     </div>
@@ -26,7 +26,7 @@ function Page({
 
 export default function RapportApercu() {
   return (
-    <section id="apercu" className="overflow-hidden border-y border-line bg-white/60">
+    <section id="apercu" className="overflow-hidden border-y border-line">
       <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
         <Reveal>
           <p className="kicker">La preuve</p>

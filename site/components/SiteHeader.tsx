@@ -23,8 +23,8 @@ export default function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-400 ${
         scrolle
-          ? "border-b border-line bg-paper/90 backdrop-blur-md"
-          : "border-b border-transparent bg-gradient-to-b from-paper via-paper/85 to-transparent"
+          ? "border-b border-line bg-[#06231a]/85 backdrop-blur-md"
+          : "border-b border-transparent bg-gradient-to-b from-[#061d15] via-[#061d15]/70 to-transparent"
       }`}
     >
       <div
@@ -37,7 +37,7 @@ export default function SiteHeader() {
         </Link>
         <Link
           href="/#prix"
-          className="rounded-full border border-ink/15 bg-paper/70 px-5 py-2 text-sm font-semibold backdrop-blur-md transition hover:border-accent hover:text-accent"
+          className="rounded-full border border-paper/25 bg-white/[0.06] px-5 py-2 text-sm font-semibold backdrop-blur-md transition hover:border-accent hover:text-accent"
         >
           Commander
         </Link>

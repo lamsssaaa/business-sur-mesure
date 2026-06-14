@@ -3,6 +3,7 @@ import { ViewTransitions } from "next-view-transitions";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import Analytics from "@/components/Analytics";
+import SceneFond from "@/components/SceneFond";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf9f6",
+  themeColor: "#072a1f",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Aller au contenu
         </a>
+        <SceneFond />
         <div className="grain" aria-hidden="true" />
         <SiteHeader />
         <div id="contenu">{children}</div>
