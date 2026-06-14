@@ -40,37 +40,37 @@ export default function RapportApercu() {
             <p className="mt-6 font-display text-2xl font-semibold leading-snug">
               53 Questions <span className="italic text-accent">Sur Mesure</span>
             </p>
-            <p className="mt-2 font-display text-lg text-muted">— Camille, 38 ans · Annecy</p>
+            <p className="mt-2 font-display text-lg text-muted">Préparé pour Camille, 38 ans · Annecy</p>
             <p className="mt-8 text-sm leading-snug text-ink/80">
               LE business à lancer, et comment, en 30 jours.
             </p>
             <p className="mt-10 border-t border-line pt-4 text-xs leading-relaxed text-muted">
               12-18 pages · 6 parties · livré en 48 h
               <br />
-              Construit à partir de ses 53 réponses.
+              Construit à partir de vos 53 réponses.
             </p>
           </Page></Reveal>
           {/* 2 — LE business recommandé : concret, réel, désirable */}
           <Reveal delay={0.22} y={48}><Page className="lg:translate-y-3">
-            <p className="kicker">Partie 1 — Sa recommandation</p>
+            <p className="kicker">Partie 1 — Votre recommandation</p>
             <p className="mt-5 font-display text-xl font-semibold leading-snug text-accent">
               Gestion administrative et facturation pour artisans
             </p>
             <p className="mt-4 font-display text-base italic leading-snug">
-              « Elle ne vend pas de l'administratif. Elle vend du temps et de la trésorerie. »
+              « Vous ne vendez pas de l'administratif. Vous vendez du temps et de la trésorerie. »
             </p>
             <p className="mt-4 text-sm leading-snug text-muted">
               Un marché immense et mal servi, un démarrage à ~580 €, et des clients qui
               paient chaque mois — pas une mission unique.
             </p>
           </Page></Reveal>
-          {/* 3 — Pourquoi lui : la preuve que chaque ligne sort de SES réponses */}
+          {/* 3 — Pourquoi vous : la preuve que chaque ligne sort de VOS réponses */}
           <Reveal delay={0.34} y={48}><Page className="lg:rotate-2">
-            <p className="kicker">Partie 1.2 — Pourquoi elle</p>
+            <p className="kicker">Partie 1.2 — Pourquoi vous</p>
             <blockquote className="mt-5 rounded-lg bg-accent-soft p-3 text-sm italic leading-snug">
               « J'ai récupéré 14 000 € d'impayés en deux mois pour mon employeur. »
               <span className="mt-1 block text-xs not-italic text-muted">
-                — sa réponse à la question 9
+                — votre réponse à la question 9
               </span>
             </blockquote>
             <p className="mt-3 text-sm leading-snug text-muted">
@@ -83,7 +83,7 @@ export default function RapportApercu() {
               <div className="h-2.5 w-4/6 rounded bg-line" />
             </div>
             <p className="mt-3 text-xs leading-snug text-ink/70">
-              Chaque recommandation du rapport est rattachée à l'une de ses 53 réponses.
+              Chaque recommandation du rapport est rattachée à l'une de vos 53 réponses.
             </p>
           </Page></Reveal>
         </div>
