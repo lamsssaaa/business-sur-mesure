@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <!-- Visuels réseaux « 53 Questions Sur Mesure » — rendus en PNG par Chrome headless
-     (tools/rendre-visuels.sh). Un hash #id par slide. Palette/typo = le site. -->
+     (./rendre.sh). Un hash #id par slide. Palette/typo = le site. Vouvoiement, 53, vente directe. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -63,21 +63,36 @@
   .fleche { font-size: 56px; margin-top: auto; padding-bottom: 110px; }
   .spacer { flex: 1; }
 
-  /* ============ photo de profil : monogramme 53 ============ */
-  #profil {
-    align-items: center; justify-content: center; text-align: center;
-    padding: 0;
+  /* gros chiffre fantôme (style éditorial du site) */
+  .grosnum {
+    font-family: "Fraunces", serif; font-weight: 600; font-size: 210px;
+    line-height: 0.82; letter-spacing: -0.03em; color: rgb(14 107 79 / 0.13);
+    margin-bottom: 8px;
   }
-  #profil .gros53 {
-    font-family: "Fraunces", serif; font-weight: 700; font-size: 460px;
-    line-height: 1; color: var(--paper); letter-spacing: -0.04em;
+  .fond-profond .grosnum { color: rgb(216 236 223 / 0.16); }
+
+  /* numéro de question (carrousel 3) */
+  .qnum { font-family: "Fraunces", serif; font-weight: 600; font-size: 72px; color: var(--emeraude); margin-bottom: 28px; }
+  .note { font-size: 40px; font-style: italic; line-height: 1.4; margin-top: 44px; color: rgb(32 37 31 / 0.6); }
+
+  /* ligne CTA en bas d'une slide de contenu */
+  .ctaline { margin-top: auto; padding-bottom: 120px; font-size: 44px; font-weight: 700; color: var(--emeraude); }
+  .fond-profond .ctaline { color: #d8ecdf; }
+
+  /* slide finale centrée (CTA marque) */
+  .fin { align-items: center; text-align: center; justify-content: center; }
+  .fin .punch { font-family: "Fraunces", serif; font-weight: 600; font-size: 92px; line-height: 1.1; }
+  .fin .punch .acc { color: #d8ecdf; font-style: italic; }
+  .fin .cta {
+    margin-top: 84px; background: var(--paper); color: var(--profond);
+    border-radius: 999px; padding: 32px 62px; font-size: 42px; font-weight: 700;
   }
-  #profil .sousmarque {
-    font-family: "Fraunces", serif; font-style: italic; font-weight: 500;
-    font-size: 86px; color: var(--or); margin-top: 8px;
+  .fin .disclaimer {
+    position: absolute; bottom: 56px; left: 88px; right: 88px;
+    font-size: 24px; color: rgb(250 249 246 / 0.45);
   }
 
-  /* slide 1 : hook plein cadre */
+  /* slide 1 du carrousel 1 : hook plein cadre + badge */
   #c1s1 .display { font-size: 124px; }
   #c1s1 .stop {
     display: inline-block; margin-top: 64px; padding: 18px 44px;
@@ -85,33 +100,23 @@
     color: var(--or); font-size: 36px; font-weight: 700; letter-spacing: 0.22em;
     text-transform: uppercase; font-family: "Hanken Grotesk", sans-serif;
   }
-
-  /* slide 4 : le pivot 53 → 1 */
-  .pivot {
-    font-family: "Fraunces", serif; font-weight: 600; font-size: 150px;
-    margin-top: 72px; line-height: 1.1;
-  }
+  .pivot { font-family: "Fraunces", serif; font-weight: 600; font-size: 150px; margin-top: 72px; line-height: 1.1; }
   .pivot .or { color: var(--or); }
-
-  /* slide 6 : CTA */
   #c1s6 { align-items: center; text-align: center; justify-content: center; }
-  #c1s6 .marqueGeante {
-    font-family: "Fraunces", serif; font-weight: 600; font-size: 110px; line-height: 1.05;
-  }
+  #c1s6 .marqueGeante { font-family: "Fraunces", serif; font-weight: 600; font-size: 110px; line-height: 1.05; }
   #c1s6 .marqueGeante .sm { font-style: italic; color: #d8ecdf; }
-  #c1s6 .cta {
-    margin-top: 88px; background: var(--paper); color: var(--profond);
-    border-radius: 999px; padding: 34px 64px; font-size: 42px; font-weight: 700;
-  }
-  #c1s6 .disclaimer {
-    position: absolute; bottom: 56px; left: 88px; right: 88px;
-    font-size: 24px; color: rgb(250 249 246 / 0.45);
-  }
+  #c1s6 .cta { margin-top: 88px; background: var(--paper); color: var(--profond); border-radius: 999px; padding: 34px 64px; font-size: 42px; font-weight: 700; }
+  #c1s6 .disclaimer { position: absolute; bottom: 56px; left: 88px; right: 88px; font-size: 24px; color: rgb(250 249 246 / 0.45); }
+
+  /* photo de profil : monogramme 53 */
+  #profil { align-items: center; justify-content: center; text-align: center; padding: 0; }
+  #profil .gros53 { font-family: "Fraunces", serif; font-weight: 700; font-size: 460px; line-height: 1; color: var(--paper); letter-spacing: -0.04em; }
+  #profil .sousmarque { font-family: "Fraunces", serif; font-style: italic; font-weight: 500; font-size: 86px; color: var(--or); margin-top: 8px; }
 </style>
 </head>
 <body>
 
-<!-- PHOTO DE PROFIL (rendue en 1080, IG/TikTok la réduisent) -->
+<!-- PHOTO DE PROFIL (1080×1080) -->
 <section class="slide carre fond-emeraude" id="profil">
   <div class="gros53">53</div>
   <div class="sousmarque">Sur Mesure</div>
@@ -158,6 +163,138 @@
 <section class="slide fond-profond" id="c1s6">
   <h1 class="marqueGeante">53 Questions<br><span class="sm">Sur Mesure</span></h1>
   <div class="cta">Le site est en lien dans la bio ↗</div>
+  <p class="disclaimer">Orientation entrepreneuriale — pas un conseil financier ou juridique, aucun revenu garanti.</p>
+</section>
+
+<!-- ============ CARROUSEL 2 — « Ce que vous recevez pour 49.90 » ============ -->
+
+<section class="slide fond-profond" id="c2s1">
+  <p class="kicker">L'offre</p>
+  <h1 class="display">Pour 49.90,<br>voici <span class="it acc">ce que vous<br>recevez.</span></h1>
+  <p class="corps">Un rapport de 12 à 18 pages, livré en 48 h.</p>
+  <div class="fleche">↓</div>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">1 / 6</span></div>
+</section>
+
+<section class="slide fond-papier" id="c2s2">
+  <div class="grosnum">1</div>
+  <h1 class="display">Votre profil<br>entrepreneurial.</h1>
+  <p class="corps">Ce que vos 53 réponses révèlent vraiment : vos forces, vos limites, votre angle d'attaque.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">2 / 6</span></div>
+</section>
+
+<section class="slide fond-papier" id="c2s3">
+  <div class="grosnum">2</div>
+  <h1 class="display">LE business<br><span class="it acc">recommandé.</span></h1>
+  <p class="corps">Un seul — choisi pour votre situation, votre budget et votre temps. Pas une liste.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">3 / 6</span></div>
+</section>
+
+<section class="slide fond-papier" id="c2s4">
+  <div class="grosnum">3</div>
+  <h1 class="display">Pourquoi<br>celui-là.</h1>
+  <p class="corps">L'argumentaire complet : pourquoi ce business vous correspond, et pourquoi on a écarté les autres pistes.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">4 / 6</span></div>
+</section>
+
+<section class="slide fond-papier" id="c2s5">
+  <div class="grosnum">4</div>
+  <h1 class="display">Votre plan<br><span class="it acc">30 jours.</span></h1>
+  <p class="corps">Semaine par semaine : quoi faire, dans quel ordre, avec quels outils et quel budget.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">5 / 6</span></div>
+</section>
+
+<section class="slide fond-profond" id="c2s6">
+  <div class="grosnum">5</div>
+  <h1 class="display">Les pièges<br>à éviter.</h1>
+  <p class="corps">Les erreurs classiques de CE business précis — et comment les contourner dès le départ.</p>
+  <div class="ctaline">👉 Votre rapport en 48 h — lien en bio</div>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">6 / 6</span></div>
+</section>
+
+<!-- ============ CARROUSEL 3 — « 7 questions que personne ne vous a jamais posées » ============ -->
+
+<section class="slide fond-profond" id="c3s1">
+  <p class="kicker">Le test</p>
+  <h1 class="display">7 questions que<br>personne ne vous a<br><span class="it acc">jamais posées.</span></h1>
+  <p class="corps">Et qui décident du business fait pour vous.</p>
+  <div class="fleche">↓</div>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">1 / 8</span></div>
+</section>
+
+<section class="slide fond-papier" id="c3s2">
+  <div class="qnum">1.</div>
+  <h1 class="display">Qu'est-ce qu'on vous demande déjà de faire… <span class="acc">gratuitement ?</span></h1>
+  <p class="note">Souvent, votre business se cache exactement là.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">2 / 8</span></div>
+</section>
+
+<section class="slide fond-papier" id="c3s3">
+  <div class="qnum">2.</div>
+  <h1 class="display">Combien d'heures par semaine vous pouvez <span class="acc">vraiment</span> tenir, pendant 3 mois ?</h1>
+  <p class="note">Pas dans vos rêves. Dans votre vraie semaine.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">3 / 8</span></div>
+</section>
+
+<section class="slide fond-papier" id="c3s4">
+  <div class="qnum">3.</div>
+  <h1 class="display">Quel budget, sans <span class="acc">vous mettre en difficulté ?</span></h1>
+  <p class="note">Votre réponse change toute la recommandation.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">4 / 8</span></div>
+</section>
+
+<section class="slide fond-papier" id="c3s5">
+  <div class="qnum">4.</div>
+  <h1 class="display">Qu'avez-vous déjà commencé… <span class="acc">puis abandonné ?</span></h1>
+  <p class="note">Pour ne pas vous renvoyer dans le même mur.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">5 / 8</span></div>
+</section>
+
+<section class="slide fond-papier" id="c3s6">
+  <div class="qnum">5.</div>
+  <h1 class="display">Qu'est-ce que vous <span class="acc">refusez</span> catégoriquement de faire ?</h1>
+  <p class="note">Un seul refus peut éliminer la moitié des pistes.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">6 / 8</span></div>
+</section>
+
+<section class="slide fond-papier" id="c3s7">
+  <div class="qnum">6. &amp; 7.</div>
+  <h1 class="display">Qui serait votre tout premier client ? Et : <span class="acc">une semaine dont vous seriez fier,</span> dans un an ?</h1>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">7 / 8</span></div>
+</section>
+
+<section class="slide fond-profond fin" id="c3s8">
+  <h1 class="punch">53 questions comme celles-là<br><span class="acc">→ UN business, le vôtre.</span></h1>
+  <div class="cta">Lien en bio ↗</div>
+  <p class="disclaimer">Orientation entrepreneuriale — pas un conseil financier ou juridique, aucun revenu garanti.</p>
+</section>
+
+<!-- ============ CARROUSEL 4 — « Comment ça marche » ============ -->
+
+<section class="slide fond-papier" id="c4s1">
+  <div class="grosnum">1</div>
+  <h1 class="display">Vous commandez<br>votre rapport.</h1>
+  <p class="corps">49.90, une fois. Pas d'abonnement. Le questionnaire arrive juste après votre commande.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">1 / 4</span></div>
+</section>
+
+<section class="slide fond-profond" id="c4s2">
+  <div class="grosnum">2</div>
+  <h1 class="display">Les 53 questions.</h1>
+  <p class="corps">20 à 30 minutes : votre expérience, votre budget, votre temps, vos contraintes.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">2 / 4</span></div>
+</section>
+
+<section class="slide fond-papier" id="c4s3">
+  <div class="grosnum">3</div>
+  <h1 class="display">Votre rapport<br>en <span class="it acc">48 h.</span></h1>
+  <p class="corps">Votre conseiller analyse, construit et valide à la main : LE business à lancer + le plan des 30 jours.</p>
+  <div class="pied"><span class="marque">53 Questions <span class="sm">Sur Mesure</span></span><span class="num">3 / 4</span></div>
+</section>
+
+<section class="slide fond-profond fin" id="c4s4">
+  <h1 class="punch">Une décision claire,<br><span class="acc">pas une liste de plus.</span></h1>
+  <div class="cta">Commandez le vôtre — lien en bio ↗</div>
   <p class="disclaimer">Orientation entrepreneuriale — pas un conseil financier ou juridique, aucun revenu garanti.</p>
 </section>
 
